@@ -20,7 +20,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging.Example
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB.Example", "Examples\DDD.Light.Repo.MongoDB.Example\DDD.Light.Repo.MongoDB.Example.csproj", "{9C7EAFC1-0BBE-463C-87D0-1441004BC996}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor", "DDD.Light.Realtor\DDD.Light.Realtor.csproj", "{B935F0E4-A28A-4022-8BB9-ED4041691072}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor", "Examples\DDD.Light.Realtor\DDD.Light.Realtor.csproj", "{B935F0E4-A28A-4022-8BB9-ED4041691072}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

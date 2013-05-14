@@ -257,15 +257,15 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DDD.Light.Messaging\DDD.Light.Messaging.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Messaging\DDD.Light.Messaging.csproj">
       <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
       <Name>DDD.Light.Messaging</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DDD.Light.Repo.MongoDB\DDD.Light.Repo.MongoDB.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Repo.MongoDB\DDD.Light.Repo.MongoDB.csproj">
       <Project>{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}</Project>
       <Name>DDD.Light.Repo.MongoDB</Name>
     </ProjectReference>
