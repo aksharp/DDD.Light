@@ -74,7 +74,6 @@ namespace DDD.Light.Realtor.Controllers
             return Request.CreateResponse(HttpStatusCode.NoContent);
         }
 
-        [AcceptVerbs("PATCH")]
         public HttpResponseMessage Patch(Guid id, [FromBody]string street)
         {
             var listing = _listingRepository.GetById(id);

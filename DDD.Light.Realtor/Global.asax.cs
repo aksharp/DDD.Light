@@ -20,7 +20,7 @@ namespace DDD.Light.Realtor
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            var container = StructureMapContainer.ConfigureDependencies();
+            var container = StructureMapConfig.ConfigureDependencies();
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapDependencyResolver(container);
         }
     }
