@@ -1,12 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.Contracts", "DDD.Repo.Contracts\DDD.Light.Repo.Contracts.csproj", "{E275A12B-521A-4D92-AD1E-3DA98B106009}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB", "DDD.Repo.MongoDB\DDD.Light.Repo.MongoDB.csproj", "{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB.Example", "DDD.Repo.MongoDB.Example\DDD.Light.Repo.MongoDB.Example.csproj", "{9C7EAFC1-0BBE-463C-87D0-1441004BC996}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0C7A4B55-44D4-456E-9C6A-D35AB59DA5FD}"
 	ProjectSection(SolutionItems) = preProject
 		.nuget\NuGet.Config = .nuget\NuGet.Config
@@ -14,11 +8,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{0C7A4B
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging", "DDD.Bus\DDD.Light.Messaging.csproj", "{80F4D478-672E-4687-9997-0EDF466D55A8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging", "DDD.Light.Messaging\DDD.Light.Messaging.csproj", "{80F4D478-672E-4687-9997-0EDF466D55A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging.Example", "DDD.Bus.Example\DDD.Light.Messaging.Example.csproj", "{B3728D35-D9DF-45DD-AA97-A60662805968}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.Contracts", "DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj", "{E275A12B-521A-4D92-AD1E-3DA98B106009}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{A55EACC8-E662-4E17-88DE-5F9938B35467}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB", "DDD.Light.Repo.MongoDB\DDD.Light.Repo.MongoDB.csproj", "{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{4A007E91-23DA-4167-8A81-D3959EDBEAFD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging.Example", "Examples\DDD.Light.Messaging.Example\DDD.Light.Messaging.Example.csproj", "{B3728D35-D9DF-45DD-AA97-A60662805968}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB.Example", "Examples\DDD.Light.Repo.MongoDB.Example\DDD.Light.Repo.MongoDB.Example.csproj", "{9C7EAFC1-0BBE-463C-87D0-1441004BC996}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +30,16 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{E275A12B-521A-4D92-AD1E-3DA98B106009}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E275A12B-521A-4D92-AD1E-3DA98B106009}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E275A12B-521A-4D92-AD1E-3DA98B106009}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
@@ -50,26 +60,6 @@ Global
 		{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}.Release|x86.ActiveCfg = Release|Any CPU
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|x86.ActiveCfg = Debug|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|x86.Build.0 = Debug|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Any CPU.ActiveCfg = Release|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Mixed Platforms.Build.0 = Release|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.ActiveCfg = Release|x86
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.Build.0 = Release|x86
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{80F4D478-672E-4687-9997-0EDF466D55A8}.Release|x86.ActiveCfg = Release|Any CPU
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -80,12 +70,22 @@ Global
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Release|Mixed Platforms.Build.0 = Release|x86
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Release|x86.ActiveCfg = Release|x86
 		{B3728D35-D9DF-45DD-AA97-A60662805968}.Release|x86.Build.0 = Release|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|x86.ActiveCfg = Debug|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Debug|x86.Build.0 = Debug|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Any CPU.ActiveCfg = Release|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.ActiveCfg = Release|x86
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{B3728D35-D9DF-45DD-AA97-A60662805968} = {A55EACC8-E662-4E17-88DE-5F9938B35467}
-		{9C7EAFC1-0BBE-463C-87D0-1441004BC996} = {A55EACC8-E662-4E17-88DE-5F9938B35467}
+		{B3728D35-D9DF-45DD-AA97-A60662805968} = {4A007E91-23DA-4167-8A81-D3959EDBEAFD}
+		{9C7EAFC1-0BBE-463C-87D0-1441004BC996} = {4A007E91-23DA-4167-8A81-D3959EDBEAFD}
 	EndGlobalSection
 EndGlobal
