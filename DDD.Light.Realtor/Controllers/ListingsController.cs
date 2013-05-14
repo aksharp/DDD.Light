@@ -17,19 +17,19 @@ namespace DDD.Light.Realtor.Controllers
             _listingRepository = listingRepository;
         }
 
-        // GET api/values
+        // GET api/listings
         public IEnumerable<Listing> Get()
         {
             return _listingRepository.GetAll();
         }
 
-        // GET api/values/5
+        // GET api/listings/ecf4dbf5-b8b2-4529-84bc-4117cf106227
         public Listing Get(Guid id)
         {
             return _listingRepository.GetById(id);
         }
 
-        // POST api/values
+        // POST api/listings
         public HttpResponseMessage Post(Listing listing)
         {
             listing.Id = Guid.NewGuid();
@@ -40,22 +40,39 @@ namespace DDD.Light.Realtor.Controllers
             }
             catch (Exception ex)
             {
-                return Request.CreateResponse(HttpStatusCode.BadRequest, ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
             }
-            return Request.CreateResponse(HttpStatusCode.Created);
+            return Request.CreateResponse(HttpStatusCode.Created, listing);
         }
 
-        // PUT api/values/5
-        public void Put(Listing listing)
+        // PUT api/listings/5
+        public HttpResponseMessage Put(Listing listing)
         {
             if (listing.Id == null)
-                return;
-            _listingRepository.Save(listing);
+                return Request.CreateResponse(HttpStatusCode.BadRequest, "Id is missing. Use POST or provide Id.");
+            try
+            {
+                _listingRepository.Save(listing);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
+            return Request.CreateResponse(HttpStatusCode.OK, listing);
         }
 
-        // DELETE api/values/5
-        public void Delete(int id)
+        // DELETE api/listings/5
+        public HttpResponseMessage Delete(Guid id)
         {
+            try
+            {
+                _listingRepository.Delete(id);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }
+            return Request.CreateResponse(HttpStatusCode.NoContent);
         }
     }
 }
