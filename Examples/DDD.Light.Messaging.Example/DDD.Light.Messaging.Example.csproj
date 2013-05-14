@@ -46,7 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestEvents.cs" />
-    <Compile Include="TestEventsAndHandlers.cs" />
+    <Compile Include="TestEventHandlers.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\DDD.Light.Messaging\DDD.Light.Messaging.csproj">
