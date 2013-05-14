@@ -7,7 +7,7 @@ namespace DDD.Light.Messaging
     {
         private static volatile IEventBus _instance;
         private readonly List<IEventHandler> _registeredHandlers;
-        private static object syncRoot = new Object();
+        private static object token = new Object();
 
         public static IEventBus Instance
         {
@@ -15,7 +15,7 @@ namespace DDD.Light.Messaging
             {
                 if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (token)
                     {
                         if (_instance == null)
                             _instance = new EventBus();

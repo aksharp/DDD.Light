@@ -7,7 +7,7 @@ namespace DDD.Light.Repo.MongoDB
     public sealed class MongoPool
     {
         private static volatile MongoPool _instance;
-        private static object syncRoot = new Object();
+        private static object token = new Object();
         private readonly Dictionary<string, MongoClient> _mongoClients;
 
         private MongoPool()
@@ -21,7 +21,7 @@ namespace DDD.Light.Repo.MongoDB
             {
                 if (_instance == null)
                 {
-                    lock (syncRoot)
+                    lock (token)
                     {
                         if (_instance == null)
                             _instance = new MongoPool();
