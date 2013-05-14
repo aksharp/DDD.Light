@@ -41,9 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventBus.cs" />
-    <Compile Include="EventHandlerOf.cs" />
+    <Compile Include="EventHandlersDatabase.cs" />
     <Compile Include="IEventBus.cs" />
     <Compile Include="IEventHandler.cs" />
+    <Compile Include="IEventHandlersDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

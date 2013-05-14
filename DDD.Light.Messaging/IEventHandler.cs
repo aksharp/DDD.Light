@@ -1,7 +1,7 @@
 ﻿namespace DDD.Light.Messaging
 {
-    public interface IEventHandler
+    public interface IEventHandler<T>
     {
-        void Handle<T>(T @event);
+        void Handle(T @event);
     }
 }

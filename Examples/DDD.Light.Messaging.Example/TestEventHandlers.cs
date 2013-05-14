@@ -2,29 +2,25 @@
 
 namespace DDD.Light.Messaging.Example
 {
-    public class PersonArrivedEventHandler : IEventHandler
+    public class PersonArrivedEventHandler : IEventHandler<PersonArrivedEvent>
     {
-        public void Handle<T>(T @event)
+        public void Handle(PersonArrivedEvent e)
         {
-            if (!EventHandlerOf<PersonArrivedEvent>.CanHandle(@event)) return;
-            var e = @event as PersonArrivedEvent;
             Console.WriteLine("PersonArrivedEventHandler ::: Handling PersonArrivedEvent... Name: " 
                 + e.Name + " Location: " + e.Location);
         }
     }
 
-    public class PersonLeftEventHandler : IEventHandler
+    public class PersonLeftEventHandler : IEventHandler<PersonLeftEvent>
     {
-        public void Handle<T>(T @event)
+        public void Handle(PersonLeftEvent e)
         {
-            if (!EventHandlerOf<PersonLeftEvent>.CanHandle(@event)) return;
-            var e = @event as PersonLeftEvent;
             Console.WriteLine("PersonLeftEventHandler ::: Handling PersonLeftEvent... Name: " 
                 + e.Name + " Location: " + e.Location);
         }
     }
 
-    public class PersonLeftAndSpokeEventHandler : IEventHandler
+    public class PersonLeftAndSpokeEventHandler : IEventHandler<PersonLeftEvent>
     {
         private readonly string _word;
 
@@ -33,10 +29,8 @@ namespace DDD.Light.Messaging.Example
             _word = word;
         }
 
-        public void Handle<T>(T @event)
+        public void Handle(PersonLeftEvent e)
         {
-            if (!EventHandlerOf<PersonLeftEvent>.CanHandle(@event)) return;
-            var e = @event as PersonLeftEvent;
             Console.WriteLine("PersonLeftAndSpokeEventHandler ::: Handling PersonLeftEvent... Name: " 
                 + e.Name + " Location: " + e.Location + "and said the word: " + _word);
         }

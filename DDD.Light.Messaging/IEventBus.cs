@@ -2,7 +2,7 @@
 {
     public interface IEventBus
     {
-        void Subscribe(IEventHandler handler);
+        void Subscribe<T>(IEventHandler<T> handler);
         void Publish<T>(T @event);
     }
 }
