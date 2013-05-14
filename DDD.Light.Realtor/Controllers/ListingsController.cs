@@ -30,7 +30,7 @@ namespace DDD.Light.Realtor.Controllers
         }
 
         // POST api/listings
-        public HttpResponseMessage Post(Listing listing)
+        public HttpResponseMessage Post([FromBody]Listing listing)
         {
             listing.Id = Guid.NewGuid();
 
@@ -45,13 +45,12 @@ namespace DDD.Light.Realtor.Controllers
             return Request.CreateResponse(HttpStatusCode.Created, listing);
         }
 
-        // PUT api/listings/5
-        public HttpResponseMessage Put(Listing listing)
+        // PUT api/listings/ecf4dbf5-b8b2-4529-84bc-4117cf106227
+        public HttpResponseMessage Put(Guid id, [FromBody]Listing listing)
         {
-            if (listing.Id == null)
-                return Request.CreateResponse(HttpStatusCode.BadRequest, "Id is missing. Use POST or provide Id.");
             try
             {
+                listing.Id = id;
                 _listingRepository.Save(listing);
             }
             catch (Exception ex)
@@ -61,7 +60,7 @@ namespace DDD.Light.Realtor.Controllers
             return Request.CreateResponse(HttpStatusCode.OK, listing);
         }
 
-        // DELETE api/listings/5
+        // DELETE api/listings/ecf4dbf5-b8b2-4529-84bc-4117cf106227
         public HttpResponseMessage Delete(Guid id)
         {
             try
@@ -73,6 +72,22 @@ namespace DDD.Light.Realtor.Controllers
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
             }
             return Request.CreateResponse(HttpStatusCode.NoContent);
+        }
+
+        [AcceptVerbs("PATCH")]
+        public HttpResponseMessage Patch(Guid id, [FromBody]string street)
+        {
+            var listing = _listingRepository.GetById(id);
+            try
+            {                
+                listing.Address.Street = street;
+                _listingRepository.Save(listing);
+                return Request.CreateResponse(HttpStatusCode.OK, listing);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
+            }            
         }
     }
 }
