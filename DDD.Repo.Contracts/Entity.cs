@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDD.Repo.Contracts
+namespace DDD.Light.Repo.Contracts
 {
     public abstract class Entity
     {

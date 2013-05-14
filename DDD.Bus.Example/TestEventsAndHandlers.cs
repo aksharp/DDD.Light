@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDD.Bus.Example
+namespace DDD.Light.Messaging.Example
 {
     public class PersonLeftEvent
     {

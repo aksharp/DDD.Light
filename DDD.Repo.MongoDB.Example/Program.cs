@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace DDD.Repo.MongoDB.Example
+namespace DDD.Light.Repo.MongoDB.Example
 {
     class Program
     {

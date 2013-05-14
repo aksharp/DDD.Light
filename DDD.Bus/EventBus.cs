@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DDD.Bus
+namespace DDD.Light.Messaging
 {
     public class EventBus : IEventBus
     {

@@ -1,6 +1,6 @@
-﻿using DDD.Repo.Contracts;
+﻿using DDD.Light.Repo.Contracts;
 
-namespace DDD.Repo.MongoDB.Example
+namespace DDD.Light.Repo.MongoDB.Example
 {
     public class Person : Entity
     {

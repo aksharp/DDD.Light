@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DDD.Repo.Contracts;
+using DDD.Light.Repo.Contracts;
 using MongoDB.Driver;
 using MongoDB.Driver.Builders;
 using MongoDB.Driver.Linq;
 
-namespace DDD.Repo.MongoDB
+namespace DDD.Light.Repo.MongoDB
 {
     public class Repository<T> : IRepository<T>
         where T : Entity 

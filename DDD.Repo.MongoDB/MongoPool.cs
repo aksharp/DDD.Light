@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using MongoDB.Driver;
 
-namespace DDD.Repo.MongoDB
+namespace DDD.Light.Repo.MongoDB
 {
     public sealed class MongoPool
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DDD.Repo.Contracts
+namespace DDD.Light.Repo.Contracts
 {
     public interface IRepository<T>
         where T : Entity

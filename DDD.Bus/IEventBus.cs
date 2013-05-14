@@ -1,4 +1,4 @@
-﻿namespace DDD.Bus
+﻿namespace DDD.Light.Messaging
 {
     public interface IEventBus
     {
