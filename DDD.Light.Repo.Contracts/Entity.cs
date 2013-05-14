@@ -4,6 +4,6 @@ namespace DDD.Light.Repo.Contracts
 {
     public abstract class Entity
     {
-        public Guid Id { get; set; }
+        public Guid? Id { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace DDD.Light.Repo.MongoDB.Example
             const string collectionName = "people";
             // instantiate a repository
             // in real application, this should be setup as a singleton (can be done through StructureMap, Unity or another DI container)
-            var personRepository = new Repository<Person>(connectionString, databaseName, collectionName);
+            var personRepository = new MongoRepository<Person>(connectionString, databaseName, collectionName);
 
             Console.Write("Please enter person's first name: ");
             var firstName = Console.ReadLine();

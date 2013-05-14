@@ -20,6 +20,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Messaging.Example
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Repo.MongoDB.Example", "Examples\DDD.Light.Repo.MongoDB.Example\DDD.Light.Repo.MongoDB.Example.csproj", "{9C7EAFC1-0BBE-463C-87D0-1441004BC996}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor", "DDD.Light.Realtor\DDD.Light.Realtor.csproj", "{B935F0E4-A28A-4022-8BB9-ED4041691072}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,16 @@ Global
 		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.ActiveCfg = Release|x86
 		{9C7EAFC1-0BBE-463C-87D0-1441004BC996}.Release|x86.Build.0 = Release|x86
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{B935F0E4-A28A-4022-8BB9-ED4041691072}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +99,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B3728D35-D9DF-45DD-AA97-A60662805968} = {4A007E91-23DA-4167-8A81-D3959EDBEAFD}
 		{9C7EAFC1-0BBE-463C-87D0-1441004BC996} = {4A007E91-23DA-4167-8A81-D3959EDBEAFD}
+		{B935F0E4-A28A-4022-8BB9-ED4041691072} = {4A007E91-23DA-4167-8A81-D3959EDBEAFD}
 	EndGlobalSection
 EndGlobal

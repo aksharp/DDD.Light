@@ -8,12 +8,12 @@ using MongoDB.Driver.Linq;
 
 namespace DDD.Light.Repo.MongoDB
 {
-    public class Repository<T> : IRepository<T>
+    public class MongoRepository<T> : IRepository<T>
         where T : Entity 
     {
         private readonly MongoCollection<T> _collection;
 
-        public Repository(string connectionString, string databaseName, string collectionName)
+        public MongoRepository(string connectionString, string databaseName, string collectionName)
         {
             var client = MongoPool.Instance.GetClient(connectionString);
             var server = client.GetServer();
@@ -53,7 +53,7 @@ namespace DDD.Light.Repo.MongoDB
 
         public void Delete(T item)
         {
-            Delete(item.Id);
+            Delete(item.Id ?? Guid.NewGuid());
         }
 
         public void DeleteAll()
