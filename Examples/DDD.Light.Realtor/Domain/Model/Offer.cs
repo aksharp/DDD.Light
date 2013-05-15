@@ -13,13 +13,13 @@ namespace DDD.Light.Realtor.Domain.Model
             
         }
 
-        public Offer(BuyerMadeAnOffer buyerMadeAnOffer)
+        public Offer(OfferMade offerMade)
         {
-            BuyerId = buyerMadeAnOffer.BuyerId;
-            Id = buyerMadeAnOffer.OfferId;
+            BuyerId = offerMade.BuyerId;
+            Id = offerMade.OfferId;
             OfferedOn = DateTime.UtcNow;
-            ListingId = buyerMadeAnOffer.ListingId;
-            Price = buyerMadeAnOffer.Price;
+            ListingId = offerMade.ListingId;
+            Price = offerMade.Price;
         }
 
         public Guid BuyerId { get; set; }

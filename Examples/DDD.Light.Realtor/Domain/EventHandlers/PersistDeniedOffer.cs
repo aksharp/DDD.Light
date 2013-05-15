@@ -15,9 +15,9 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _offerRepository = offerRepository;
         }
 
-        public void Handle(OfferDenied buyerMadeAnOffer)
+        public void Handle(OfferDenied offerDenied)
         {
-            _offerRepository.Save(buyerMadeAnOffer.Offer);
+            _offerRepository.Save(offerDenied.Offer);
         }
     }
 }

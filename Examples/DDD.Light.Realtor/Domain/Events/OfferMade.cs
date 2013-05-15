@@ -2,7 +2,7 @@
 
 namespace DDD.Light.Realtor.Domain.Events
 {
-    public class BuyerMadeAnOffer
+    public class OfferMade
     {
         public Guid OfferId { get; set; }
         public Guid BuyerId { get; set; }

@@ -1,5 +1,4 @@
-﻿using System;
-using DDD.Light.Messaging;
+﻿using DDD.Light.Messaging;
 using DDD.Light.Realtor.Domain.Events;
 using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
@@ -15,9 +14,9 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _offerRepository = offerRepository;
         }
 
-        public void Handle(OfferAccepted buyerMadeAnOffer)
+        public void Handle(OfferAccepted offerAccepted)
         {
-            _offerRepository.Save(buyerMadeAnOffer.Offer);
+            _offerRepository.Save(offerAccepted.Offer);
         }
     }
 }

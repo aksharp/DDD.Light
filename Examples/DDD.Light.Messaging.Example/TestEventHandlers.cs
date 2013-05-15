@@ -4,19 +4,19 @@ namespace DDD.Light.Messaging.Example
 {
     public class PersonArrivedEventHandler : IEventHandler<PersonArrivedEvent>
     {
-        public void Handle(PersonArrivedEvent buyerMadeAnOffer)
+        public void Handle(PersonArrivedEvent personArrivedEvent)
         {
-            Console.WriteLine("PersonArrivedEventHandler ::: Handling PersonArrivedEvent... Name: " 
-                + buyerMadeAnOffer.Name + " Location: " + buyerMadeAnOffer.Location);
+            Console.WriteLine("PersonArrivedEventHandler ::: Handling PersonArrivedEvent... Name: "
+                + personArrivedEvent.Name + " Location: " + personArrivedEvent.Location);
         }
     }
 
     public class PersonLeftEventHandler : IEventHandler<PersonLeftEvent>
     {
-        public void Handle(PersonLeftEvent buyerMadeAnOffer)
+        public void Handle(PersonLeftEvent personLeftEvent)
         {
             Console.WriteLine("PersonLeftEventHandler ::: Handling PersonLeftEvent... Name: " 
-                + buyerMadeAnOffer.Name + " Location: " + buyerMadeAnOffer.Location);
+                + personLeftEvent.Name + " Location: " + personLeftEvent.Location);
         }
     }
 
@@ -29,10 +29,10 @@ namespace DDD.Light.Messaging.Example
             _word = word;
         }
 
-        public void Handle(PersonLeftEvent buyerMadeAnOffer)
+        public void Handle(PersonLeftEvent personLeftEvent)
         {
             Console.WriteLine("PersonLeftAndSpokeEventHandler ::: Handling PersonLeftEvent... Name: " 
-                + buyerMadeAnOffer.Name + " Location: " + buyerMadeAnOffer.Location + "and said the word: " + _word);
+                + personLeftEvent.Name + " Location: " + personLeftEvent.Location + "and said the word: " + _word);
         }
     }
 

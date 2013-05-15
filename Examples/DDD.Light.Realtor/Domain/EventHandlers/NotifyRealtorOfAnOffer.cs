@@ -5,7 +5,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Domain.EventHandlers
 {
-    public class NotifyRealtorOfAnOffer : IEventHandler<BuyerMadeAnOffer>
+    public class NotifyRealtorOfAnOffer : IEventHandler<OfferMade>
     {
         private readonly IRepository<Model.Realtor> _realtorRepository;
 
@@ -14,10 +14,10 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _realtorRepository = realtorRepository;
         }
 
-        public void Handle(BuyerMadeAnOffer buyerMadeAnOffer)
+        public void Handle(OfferMade offerMade)
         {
             var realtor = _realtorRepository.GetById(Guid.Empty);
-            realtor.NotifyThatOfferWasMade(buyerMadeAnOffer.OfferId);
+            realtor.NotifyThatOfferWasMade(offerMade.OfferId);
             _realtorRepository.Save(realtor);
         }
     }

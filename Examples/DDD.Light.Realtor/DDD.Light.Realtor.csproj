@@ -128,14 +128,17 @@
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Domain\EventHandlers\DeactivateListing.cs" />
-    <Compile Include="Domain\EventHandlers\PromoteBuyerToRepeatBuyer.cs" />
+    <Compile Include="Domain\Services\IBuyerService.cs" />
+    <Compile Include="Domain\EventHandlers\ConvertListingToBuyersProperty.cs" />
     <Compile Include="Domain\EventHandlers\PersistDeniedOffer.cs" />
     <Compile Include="Domain\EventHandlers\PersistAcceptedOffer.cs" />
     <Compile Include="Domain\EventHandlers\NotifyRealtorOfAnOffer.cs" />
     <Compile Include="Domain\EventHandlers\PersistNewOffer.cs" />
-    <Compile Include="Domain\Events\ProspectMadeAnOffer.cs" />
     <Compile Include="Domain\Events\OfferDenied.cs" />
     <Compile Include="Domain\Events\OfferAccepted.cs" />
+    <Compile Include="Domain\Services\BuyerService.cs" />
+    <Compile Include="Domain\Services\IProspectService.cs" />
+    <Compile Include="Domain\Services\ProspectService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -149,7 +152,7 @@
     <Compile Include="Domain\Model\Offer.cs" />
     <Compile Include="Domain\Model\OfferAcceptance.cs" />
     <Compile Include="Domain\Model\OfferDenial.cs" />
-    <Compile Include="Domain\Events\BuyerMadeAnOffer.cs" />
+    <Compile Include="Domain\Events\OfferMade.cs" />
     <Compile Include="Domain\Model\Property.cs" />
     <Compile Include="Domain\Model\Prospect.cs" />
     <Compile Include="Domain\Model\Realtor.cs" />

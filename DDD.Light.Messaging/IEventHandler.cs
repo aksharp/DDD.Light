@@ -2,6 +2,6 @@
 {
     public interface IEventHandler<T>
     {
-        void Handle(T buyerMadeAnOffer);
+        void Handle(T @event);
     }
 }

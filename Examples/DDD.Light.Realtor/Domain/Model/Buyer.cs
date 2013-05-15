@@ -22,20 +22,8 @@ namespace DDD.Light.Realtor.Domain.Model
             if (Id == null) throw new Exception("Buyer does not have an Id");
             var offerId = Guid.NewGuid();
             OfferIds.ToList().Add(offerId);
-            var offerMade = new BuyerMadeAnOffer{BuyerId = Id.Value, ListingId =  listingId, OfferId = offerId, Price = price};
+            var offerMade = new OfferMade{BuyerId = Id.Value, ListingId =  listingId, OfferId = offerId, Price = price};
             EventBus.Instance.Publish(offerMade);
-        }
-
-        public RepeatBuyer PromoteToRepeatBuyer(Guid listingId)
-        {
-            var repeatBuyer = new RepeatBuyer
-            {
-                Id = Id,
-                OfferIds = OfferIds,
-                Prospect = Prospect
-            };
-            repeatBuyer.Properties.ToList().Add(new Property { ListingId = listingId });
-            return repeatBuyer;
         }
 
     }
