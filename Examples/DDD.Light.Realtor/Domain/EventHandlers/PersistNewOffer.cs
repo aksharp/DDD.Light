@@ -6,7 +6,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Domain.EventHandlers
 {
-    public class PersistNewOffer : IEventHandler<OfferMade>
+    public class PersistNewOffer : IEventHandler<BuyerMadeAnOffer>
     {
         private readonly IRepository<Offer> _offerRepository;
 
@@ -15,16 +15,9 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _offerRepository = offerRepository;
         }
 
-        public void Handle(OfferMade offerMade)
+        public void Handle(BuyerMadeAnOffer buyerMadeAnOffer)
         {
-            var offer = new Offer
-            {
-                BuyerId = offerMade.BuyerId,
-                Id = offerMade.OfferId,
-                OfferedOn = DateTime.UtcNow,
-                ListingId = offerMade.ListingId,
-                Price = offerMade.Price
-            };
+            var offer = new Offer(buyerMadeAnOffer);
             _offerRepository.Save(offer);
         }
     }

@@ -32,8 +32,7 @@ namespace DDD.Light.Messaging
         public void Publish<T>(T @event) 
         {
             if ( !Equals( @event, default(T) ) )
-                EventHandlersDatabase<T>.Instance.Get().ToList().ForEach(h => h.Handle(@event));
+                new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
         }
     }
-
 }

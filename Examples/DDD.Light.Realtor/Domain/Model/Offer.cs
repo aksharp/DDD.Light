@@ -8,6 +8,20 @@ namespace DDD.Light.Realtor.Domain.Model
     // aggregate root
     public class Offer : Entity
     {
+        public Offer()
+        {
+            
+        }
+
+        public Offer(BuyerMadeAnOffer buyerMadeAnOffer)
+        {
+            BuyerId = buyerMadeAnOffer.BuyerId;
+            Id = buyerMadeAnOffer.OfferId;
+            OfferedOn = DateTime.UtcNow;
+            ListingId = buyerMadeAnOffer.ListingId;
+            Price = buyerMadeAnOffer.Price;
+        }
+
         public Guid BuyerId { get; set; }
         public Guid ListingId { get; set; }
         public decimal Price { get; set; }

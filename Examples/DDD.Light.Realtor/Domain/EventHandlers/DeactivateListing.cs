@@ -14,9 +14,9 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _listingRepo = listingRepo;
         }
 
-        public void Handle(OfferAccepted @event)
+        public void Handle(OfferAccepted buyerMadeAnOffer)
         {
-            var listing = _listingRepo.GetById(@event.Offer.ListingId);
+            var listing = _listingRepo.GetById(buyerMadeAnOffer.Offer.ListingId);
             listing.Deactivate();
             _listingRepo.Save(listing);
         }

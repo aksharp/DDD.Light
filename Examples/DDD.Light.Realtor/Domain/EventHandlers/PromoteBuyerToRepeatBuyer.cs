@@ -16,23 +16,18 @@ namespace DDD.Light.Realtor.Domain.EventHandlers
             _buyerRepo = buyerRepo;
         }
 
-        public void Handle(OfferAccepted @event)
+        public void Handle(OfferAccepted buyerMadeAnOffer)
         {
-            var buyerIsNotARepeatBuyer = _buyerRepo.Get().OfType<Buyer>().Any(x => x.Id == @event.Offer.BuyerId);
+            var buyerIsNotARepeatBuyer = _buyerRepo.Get().OfType<Buyer>().Any(x => x.Id == buyerMadeAnOffer.Offer.BuyerId);
             if (buyerIsNotARepeatBuyer)
-                PromoteBuyerToARepeatBuyer(@event.Offer.BuyerId, @event.Offer.ListingId);
+                PromoteBuyerToARepeatBuyer(buyerMadeAnOffer.Offer.BuyerId, buyerMadeAnOffer.Offer.ListingId);
         }
 
         private void PromoteBuyerToARepeatBuyer(Guid buyerId, Guid listingId)
         {
-            var buyer = _buyerRepo.GetById(buyerId);
-            var repeatBuyer = new RepeatBuyer
-                {
-                    Id = buyer.Id,
-                    OfferIds = buyer.OfferIds,
-                    Prospect = buyer.Prospect
-                };
-            repeatBuyer.Properties.ToList().Add(new Property{ListingId = listingId});
+            var buyer = _buyerRepo.GetById(buyerId) as Buyer;
+            if (buyer == null) throw new Exception("No buyer with buyerId" + buyerId + " found");
+            var repeatBuyer = buyer.PromoteToRepeatBuyer(listingId);
             _buyerRepo.Delete(buyer);
             _buyerRepo.Save(repeatBuyer);
         }
