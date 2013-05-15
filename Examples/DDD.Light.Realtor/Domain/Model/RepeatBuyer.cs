@@ -2,7 +2,7 @@
 
 namespace DDD.Light.Realtor.Domain.Model
 {
-    public class ReturningBuyer : Buyer
+    public class RepeatBuyer : Buyer
     {
         public IEnumerable<Property> Properties { get; set; }
     }

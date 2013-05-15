@@ -18,5 +18,10 @@ namespace DDD.Light.Realtor.Domain.Model
         public decimal Price { get; set; }
         public IEnumerable<Guid> Offers { get; set; }
         public bool Active { get; set; }
+
+        public void Deactivate()
+        {
+            Active = false;
+        }
     }
 }

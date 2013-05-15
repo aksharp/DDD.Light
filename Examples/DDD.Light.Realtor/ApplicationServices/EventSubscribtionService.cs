@@ -9,11 +9,19 @@ namespace DDD.Light.Realtor.ApplicationServices
     {
         private readonly IRepository<Domain.Model.Realtor> _realtorRepo;
         private readonly IRepository<Offer> _offerRepo;
+        private readonly IRepository<IBuyer> _buyerRepo;
+        private readonly IRepository<Listing> _listingRepo;
 
-        public EventSubscribtionService(IRepository<Domain.Model.Realtor> realtorRepo, IRepository<Offer> offerRepo)
+        public EventSubscribtionService(
+            IRepository<Domain.Model.Realtor> realtorRepo, 
+            IRepository<Offer> offerRepo, 
+            IRepository<IBuyer> buyerRepo,
+            IRepository<Listing> listingRepo )
         {
             _realtorRepo = realtorRepo;
             _offerRepo = offerRepo;
+            _buyerRepo = buyerRepo;
+            _listingRepo = listingRepo;
         }
 
         public void SubscribeEventHandlers()
@@ -21,7 +29,9 @@ namespace DDD.Light.Realtor.ApplicationServices
             EventBus.Instance.Subscribe(new NotifyRealtorOfAnOffer(_realtorRepo));
             EventBus.Instance.Subscribe(new PersistNewOffer(_offerRepo));
             EventBus.Instance.Subscribe(new PersistAcceptedOffer(_offerRepo));
+            EventBus.Instance.Subscribe(new PromoteBuyerToRepeatBuyer(_buyerRepo));
             EventBus.Instance.Subscribe(new PersistDeniedOffer(_offerRepo));
+            EventBus.Instance.Subscribe(new DeactivateListing(_listingRepo));
         }
     }
 }

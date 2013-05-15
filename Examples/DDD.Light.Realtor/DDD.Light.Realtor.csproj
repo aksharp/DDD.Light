@@ -127,6 +127,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Domain\EventHandlers\DeactivateListing.cs" />
+    <Compile Include="Domain\EventHandlers\PromoteBuyerToRepeatBuyer.cs" />
     <Compile Include="Domain\EventHandlers\PersistDeniedOffer.cs" />
     <Compile Include="Domain\EventHandlers\PersistAcceptedOffer.cs" />
     <Compile Include="Domain\EventHandlers\NotifyRealtorOfAnOffer.cs" />
@@ -150,7 +152,7 @@
     <Compile Include="Domain\Model\Property.cs" />
     <Compile Include="Domain\Model\Prospect.cs" />
     <Compile Include="Domain\Model\Realtor.cs" />
-    <Compile Include="Domain\Model\ReturningBuyer.cs" />
+    <Compile Include="Domain\Model\RepeatBuyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Bootstrap\StructureMapDependencyResolver.cs" />
     <Compile Include="Bootstrap\StructureMapDependencyScope.cs" />
