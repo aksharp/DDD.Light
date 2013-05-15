@@ -5,7 +5,7 @@ using System.Linq;
 namespace DDD.Light.Repo.Contracts
 {
     public interface IRepository<T>
-        where T : Entity
+        where T : IEntity
     {
         T GetById(Guid id);
         IEnumerable<T> GetAll();

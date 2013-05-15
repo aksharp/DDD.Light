@@ -79,7 +79,7 @@ namespace DDD.Light.Realtor.Controllers
             var listing = _listingRepository.GetById(id);
             try
             {                
-                listing.Address.Street = street;
+                listing.Location.Street = street;
                 _listingRepository.Save(listing);
                 return Request.CreateResponse(HttpStatusCode.OK, listing);
             }

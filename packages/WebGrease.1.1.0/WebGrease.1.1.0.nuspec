@@ -8,7 +8,6 @@
     <licenseUrl>http://www.microsoft.com/web/webpi/eula/msn_webgrease_eula.htm</licenseUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Web Grease is a suite of tools for optimizing javascript, css files and images.</description>
-    <language>en-US</language>
     <references>
       <reference file="Antlr3.Runtime.dll" />
       <reference file="WebGrease.dll" />

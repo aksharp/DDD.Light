@@ -9,7 +9,7 @@ using MongoDB.Driver.Linq;
 namespace DDD.Light.Repo.MongoDB
 {
     public class MongoRepository<T> : IRepository<T>
-        where T : Entity 
+        where T : IEntity 
     {
         private readonly MongoCollection<T> _collection;
 

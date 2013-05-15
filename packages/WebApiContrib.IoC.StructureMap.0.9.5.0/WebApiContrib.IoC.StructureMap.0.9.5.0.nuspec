@@ -16,5 +16,8 @@
       <dependency id="Microsoft.AspNet.WebApi.Core" version="4.0.20710.0" />
       <dependency id="structuremap" version="2.6.4.1" />
     </dependencies>
+    <references>
+      <reference file="WebApiContrib.IoC.StructureMap.dll" />
+    </references>
   </metadata>
 </package>
