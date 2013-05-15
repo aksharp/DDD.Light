@@ -25,5 +25,6 @@ namespace DDD.Light.Realtor.Domain.Model
             var offerMade = new OfferMade{BuyerId = Id.Value, ListingId =  listingId, OfferId = offerId, Price = price};
             EventBus.Instance.Publish(offerMade);
         }
+
     }
 }

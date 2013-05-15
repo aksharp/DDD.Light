@@ -6,11 +6,11 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Domain.EventHandlers
 {
-    public class SaveNewOffer : IEventHandler<OfferMade>
+    public class PersistNewOffer : IEventHandler<OfferMade>
     {
         private readonly IRepository<Offer> _offerRepository;
 
-        public SaveNewOffer(IRepository<Offer> offerRepository)
+        public PersistNewOffer(IRepository<Offer> offerRepository)
         {
             _offerRepository = offerRepository;
         }

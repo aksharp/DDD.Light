@@ -1,4 +1,6 @@
 ﻿using System;
+using DDD.Light.Messaging;
+using DDD.Light.Realtor.Domain.Events;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Domain.Model
@@ -11,5 +13,21 @@ namespace DDD.Light.Realtor.Domain.Model
         public decimal Price { get; set; }
         public DateTime OfferedOn { get; set; }
         public IOfferReply OfferReply { get; set; }
+
+        public void Accept()
+        {
+            if (Id == null) throw new Exception("Offer does not have Id");
+            OfferReply = new OfferAcceptance{ RepliedOn = DateTime.UtcNow };
+            var offerAccepted = new OfferAccepted{ Offer = this };
+            EventBus.Instance.Publish(offerAccepted);
+        }
+        
+        public void Deny()
+        {
+            if (Id == null) throw new Exception("Offer does not have Id");
+            OfferReply = new OfferDenial{ RepliedOn = DateTime.UtcNow };
+            var offerAccepted = new OfferDenied{ Offer = this };
+            EventBus.Instance.Publish(offerAccepted);
+        }
     }
 }

@@ -127,8 +127,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Domain\EventHandlers\PersistDeniedOffer.cs" />
+    <Compile Include="Domain\EventHandlers\PersistAcceptedOffer.cs" />
     <Compile Include="Domain\EventHandlers\NotifyRealtorOfAnOffer.cs" />
-    <Compile Include="Domain\EventHandlers\SaveNewOffer.cs" />
+    <Compile Include="Domain\EventHandlers\PersistNewOffer.cs" />
+    <Compile Include="Domain\Events\OfferDenied.cs" />
+    <Compile Include="Domain\Events\OfferAccepted.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -143,7 +147,6 @@
     <Compile Include="Domain\Model\OfferAcceptance.cs" />
     <Compile Include="Domain\Model\OfferDenial.cs" />
     <Compile Include="Domain\Events\OfferMade.cs" />
-    <Compile Include="Domain\Services\OfferService.cs" />
     <Compile Include="Domain\Model\Property.cs" />
     <Compile Include="Domain\Model\Prospect.cs" />
     <Compile Include="Domain\Model\Realtor.cs" />

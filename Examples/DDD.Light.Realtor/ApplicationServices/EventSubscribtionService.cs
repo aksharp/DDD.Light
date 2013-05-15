@@ -19,7 +19,9 @@ namespace DDD.Light.Realtor.ApplicationServices
         public void SubscribeEventHandlers()
         {
             EventBus.Instance.Subscribe(new NotifyRealtorOfAnOffer(_realtorRepo));
-            EventBus.Instance.Subscribe(new SaveNewOffer(_offerRepo));
+            EventBus.Instance.Subscribe(new PersistNewOffer(_offerRepo));
+            EventBus.Instance.Subscribe(new PersistAcceptedOffer(_offerRepo));
+            EventBus.Instance.Subscribe(new PersistDeniedOffer(_offerRepo));
         }
     }
 }
