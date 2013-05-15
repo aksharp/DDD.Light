@@ -1,11 +1,12 @@
 ﻿using System;
+using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Models
+namespace DDD.Light.Realtor.Domain.Model
 {
-    // value object
-    public class Offer
+    // aggregate root
+    public class Offer : Entity
     {
-        public IBuyer Buyer { get; set; }
+        public Guid BuyerId { get; set; }
         public Guid ListingId { get; set; }
         public decimal Price { get; set; }
         public DateTime OfferedOn { get; set; }

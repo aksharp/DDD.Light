@@ -1,7 +1,6 @@
-﻿using System.Web;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
-namespace DDD.Light.Realtor
+namespace DDD.Light.Realtor.Bootstrap
 {
     public class BundleConfig
     {

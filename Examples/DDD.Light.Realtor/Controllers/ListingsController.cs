@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DDD.Light.Realtor.Models;
+using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Controllers

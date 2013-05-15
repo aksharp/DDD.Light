@@ -1,9 +1,10 @@
-﻿using DDD.Light.Realtor.Models;
+﻿using DDD.Light.Realtor.ApplicationServices;
+using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
 using StructureMap;
 
-namespace DDD.Light.Realtor
+namespace DDD.Light.Realtor.Bootstrap
 {
     public static class StructureMapConfig
     {
@@ -34,10 +35,15 @@ namespace DDD.Light.Realtor
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Prospects")
                 );
-            container.Configure(x => x.For<IRepository<Seller>>().Use<MongoRepository<Seller>>()
+            container.Configure(x => x.For<IRepository<Domain.Model.Realtor>>().Use<MongoRepository<Domain.Model.Realtor>>()
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorDB)
-                                      .Ctor<string>("collectionName").Is("Sellers")
+                                      .Ctor<string>("collectionName").Is("Realtors")
+                );
+            container.Configure(x => x.For<IRepository<Offer>>().Use<MongoRepository<Offer>>()
+                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
+                                      .Ctor<string>("databaseName").Is(realtorDB)
+                                      .Ctor<string>("collectionName").Is("Offers")
                 );
             return container;
         }

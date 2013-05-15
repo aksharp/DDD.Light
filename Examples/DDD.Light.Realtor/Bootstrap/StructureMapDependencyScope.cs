@@ -5,7 +5,7 @@ using System.Web.Http.Dependencies;
 using Microsoft.Practices.ServiceLocation;
 using StructureMap;
 
-namespace DDD.Light.Realtor
+namespace DDD.Light.Realtor.Bootstrap
 {
     /// <summary>
     /// Wrapper for IDependencyScope, so that StructureMap plays nicely with built in mvc4 dependency resolution.

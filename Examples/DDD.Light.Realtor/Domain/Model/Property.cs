@@ -1,4 +1,6 @@
-﻿namespace DDD.Light.Realtor.Models
+﻿using System;
+
+namespace DDD.Light.Realtor.Domain.Model
 {
     // value object
     public class Property
@@ -6,10 +8,9 @@
         public Property()
         {
             Address = new Address();
-            Listing = new Listing();
         }
 
         public Address Address { get; set; }
-        public Listing Listing { get; set; }
+        public Guid ListingId { get; set; }
     }
 }

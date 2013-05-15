@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Models
+namespace DDD.Light.Realtor.Domain.Model
 {
     // aggregate root
     public class Listing : Entity
@@ -15,6 +16,7 @@ namespace DDD.Light.Realtor.Models
         public Location Location { get; set; }
         public Description Description { get; set; }
         public decimal Price { get; set; }
-        public IEnumerable<Offer> Offers { get; set; }
+        public IEnumerable<Guid> Offers { get; set; }
+        public bool Active { get; set; }
     }
 }

@@ -119,34 +119,39 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\BundleConfig.cs" />
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="ApplicationServices\EventSubscribtionService.cs" />
+    <Compile Include="Bootstrap\BundleConfig.cs" />
+    <Compile Include="Bootstrap\FilterConfig.cs" />
+    <Compile Include="Bootstrap\RouteConfig.cs" />
+    <Compile Include="Bootstrap\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Domain\EventHandlers\NotifyRealtorOfAnOffer.cs" />
+    <Compile Include="Domain\EventHandlers\SaveNewOffer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Address.cs" />
-    <Compile Include="Models\Buyer.cs" />
-    <Compile Include="Models\IBuyer.cs" />
-    <Compile Include="Models\IOfferReply.cs" />
-    <Compile Include="Models\Listing.cs" />
-    <Compile Include="Models\Location.cs" />
-    <Compile Include="Models\Description.cs" />
-    <Compile Include="Models\Offer.cs" />
-    <Compile Include="Models\OfferAcceptance.cs" />
-    <Compile Include="Models\OfferDenial.cs" />
-    <Compile Include="Models\Property.cs" />
-    <Compile Include="Models\Prospect.cs" />
-    <Compile Include="Models\Seller.cs" />
-    <Compile Include="Models\ReturningBuyer.cs" />
+    <Compile Include="Domain\Model\Address.cs" />
+    <Compile Include="Domain\Model\Buyer.cs" />
+    <Compile Include="Domain\Model\IBuyer.cs" />
+    <Compile Include="Domain\Model\IOfferReply.cs" />
+    <Compile Include="Domain\Model\Listing.cs" />
+    <Compile Include="Domain\Model\Location.cs" />
+    <Compile Include="Domain\Model\Description.cs" />
+    <Compile Include="Domain\Model\Offer.cs" />
+    <Compile Include="Domain\Model\OfferAcceptance.cs" />
+    <Compile Include="Domain\Model\OfferDenial.cs" />
+    <Compile Include="Domain\Events\OfferMade.cs" />
+    <Compile Include="Domain\Services\OfferService.cs" />
+    <Compile Include="Domain\Model\Property.cs" />
+    <Compile Include="Domain\Model\Prospect.cs" />
+    <Compile Include="Domain\Model\Realtor.cs" />
+    <Compile Include="Domain\Model\ReturningBuyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="App_Start\StructureMapDependencyResolver.cs" />
-    <Compile Include="App_Start\StructureMapDependencyScope.cs" />
-    <Compile Include="App_Start\StructureMapConfig.cs" />
+    <Compile Include="Bootstrap\StructureMapDependencyResolver.cs" />
+    <Compile Include="Bootstrap\StructureMapDependencyScope.cs" />
+    <Compile Include="Bootstrap\StructureMapConfig.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

@@ -1,7 +1,7 @@
 ﻿using System.Web.Http.Dependencies;
 using StructureMap;
 
-namespace DDD.Light.Realtor
+namespace DDD.Light.Realtor.Bootstrap
 {
     /// <summary>
     /// Wrapper for IDependencyResolver so that StructureMap plays nicely with built in mvc 4 dependency resolution. 

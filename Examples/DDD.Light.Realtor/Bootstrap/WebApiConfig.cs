@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
-namespace DDD.Light.Realtor
+namespace DDD.Light.Realtor.Bootstrap
 {
     public static class WebApiConfig
     {

@@ -3,7 +3,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using DDD.Light.Realtor.Models;
+using DDD.Light.Realtor.ApplicationServices;
+using DDD.Light.Realtor.Bootstrap;
 using DDD.Light.Repo.Contracts;
 using StructureMap;
 
@@ -23,13 +24,22 @@ namespace DDD.Light.Realtor
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            SetUpIoC();
+            CreateRealtorIfNoneExist();
+            ObjectFactory.GetInstance<EventSubscribtionService>().SubscribeEventHandlers();
+        }
 
+        private static void SetUpIoC()
+        {
             var container = StructureMapConfig.ConfigureDependencies();
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapDependencyResolver(container);
+        }
 
-            var sellerRepo = ObjectFactory.GetInstance<IRepository<Seller>>();
-            if (sellerRepo.GetById(Guid.Empty) == null)
-                sellerRepo.Save(new Seller{Id = Guid.Empty});
+        private static void CreateRealtorIfNoneExist()
+        {
+            var realtorRepo = ObjectFactory.GetInstance<IRepository<Domain.Model.Realtor>>();
+            if (realtorRepo.GetById(Guid.Empty) == null)
+                realtorRepo.Save(new Domain.Model.Realtor {Id = Guid.Empty});
         }
     }
 }
