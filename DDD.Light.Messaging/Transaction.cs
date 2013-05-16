@@ -44,9 +44,11 @@ namespace DDD.Light.Messaging
                 catch (Exception ex)
                 {
                     ErroredOutActions.Add(handler, ex);
+                    LogFailedCommit();
+                    throw;
                 }
             }
-            LogCommit();
+            LogSuccessfulCommit();
         }
 
         private void LogCommit()

@@ -12,14 +12,14 @@ namespace DDD.Light.Realtor.Domain.Model
             Properties = new List<Property>();
         }
 
-        public IEnumerable<Property> Properties { get; set; }
+        public List<Property> Properties { get; set; }
         
 
        
 
         public void TakeOwnershipOf(Listing listing)
         {
-            Properties.ToList().Add(new Property(listing));
+            Properties.Add(new Property(listing));
             EventBus.Instance.Publish(new TookOwnershipOfListing{RepeatBuyer = this});
         }
         

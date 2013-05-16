@@ -1,11 +1,12 @@
-﻿using System;
+﻿using System.Linq;
 using DDD.Light.Messaging;
+using DDD.Light.Realtor.Application.Commands;
 using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
 {
-    public class PostListingHandler : ICommandHandler<PostListing>
+    public class PostListingHandler : ICommandHandler<PostListingCommand>
     {
         private readonly IRepository<Domain.Model.Realtor> _realtorRepo;
 
@@ -14,12 +15,11 @@ namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
             _realtorRepo = realtorRepo;
         }
 
-        public void Handle(PostListing command)
+        public void Handle(PostListingCommand command)
         {
-            var listingId = Guid.NewGuid();
             var listing = new Listing
                 {
-                    Id = listingId,
+                    Id = command.ListingId,
                     Active = true,
                     Description = new Description
                         {
@@ -35,7 +35,8 @@ namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
                                 Zip = command.Zip
                             }
                 };
-            var realtor = _realtorRepo.GetById(command.RealtorId);
+//            var realtor = _realtorRepo.GetById(command.RealtorId);
+            var realtor = _realtorRepo.Get().First();
             realtor.PostListing(listing);
         }
     }

@@ -14,12 +14,12 @@ namespace DDD.Light.Realtor.Domain.Model
             OfferIds = new List<Guid>();
         }
 
-        public IEnumerable<Guid> OfferIds { get; set; }
+        public List<Guid> OfferIds { get; set; }
         public Prospect Prospect { get; set; }
 
         public void NotifyOfAcceptedOffer(Offer offer)
         {
-            OfferIds.ToList().Add(offer.Id);
+            OfferIds.Add(offer.Id);
             EventBus.Instance.Publish(new RepeatBuyerNotifiedOfAcceptedOffer { Buyer = this });
         }
 
@@ -37,7 +37,7 @@ namespace DDD.Light.Realtor.Domain.Model
         {
             var offerId = Guid.NewGuid();
             var offer = new Offer {Id = offerId, BuyerId = Id, ListingId = listingId, Price = price};
-            OfferIds.ToList().Add(offerId);
+            OfferIds.Add(offerId);
             var offerMade = new OfferMade{Offer = offer};
             EventBus.Instance.Publish(offerMade);
         }

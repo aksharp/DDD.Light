@@ -35,6 +35,7 @@ namespace DDD.Light.Realtor.Bootstrap
             EventBus.Instance.Subscribe(new OfferRejectedHandler(_offerRepo, _buyerRepo));
             EventBus.Instance.Subscribe(new BuyerPromotedToRepeatBuyerHandler(_buyerRepo));
             EventBus.Instance.Subscribe(new ListingDeactivatedHandler(_listingRepo));
+            EventBus.Instance.Subscribe(new ListingPostedHandler(_realtorRepo,_listingRepo));
         }
     }
 }

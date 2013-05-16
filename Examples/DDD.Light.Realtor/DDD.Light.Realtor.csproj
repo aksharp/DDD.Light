@@ -40,6 +40,21 @@
     <Reference Include="Antlr3.Runtime">
       <HintPath>..\..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="AttributeRouting">
+      <HintPath>..\..\packages\AttributeRouting.Core.3.5.6\lib\net40\AttributeRouting.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web">
+      <HintPath>..\..\packages\AttributeRouting.Core.Web.3.5.6\lib\net40\AttributeRouting.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http">
+      <HintPath>..\..\packages\AttributeRouting.Core.Http.3.5.6\lib\net40\AttributeRouting.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="AttributeRouting.Web.Http.WebHost">
+      <HintPath>..\..\packages\AttributeRouting.WebApi.3.5.6\lib\net40\AttributeRouting.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="AutoMapper">
+      <HintPath>..\..\packages\AutoMapper.2.2.1\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\..\packages\CommonServiceLocator.1.0\lib\NET35\Microsoft.Practices.ServiceLocation.dll</HintPath>
@@ -119,7 +134,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\CommandHandlers\Realtor\PostListing.cs" />
+    <Compile Include="Application\Commands\PostListingCommand.cs" />
     <Compile Include="Application\CommandHandlers\Realtor\PostListingHandler.cs" />
     <Compile Include="Application\EventHandlers\Buyers\BuyerPromotedToRepeatBuyerHandler.cs" />
     <Compile Include="Application\EventHandlers\Buyers\RepeatBuyerNotifiedOfAcceptedOfferHandler.cs" />
@@ -129,13 +144,16 @@
     <Compile Include="Application\EventHandlers\Offers\OfferMadeHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferAcceptedHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferRejectedHandler.cs" />
+    <Compile Include="App_Start\AttributeRoutingHttpConfig.cs" />
     <Compile Include="Bootstrap\EventHandlerSubscribtions.cs" />
     <Compile Include="Bootstrap\BundleConfig.cs" />
     <Compile Include="Bootstrap\FilterConfig.cs" />
     <Compile Include="Bootstrap\RouteConfig.cs" />
     <Compile Include="Bootstrap\WebApiConfig.cs" />
+    <Compile Include="Bootstrap\CommandHandlerSubscribtions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
+    <Compile Include="Controllers\RealtorController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Domain\Events\BuyerPromotedToRepeatBuyer.cs" />
     <Compile Include="Domain\Events\ListingDeactivated.cs" />
@@ -166,6 +184,7 @@
     <Compile Include="Bootstrap\StructureMapDependencyResolver.cs" />
     <Compile Include="Bootstrap\StructureMapDependencyScope.cs" />
     <Compile Include="Bootstrap\StructureMapConfig.cs" />
+    <Compile Include="Resources\RealtorListingResource.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

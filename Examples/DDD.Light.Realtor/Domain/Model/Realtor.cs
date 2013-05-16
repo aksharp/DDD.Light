@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using DDD.Light.Messaging;
 using DDD.Light.Realtor.Domain.Events;
@@ -13,19 +14,20 @@ namespace DDD.Light.Realtor.Domain.Model
         public Realtor()
         {
             Offers = new List<Guid>();
+            Listings = new List<Guid>();
         }
 
-        public IEnumerable<Guid> Listings { get; set; }
-        public IEnumerable<Guid> Offers { get; set; }
+        public List<Guid> Listings { get; set; }
+        public List<Guid> Offers { get; set; }
 
         public void NotifyThatOfferWasMade(Guid offerId)
         {
-            Offers.ToList().Add(offerId);
+            Offers.Add(offerId);
         }
 
         public void PostListing(Listing listing)
         {
-            Listings.ToList().Add(listing.Id);
+            Listings.Add(listing.Id);
             EventBus.Instance.Publish(new ListingPosted{Realtor = this, Listing = listing});
         }
     }

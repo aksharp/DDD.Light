@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AttributeRouting.Web.Http.WebHost</name>
+    </assembly>
+    <members>
+        <member name="M:AttributeRouting.Web.Http.WebHost.Constraints.InboundHttpMethodConstraint.#ctor(System.String[])">
+            <summary>
+            Constrains an inbound route by HTTP method.
+            </summary>
+        </member>
+        <member name="T:AttributeRouting.Web.Http.WebHost.HttpRouteCollectionExtensions">
+            <summary>
+            Extensions to the System.Web.Http.HttpRouteCollection
+            </summary>
+        </member>
+        <member name="M:AttributeRouting.Web.Http.WebHost.HttpRouteCollectionExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpRouteCollection)">
+            <summary>
+            Scans the calling assembly for all routes defined with AttributeRouting attributes,
+            using the default conventions.
+            </summary>
+        </member>
+        <member name="M:AttributeRouting.Web.Http.WebHost.HttpRouteCollectionExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpRouteCollection,System.Action{AttributeRouting.Web.Http.WebHost.HttpWebConfiguration})">
+            <summary>
+            Scans the specified assemblies for all routes defined with AttributeRouting attributes,
+            and applies configuration options against the routes found.
+            </summary>
+            <param name="routes"></param>
+            <param name="configurationAction">The initialization action that builds the configuration object</param>
+        </member>
+        <member name="M:AttributeRouting.Web.Http.WebHost.HttpRouteCollectionExtensions.MapHttpAttributeRoutes(System.Web.Http.HttpRouteCollection,AttributeRouting.Web.Http.WebHost.HttpWebConfiguration)">
+            <summary>
+            Scans the specified assemblies for all routes defined with AttributeRouting attributes,
+            and applies configuration options against the routes found.
+            </summary>
+            <param name="routes"> </param>
+            <param name="configuration">The configuration object</param>
+        </member>
+        <member name="M:AttributeRouting.Web.Http.WebHost.HttpWebConfiguration.AddDefaultRouteConstraint(System.String,System.Web.Routing.IRouteConstraint)">
+            <summary>
+            Automatically applies the specified constaint against url parameters
+            with names that match the given regular expression.
+            </summary>
+            <param name="keyRegex">The regex used to match url parameter names</param>
+            <param name="constraint">The constraint to apply to matched parameters</param>
+        </member>
+        <member name="M:AttributeRouting.Web.Http.WebHost.HttpWebConfiguration.UseRouteHandler(System.Func{System.Web.Routing.IRouteHandler})">
+            <summary>
+            Specifies a function that returns an alternate route handler.
+            By default, the route handler is the default HttpControllerRouteHandler.
+            </summary>
+            <param name="routeHandlerFactory">The route handler to use.</param>
+        </member>
+    </members>
+</doc>

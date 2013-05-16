@@ -1,10 +1,11 @@
 using System;
 
-namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
+namespace DDD.Light.Realtor.Application.Commands
 {
-    public class PostListing
+    public class PostListingCommand
     {
         public Guid RealtorId { get; set; }
+        public Guid ListingId { get; set; }
         public int NumberOfBathrooms { get; set; }
         public int NumberOfBedrooms { get; set; }
         public int YearBuilt { get; set; }

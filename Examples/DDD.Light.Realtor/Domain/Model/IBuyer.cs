@@ -9,7 +9,7 @@ namespace DDD.Light.Realtor.Domain.Model
         void NotifyOfRejectedOffer(Offer offer);
         void PromoteToRepeatBuyer();
         void PurchaseProperty(Listing listing);
-        IEnumerable<Guid> OfferIds { get; set; }
+        List<Guid> OfferIds { get; set; }
         Prospect Prospect { get; set; }
     }
 }
