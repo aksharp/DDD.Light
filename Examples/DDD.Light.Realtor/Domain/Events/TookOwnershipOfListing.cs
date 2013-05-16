@@ -2,8 +2,8 @@
 
 namespace DDD.Light.Realtor.Domain.Events
 {
-    public class OfferMade
+    public class TookOwnershipOfListing
     {
-        public Offer Offer { get; set; }
+        public RepeatBuyer RepeatBuyer { get; set; }
     }
 }

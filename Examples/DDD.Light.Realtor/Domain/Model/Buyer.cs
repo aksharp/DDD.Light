@@ -17,13 +17,40 @@ namespace DDD.Light.Realtor.Domain.Model
         public IEnumerable<Guid> OfferIds { get; set; }
         public Prospect Prospect { get; set; }
 
+        public void NotifyOfAcceptedOffer(Offer offer)
+        {
+            OfferIds.ToList().Add(offer.Id);
+            EventBus.Instance.Publish(new RepeatBuyerNotifiedOfAcceptedOffer { Buyer = this });
+        }
+
+        public void NotifyOfRejectedOffer(Offer offer)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void PurchaseProperty(Listing listing)
+        {
+            PromoteToRepeatBuyer();
+        }
+
         public virtual void MakeAnOffer(Guid listingId, decimal price)
         {
-            if (Id == null) throw new Exception("Buyer does not have an Id");
             var offerId = Guid.NewGuid();
+            var offer = new Offer {Id = offerId, BuyerId = Id, ListingId = listingId, Price = price};
             OfferIds.ToList().Add(offerId);
-            var offerMade = new OfferMade{BuyerId = Id.Value, ListingId =  listingId, OfferId = offerId, Price = price};
+            var offerMade = new OfferMade{Offer = offer};
             EventBus.Instance.Publish(offerMade);
+        }
+
+        public void PromoteToRepeatBuyer()
+        {
+            var repeatBuyer = new RepeatBuyer
+            {
+                Id = Id,
+                OfferIds = OfferIds,
+                Prospect = Prospect
+            };
+            EventBus.Instance.Publish(new BuyerPromotedToRepeatBuyer { Buyer = this, RepeatBuyer = repeatBuyer });
         }
 
     }

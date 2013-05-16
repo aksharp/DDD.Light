@@ -53,7 +53,7 @@ namespace DDD.Light.Repo.MongoDB
 
         public void Delete(T item)
         {
-            Delete(item.Id ?? Guid.NewGuid());
+            Delete(item.Id);
         }
 
         public void DeleteAll()

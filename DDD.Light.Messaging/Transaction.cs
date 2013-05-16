@@ -16,30 +16,30 @@ namespace DDD.Light.Messaging
             
         }
 
-        public Transaction(T @event, IEnumerable<IEventHandler<T>> eventHandlers)
+        public Transaction(T @event, IEnumerable<Action<T>> eventHandlers)
         {
             Event = @event;
             Id = Guid.NewGuid();
-            ProcessedEventHandlers = new List<IEventHandler<T>>();
-            ErroredOutEventHandlers = new Dictionary<IEventHandler<T>, Exception>();
-            NotProcessedEventHandlers = new Queue<IEventHandler<T>>(eventHandlers);
+            ProcessedEventHandlerActions = new List<Action<T>>();
+            ErroredOutEventHandlers = new Dictionary<Action<T>, Exception>();
+            NotProcessedEventHandlerActions = new Queue<Action<T>>(eventHandlers);
         }
 
         public Guid Id { get; private set; }
         public T Event { get; set; }
-        public List<IEventHandler<T>> ProcessedEventHandlers { get; private set; }
-        public IDictionary<IEventHandler<T>, Exception> ErroredOutEventHandlers { get; private set; }
-        public Queue<IEventHandler<T>> NotProcessedEventHandlers { get; private set; }
+        public List<Action<T>> ProcessedEventHandlerActions { get; private set; }
+        public IDictionary<Action<T>, Exception> ErroredOutEventHandlers { get; private set; }
+        public Queue<Action<T>> NotProcessedEventHandlerActions { get; private set; }
 
         public void Commit()
         {
-            while (NotProcessedEventHandlers.Count > 0)
+            while (NotProcessedEventHandlerActions.Count > 0)
             {
-                var handler = NotProcessedEventHandlers.Dequeue();
+                var handler = NotProcessedEventHandlerActions.Dequeue();
                 try
                 {
-                    handler.Handle(Event);
-                    ProcessedEventHandlers.Add(handler);
+                    handler.Invoke(Event);
+                    ProcessedEventHandlerActions.Add(handler);
                 }
                 catch (Exception ex)
                 {
@@ -51,7 +51,7 @@ namespace DDD.Light.Messaging
 
         private void LogCommit()
         {
-            var success = NotProcessedEventHandlers.Count == 0 && ErroredOutEventHandlers.Count == 0;
+            var success = NotProcessedEventHandlerActions.Count == 0 && ErroredOutEventHandlers.Count == 0;
             if (success)
                 LogSuccessfulCommit();
             else
@@ -72,12 +72,12 @@ namespace DDD.Light.Messaging
                 ).ToList();
 
             var notProcessedEventHandlerTypes = (
-                    from h in NotProcessedEventHandlers.ToList()
+                    from h in NotProcessedEventHandlerActions.ToList()
                     select h.GetType()
                 ).ToList();
             
             var processedEventHandlerTypes = (
-                    from h in ProcessedEventHandlers.ToList()
+                    from h in ProcessedEventHandlerActions.ToList()
                     select h.GetType()
                 ).ToList();
 
@@ -96,7 +96,7 @@ namespace DDD.Light.Messaging
         private void LogSuccessfulCommit()
         {
             var processedEventHandlerTypes = (
-                    from h in ProcessedEventHandlers.ToList()
+                    from h in ProcessedEventHandlerActions.ToList()
                     select h.GetType()
                 ).ToList();
 

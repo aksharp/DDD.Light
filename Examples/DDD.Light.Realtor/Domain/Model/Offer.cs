@@ -8,20 +8,6 @@ namespace DDD.Light.Realtor.Domain.Model
     // aggregate root
     public class Offer : Entity
     {
-        public Offer()
-        {
-            
-        }
-
-        public Offer(OfferMade offerMade)
-        {
-            BuyerId = offerMade.BuyerId;
-            Id = offerMade.OfferId;
-            OfferedOn = DateTime.UtcNow;
-            ListingId = offerMade.ListingId;
-            Price = offerMade.Price;
-        }
-
         public Guid BuyerId { get; set; }
         public Guid ListingId { get; set; }
         public decimal Price { get; set; }
@@ -32,16 +18,14 @@ namespace DDD.Light.Realtor.Domain.Model
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferAcceptance{ RepliedOn = DateTime.UtcNow };
-            var offerAccepted = new OfferAccepted{ Offer = this };
-            EventBus.Instance.Publish(offerAccepted);
+            EventBus.Instance.Publish(new OfferAccepted{ Offer = this });
         }
         
-        public void Deny()
+        public void Reject()
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferDenial{ RepliedOn = DateTime.UtcNow };
-            var offerAccepted = new OfferDenied{ Offer = this };
-            EventBus.Instance.Publish(offerAccepted);
+            EventBus.Instance.Publish(new OfferRejected{ Offer = this });
         }
     }
 }

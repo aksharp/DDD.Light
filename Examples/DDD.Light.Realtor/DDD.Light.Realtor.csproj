@@ -119,7 +119,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicationServices\EventSubscribtionService.cs" />
+    <Compile Include="Application\EventHandlers\Buyers\BuyerPromotedToRepeatBuyerHandler.cs" />
+    <Compile Include="Application\EventHandlers\Buyers\RepeatBuyerNotifiedOfAcceptedOfferHandler.cs" />
+    <Compile Include="Application\EventHandlers\Buyers\TookOwnershipOfListingHandler.cs" />
+    <Compile Include="Application\EventHandlers\Listings\ListingDeactivatedHandler.cs" />
+    <Compile Include="Application\EventHandlers\Offers\OfferMadeHandler.cs" />
+    <Compile Include="Application\EventHandlers\Offers\OfferAcceptedHandler.cs" />
+    <Compile Include="Application\EventHandlers\Offers\OfferRejectedHandler.cs" />
+    <Compile Include="Bootstrap\EventHandlerSubscribtions.cs" />
     <Compile Include="Bootstrap\BundleConfig.cs" />
     <Compile Include="Bootstrap\FilterConfig.cs" />
     <Compile Include="Bootstrap\RouteConfig.cs" />
@@ -127,18 +134,12 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
-    <Compile Include="Domain\EventHandlers\DeactivateListing.cs" />
-    <Compile Include="Domain\Services\IBuyerService.cs" />
-    <Compile Include="Domain\EventHandlers\ConvertListingToBuyersProperty.cs" />
-    <Compile Include="Domain\EventHandlers\PersistDeniedOffer.cs" />
-    <Compile Include="Domain\EventHandlers\PersistAcceptedOffer.cs" />
-    <Compile Include="Domain\EventHandlers\NotifyRealtorOfAnOffer.cs" />
-    <Compile Include="Domain\EventHandlers\PersistNewOffer.cs" />
-    <Compile Include="Domain\Events\OfferDenied.cs" />
+    <Compile Include="Domain\Events\BuyerPromotedToRepeatBuyer.cs" />
+    <Compile Include="Domain\Events\ListingDeactivated.cs" />
+    <Compile Include="Domain\Events\OfferRejected.cs" />
     <Compile Include="Domain\Events\OfferAccepted.cs" />
-    <Compile Include="Domain\Services\BuyerService.cs" />
-    <Compile Include="Domain\Services\IProspectService.cs" />
-    <Compile Include="Domain\Services\ProspectService.cs" />
+    <Compile Include="Domain\Events\TookOwnershipOfListing.cs" />
+    <Compile Include="Domain\Events\RepeatBuyerNotifiedOfAcceptedOffer.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

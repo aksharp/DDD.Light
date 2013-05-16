@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using DDD.Light.Messaging;
+using DDD.Light.Realtor.Domain.Events;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Domain.Model
@@ -22,6 +24,7 @@ namespace DDD.Light.Realtor.Domain.Model
         public void Deactivate()
         {
             Active = false;
+            EventBus.Instance.Publish(new ListingDeactivated{Listing = this});
         }
     }
 }

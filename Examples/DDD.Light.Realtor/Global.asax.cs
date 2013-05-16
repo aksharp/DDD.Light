@@ -3,7 +3,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using DDD.Light.Realtor.ApplicationServices;
 using DDD.Light.Realtor.Bootstrap;
 using DDD.Light.Repo.Contracts;
 using StructureMap;
@@ -26,7 +25,7 @@ namespace DDD.Light.Realtor
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
             CreateRealtorIfNoneExist();
-            ObjectFactory.GetInstance<EventSubscribtionService>().SubscribeEventHandlers();
+            ObjectFactory.GetInstance<EventHandlerSubscribtions>().SubscribeEventHandlers();
         }
 
         private static void SetUpIoC()

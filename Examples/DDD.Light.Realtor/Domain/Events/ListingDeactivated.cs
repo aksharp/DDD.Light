@@ -2,8 +2,8 @@
 
 namespace DDD.Light.Realtor.Domain.Events
 {
-    public class OfferMade
+    public class ListingDeactivated
     {
-        public Offer Offer { get; set; }
+        public Listing Listing { get; set; }
     }
 }

@@ -1,10 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace DDD.Light.Messaging
 {
     public interface IEventHandlersDatabase<T>
     {
         void Add(IEventHandler<T> eventHandler);
-        IEnumerable<IEventHandler<T>> Get();
+        void Add(Action<T> eventHandler);
+        IEnumerable<Action<T>> Get();
     }
+
 }

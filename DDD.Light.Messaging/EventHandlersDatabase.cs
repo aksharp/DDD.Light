@@ -7,7 +7,7 @@ namespace DDD.Light.Messaging
     {
         private static volatile IEventHandlersDatabase<T> _instance;
         private static object token = new Object();
-        private readonly List<IEventHandler<T>> _registeredHandlers;
+        private readonly List<Action<T>> _registeredHandlerActions;
 
         public static IEventHandlersDatabase<T> Instance
         {
@@ -27,17 +27,22 @@ namespace DDD.Light.Messaging
 
         private EventHandlersDatabase()
         {
-            _registeredHandlers = new List<IEventHandler<T>>();
+            _registeredHandlerActions = new List<Action<T>>();
         }
 
         public void Add(IEventHandler<T> eventHandler)
         {
-            _registeredHandlers.Add(eventHandler);
+            _registeredHandlerActions.Add(eventHandler.Handle);
         }
 
-        public IEnumerable<IEventHandler<T>> Get()
+        public void Add(Action<T> eventHandlerAction)
         {
-            return _registeredHandlers;
+            _registeredHandlerActions.Add(eventHandlerAction);
+        }
+
+        public IEnumerable<Action<T>> Get()
+        {
+            return _registeredHandlerActions;
         }
 
     }

@@ -12,8 +12,7 @@ namespace DDD.Light.Realtor.Domain.Model
 
         public Property(Listing listing)
         {
-            if (listing.Id == null) throw new Exception("Listing can not be converted to Property because it does not have an Id");
-            ListingId = listing.Id.Value;
+            ListingId = listing.Id;
             Address = new Address
                 {
                     Address1 = listing.Location.Street,
