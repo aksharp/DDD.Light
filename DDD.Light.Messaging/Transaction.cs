@@ -20,30 +20,30 @@ namespace DDD.Light.Messaging
         {
             Event = @event;
             Id = Guid.NewGuid();
-            ProcessedEventHandlerActions = new List<Action<T>>();
-            ErroredOutEventHandlers = new Dictionary<Action<T>, Exception>();
-            NotProcessedEventHandlerActions = new Queue<Action<T>>(eventHandlers);
+            ProcessedActions = new List<Action<T>>();
+            ErroredOutActions = new Dictionary<Action<T>, Exception>();
+            NotProcessedActions = new Queue<Action<T>>(eventHandlers);
         }
 
         public Guid Id { get; private set; }
         public T Event { get; set; }
-        public List<Action<T>> ProcessedEventHandlerActions { get; private set; }
-        public IDictionary<Action<T>, Exception> ErroredOutEventHandlers { get; private set; }
-        public Queue<Action<T>> NotProcessedEventHandlerActions { get; private set; }
+        public List<Action<T>> ProcessedActions { get; private set; }
+        public IDictionary<Action<T>, Exception> ErroredOutActions { get; private set; }
+        public Queue<Action<T>> NotProcessedActions { get; private set; }
 
         public void Commit()
         {
-            while (NotProcessedEventHandlerActions.Count > 0)
+            while (NotProcessedActions.Count > 0)
             {
-                var handler = NotProcessedEventHandlerActions.Dequeue();
+                var handler = NotProcessedActions.Dequeue();
                 try
                 {
                     handler.Invoke(Event);
-                    ProcessedEventHandlerActions.Add(handler);
+                    ProcessedActions.Add(handler);
                 }
                 catch (Exception ex)
                 {
-                    ErroredOutEventHandlers.Add(handler, ex);
+                    ErroredOutActions.Add(handler, ex);
                 }
             }
             LogCommit();
@@ -51,17 +51,18 @@ namespace DDD.Light.Messaging
 
         private void LogCommit()
         {
-            var success = NotProcessedEventHandlerActions.Count == 0 && ErroredOutEventHandlers.Count == 0;
+            var success = NotProcessedActions.Count == 0 && ErroredOutActions.Count == 0;
             if (success)
                 LogSuccessfulCommit();
             else
                 LogFailedCommit();
         }
 
+        //todo: adjust text (now command, not only event)
         private void LogFailedCommit()
         {
             var errors = (
-                from entry  in ErroredOutEventHandlers 
+                from entry  in ErroredOutActions 
                     let eventHandlerType = entry.Key.GetType().ToString() 
                     let errorMessage = entry.Value.Message 
                     let stackTrace = entry.Value.StackTrace 
@@ -72,12 +73,12 @@ namespace DDD.Light.Messaging
                 ).ToList();
 
             var notProcessedEventHandlerTypes = (
-                    from h in NotProcessedEventHandlerActions.ToList()
+                    from h in NotProcessedActions.ToList()
                     select h.GetType()
                 ).ToList();
             
             var processedEventHandlerTypes = (
-                    from h in ProcessedEventHandlerActions.ToList()
+                    from h in ProcessedActions.ToList()
                     select h.GetType()
                 ).ToList();
 
@@ -93,10 +94,11 @@ namespace DDD.Light.Messaging
             _log.Error(message);
         }
 
+        //todo: adjust text (now command, not only event)
         private void LogSuccessfulCommit()
         {
             var processedEventHandlerTypes = (
-                    from h in ProcessedEventHandlerActions.ToList()
+                    from h in ProcessedActions.ToList()
                     select h.GetType()
                 ).ToList();
 

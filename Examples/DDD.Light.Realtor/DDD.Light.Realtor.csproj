@@ -119,10 +119,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Application\CommandHandlers\Realtor\PostListing.cs" />
+    <Compile Include="Application\CommandHandlers\Realtor\PostListingHandler.cs" />
     <Compile Include="Application\EventHandlers\Buyers\BuyerPromotedToRepeatBuyerHandler.cs" />
     <Compile Include="Application\EventHandlers\Buyers\RepeatBuyerNotifiedOfAcceptedOfferHandler.cs" />
     <Compile Include="Application\EventHandlers\Buyers\TookOwnershipOfListingHandler.cs" />
     <Compile Include="Application\EventHandlers\Listings\ListingDeactivatedHandler.cs" />
+    <Compile Include="Application\EventHandlers\Listings\ListingPostedHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferMadeHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferAcceptedHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferRejectedHandler.cs" />
@@ -140,6 +143,7 @@
     <Compile Include="Domain\Events\OfferAccepted.cs" />
     <Compile Include="Domain\Events\TookOwnershipOfListing.cs" />
     <Compile Include="Domain\Events\RepeatBuyerNotifiedOfAcceptedOffer.cs" />
+    <Compile Include="Domain\Events\ListingPosted.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

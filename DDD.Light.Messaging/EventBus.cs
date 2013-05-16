@@ -29,9 +29,9 @@ namespace DDD.Light.Messaging
             EventHandlersDatabase<T>.Instance.Add(handler);
         }
 
-        public void Subscribe<T>(Action<T> handler)
+        public void Subscribe<T>(Action<T> handleMethod)
         {
-            throw new NotImplementedException();
+            EventHandlersDatabase<T>.Instance.Add(handleMethod);
         }
 
         public void Publish<T>(T @event) 

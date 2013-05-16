@@ -45,6 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandBus.cs" />
+    <Compile Include="CommandHandlersDatabase.cs" />
+    <Compile Include="ICommandHandlersDatabase.cs" />
+    <Compile Include="ICommandHandler.cs" />
+    <Compile Include="ICommandBus.cs" />
     <Compile Include="EventBus.cs" />
     <Compile Include="EventHandlersDatabase.cs" />
     <Compile Include="IEventBus.cs" />
