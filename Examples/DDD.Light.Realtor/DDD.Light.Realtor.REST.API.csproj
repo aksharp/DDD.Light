@@ -148,7 +148,7 @@
     <Compile Include="Bootstrap\StructureMapDependencyResolver.cs" />
     <Compile Include="Bootstrap\StructureMapDependencyScope.cs" />
     <Compile Include="Bootstrap\StructureMapConfig.cs" />
-    <Compile Include="Resources\RealtorListingResource.cs" />
+    <Compile Include="Resources\RealtorListing.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />

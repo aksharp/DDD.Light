@@ -40,7 +40,7 @@ namespace DDD.Light.Realtor.REST.API
 
         private static void ConfigureMappings()
         {
-            Mapper.CreateMap<RealtorListingResource, PostListingCommand>()
+            Mapper.CreateMap<RealtorListing, PostListing>()
                 .ForMember(command => command.ListingId, mapper => mapper.MapFrom(resource => resource.Id));
         }
 
@@ -52,9 +52,9 @@ namespace DDD.Light.Realtor.REST.API
 
         private static void CreateRealtorIfNoneExist()
         {
-            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor>>();
+            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.Realtor>>();
             if (!realtorRepo.Get().Any())
-                realtorRepo.Save(new Core.Domain.Model.Realtor {Id = Guid.Empty});
+                realtorRepo.Save(new Core.Domain.Model.Realtor.Realtor {Id = Guid.Empty});
         }
     }
 }

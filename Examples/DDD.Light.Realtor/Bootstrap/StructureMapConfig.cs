@@ -1,5 +1,9 @@
 ﻿using DDD.Light.Realtor.API.Queries;
 using DDD.Light.Realtor.Core.Domain.Model;
+using DDD.Light.Realtor.Core.Domain.Model.Buyer;
+using DDD.Light.Realtor.Core.Domain.Model.Listing;
+using DDD.Light.Realtor.Core.Domain.Model.Offer;
+using DDD.Light.Realtor.Core.Domain.Model.Prospect;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
 using StructureMap;
@@ -35,7 +39,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Prospects")
                 );
-            container.Configure(x => x.For<IRepository<Core.Domain.Model.Realtor>>().Use<MongoRepository<Core.Domain.Model.Realtor>>()
+            container.Configure(x => x.For<IRepository<Core.Domain.Model.Realtor.Realtor>>().Use<MongoRepository<Core.Domain.Model.Realtor.Realtor>>()
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Realtors")

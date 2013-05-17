@@ -21,19 +21,19 @@ namespace DDD.Light.Realtor.REST.API.Controllers
         }
 
         [POST("api/realtor/listings")]
-        public HttpResponseMessage PostListing([FromBody]RealtorListingResource realtorListingResource)
+        public HttpResponseMessage PostListing([FromBody]RealtorListing realtorListing)
         {
-            var postListingCommand = Mapper.Map<RealtorListingResource, PostListingCommand>(realtorListingResource);
-            postListingCommand.ListingId = Guid.NewGuid();
+            var postListing = Mapper.Map<RealtorListing, PostListing>(realtorListing);
+            postListing.ListingId = Guid.NewGuid();
             try
             {
-                CommandBus.Instance.Dispatch(postListingCommand);
+                CommandBus.Instance.Dispatch(postListing);
             }
             catch (Exception ex)
             {
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, ex);
             }
-            return Request.CreateResponse(HttpStatusCode.Created, postListingCommand);
+            return Request.CreateResponse(HttpStatusCode.Created, postListing);
         }
         
         [GET("api/realtor/listings")]

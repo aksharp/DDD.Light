@@ -41,14 +41,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandHandlers\Realtor\PostListingHandler.cs" />
-    <Compile Include="EventHandlers\Buyers\BuyerPromotedToRepeatBuyerHandler.cs" />
-    <Compile Include="EventHandlers\Buyers\RepeatBuyerNotifiedOfAcceptedOfferHandler.cs" />
-    <Compile Include="EventHandlers\Buyers\TookOwnershipOfListingHandler.cs" />
-    <Compile Include="EventHandlers\Listings\ListingDeactivatedHandler.cs" />
-    <Compile Include="EventHandlers\Listings\ListingPostedHandler.cs" />
-    <Compile Include="EventHandlers\Offers\OfferAcceptedHandler.cs" />
-    <Compile Include="EventHandlers\Offers\OfferMadeHandler.cs" />
-    <Compile Include="EventHandlers\Offers\OfferRejectedHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\PromotedToRepeatBuyerHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\NotifiedOfAcceptedOfferHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\TookOwnershipOfListingHandler.cs" />
+    <Compile Include="EventHandlers\Listing\DeactivatedHandler.cs" />
+    <Compile Include="EventHandlers\Listing\PostedHandler.cs" />
+    <Compile Include="EventHandlers\Offer\AcceptedHandler.cs" />
+    <Compile Include="EventHandlers\Offer\MadeHandler.cs" />
+    <Compile Include="EventHandlers\Offer\RejectedHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

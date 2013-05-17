@@ -40,28 +40,28 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Events\BuyerPromotedToRepeatBuyer.cs" />
-    <Compile Include="Domain\Events\ListingDeactivated.cs" />
-    <Compile Include="Domain\Events\ListingPosted.cs" />
-    <Compile Include="Domain\Events\OfferAccepted.cs" />
-    <Compile Include="Domain\Events\OfferMade.cs" />
-    <Compile Include="Domain\Events\OfferRejected.cs" />
-    <Compile Include="Domain\Events\RepeatBuyerNotifiedOfAcceptedOffer.cs" />
-    <Compile Include="Domain\Events\TookOwnershipOfListing.cs" />
-    <Compile Include="Domain\Model\Address.cs" />
-    <Compile Include="Domain\Model\Buyer.cs" />
-    <Compile Include="Domain\Model\Description.cs" />
-    <Compile Include="Domain\Model\IBuyer.cs" />
-    <Compile Include="Domain\Model\IOfferReply.cs" />
-    <Compile Include="Domain\Model\Listing.cs" />
-    <Compile Include="Domain\Model\Location.cs" />
-    <Compile Include="Domain\Model\Offer.cs" />
-    <Compile Include="Domain\Model\OfferAcceptance.cs" />
-    <Compile Include="Domain\Model\OfferDenial.cs" />
-    <Compile Include="Domain\Model\Property.cs" />
-    <Compile Include="Domain\Model\Prospect.cs" />
-    <Compile Include="Domain\Model\Realtor.cs" />
-    <Compile Include="Domain\Model\RepeatBuyer.cs" />
+    <Compile Include="Domain\Events\Buyer\PromotedToRepeatBuyer.cs" />
+    <Compile Include="Domain\Events\Listing\Deactivated.cs" />
+    <Compile Include="Domain\Events\Listing\Posted.cs" />
+    <Compile Include="Domain\Events\Offer\Accepted.cs" />
+    <Compile Include="Domain\Events\Offer\Made.cs" />
+    <Compile Include="Domain\Events\Offer\Rejected.cs" />
+    <Compile Include="Domain\Events\Buyer\NotifiedOfAcceptedOffer.cs" />
+    <Compile Include="Domain\Events\Buyer\TookOwnershipOfListing.cs" />
+    <Compile Include="Domain\Model\Buyer\Address.cs" />
+    <Compile Include="Domain\Model\Buyer\Buyer.cs" />
+    <Compile Include="Domain\Model\Listing\Description.cs" />
+    <Compile Include="Domain\Model\Buyer\IBuyer.cs" />
+    <Compile Include="Domain\Model\Offer\IOfferReply.cs" />
+    <Compile Include="Domain\Model\Listing\Listing.cs" />
+    <Compile Include="Domain\Model\Listing\Location.cs" />
+    <Compile Include="Domain\Model\Offer\Offer.cs" />
+    <Compile Include="Domain\Model\Offer\OfferAcceptance.cs" />
+    <Compile Include="Domain\Model\Offer\OfferDenial.cs" />
+    <Compile Include="Domain\Model\Buyer\Property.cs" />
+    <Compile Include="Domain\Model\Prospect\Prospect.cs" />
+    <Compile Include="Domain\Model\Realtor\Realtor.cs" />
+    <Compile Include="Domain\Model\Buyer\RepeatBuyer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +81,7 @@
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
