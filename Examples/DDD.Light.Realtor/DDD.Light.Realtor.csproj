@@ -147,7 +147,6 @@
     <Compile Include="App_Start\AttributeRoutingHttpConfig.cs" />
     <Compile Include="Bootstrap\BundleConfig.cs" />
     <Compile Include="Bootstrap\FilterConfig.cs" />
-    <Compile Include="Bootstrap\HandlerSubscribtions.cs" />
     <Compile Include="Bootstrap\RouteConfig.cs" />
     <Compile Include="Bootstrap\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />

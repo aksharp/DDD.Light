@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using DDD.Light.Messaging;
 using DDD.Light.Realtor.Application.Commands;
 using DDD.Light.Realtor.Bootstrap;
 using DDD.Light.Realtor.Resources;
@@ -34,7 +35,7 @@ namespace DDD.Light.Realtor
         private static void InitApp()
         {
             CreateRealtorIfNoneExist();
-            HandlerSubscribtions.SubscribeAllHandlers();
+            HandlerSubscribtions.SubscribeAllHandlers(ObjectFactory.GetInstance);
         }
 
         private static void ConfigureMappings()
