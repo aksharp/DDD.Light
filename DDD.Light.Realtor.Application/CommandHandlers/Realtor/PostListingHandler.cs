@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using DDD.Light.Messaging;
-using DDD.Light.Realtor.API.Realtor;
+using DDD.Light.Realtor.API.Commands.Realtor;
 using DDD.Light.Realtor.Core.Domain.Model;
 using DDD.Light.Repo.Contracts;
 

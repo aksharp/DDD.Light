@@ -1,6 +1,6 @@
 using System;
 
-namespace DDD.Light.Realtor.API.Realtor
+namespace DDD.Light.Realtor.API.Commands.Realtor
 {
     public class PostListingCommand
     {

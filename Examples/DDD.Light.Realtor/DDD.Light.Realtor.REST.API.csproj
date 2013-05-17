@@ -140,7 +140,6 @@
     <Compile Include="Bootstrap\RouteConfig.cs" />
     <Compile Include="Bootstrap\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -258,13 +257,21 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DDD.Light.Messaging\DDD.Light.Messaging.csproj">
-      <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
-      <Name>DDD.Light.Messaging</Name>
+    <ProjectReference Include="..\..\DDD.Light.Messaging.Contracts\DDD.Light.Messaging.Contracts.csproj">
+      <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
+      <Name>DDD.Light.Messaging.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Messaging\DDD.Light.Messaging.InProcess.csproj">
+      <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
+      <Name>DDD.Light.Messaging.InProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DDD.Light.Realtor.API.Queries\DDD.Light.Realtor.API.Queries.csproj">
+      <Project>{BD69941D-EB6B-46B9-AAB3-F16F2911F25E}</Project>
+      <Name>DDD.Light.Realtor.API.Queries</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.Commands.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>
-      <Name>DDD.Light.Realtor.API</Name>
+      <Name>DDD.Light.Realtor.API.Commands</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DDD.Light.Realtor.Application\DDD.Light.Realtor.Application.csproj">
       <Project>{AFA2227D-796B-41CE-B34F-2C917C8F959C}</Project>

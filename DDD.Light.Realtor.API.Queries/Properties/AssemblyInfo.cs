@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.Realtor.API.Commands")]
+[assembly: AssemblyTitle("DDD.Light.Realtor.API.Queries")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DDD.Light.Realtor.API")]
+[assembly: AssemblyProduct("DDD.Light.Realtor.API.Queries")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c10fcab2-7cf5-47d2-bc47-822b2c425020")]
+[assembly: Guid("d929b6d0-19d5-42a2-a8d2-38ecaef161c1")]
 
 // Version information for an assembly consists of the following four values:
 //
