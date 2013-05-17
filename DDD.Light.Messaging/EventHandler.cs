@@ -1,11 +1,11 @@
 ﻿namespace DDD.Light.Messaging
 {
-    public abstract class EventHandler<T> : IEventHandler<T>
+    public abstract class EventHandler<T> : IEventHandler<T>, IHandler
     {
         public abstract void Handle(T @event);
-        public void Subscribe(IEventBus eventBus)
+        public void Subscribe()
         {
-            eventBus.Subscribe(this);
+            EventBus.Instance.Subscribe(this);
         }
     }
 }

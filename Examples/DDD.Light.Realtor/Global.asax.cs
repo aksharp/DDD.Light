@@ -28,24 +28,16 @@ namespace DDD.Light.Realtor
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
-            CreateRealtorIfNoneExist();
-
-            SubscribeHandlers();
+            InitApp();            
         }
 
-        private static void SubscribeHandlers()
+        private static void InitApp()
         {
-            //todo refactor so it either looks in namespace recursivley or just gets all handlers in assembly and subscribes
-            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers");
-            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Buyers");
-            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Listings");
-            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Offers");
-
-            HandlerSubscribtions.SubscribeCommandHandlersInNamespace("DDD.Light.Realtor.Application.CommandHandlers");
-            HandlerSubscribtions.SubscribeCommandHandlersInNamespace("DDD.Light.Realtor.Application.CommandHandlers.Realtor");
+            CreateRealtorIfNoneExist();
+            HandlerSubscribtions.SubscribeAllHandlers();
         }
 
-        private void ConfigureMappings()
+        private static void ConfigureMappings()
         {
             Mapper.CreateMap<RealtorListingResource, PostListingCommand>()
                 .ForMember(command => command.ListingId, mapper => mapper.MapFrom(resource => resource.Id));

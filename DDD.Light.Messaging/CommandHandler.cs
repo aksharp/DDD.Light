@@ -1,11 +1,11 @@
 ﻿namespace DDD.Light.Messaging
 {
-    public abstract class CommandHandler<T> : ICommandHandler<T>
+    public abstract class CommandHandler<T> : ICommandHandler<T>, IHandler
     {
         public abstract void Handle(T command);
-        public void Subscribe(ICommandBus commandBus)
+        public void Subscribe()
         {
-            commandBus.Subscribe(this);
+            CommandBus.Instance.Subscribe(this);
         }
     }
 }

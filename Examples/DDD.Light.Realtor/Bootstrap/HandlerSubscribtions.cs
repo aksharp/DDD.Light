@@ -14,7 +14,7 @@ namespace DDD.Light.Realtor.Bootstrap
             foreach (var t in handlerTypes)
             {
                 var handler = ObjectFactory.GetInstance(t);
-                t.GetMethod("Subscribe").Invoke(handler, new[] { EventBus.Instance });
+                t.GetMethod("Subscribe").Invoke(handler, null);
             }
         }
         
@@ -24,20 +24,27 @@ namespace DDD.Light.Realtor.Bootstrap
             foreach (var t in handlerTypes)
             {
                 var handler = ObjectFactory.GetInstance(t);
-                t.GetMethod("Subscribe").Invoke(handler, new[] { CommandBus.Instance });
+                t.GetMethod("Subscribe").Invoke(handler, null);
             }
         }
-
+        
+        public static void SubscribeAllHandlers()
+        {
+            AppDomain.CurrentDomain.GetAssemblies().ToList()
+                     .SelectMany(s => s.GetTypes())
+                     .Where( t => typeof (IHandler).IsAssignableFrom(t) && t != typeof(IHandler) && t != typeof(CommandHandler<>) && t!= typeof(Messaging.EventHandler<>))
+                     .ToList()
+                     .ForEach(t =>
+                         {
+                             var handler = ObjectFactory.GetInstance(t);
+                             t.GetMethod("Subscribe").Invoke(handler, null);
+                         });
+        }
+        
         private static Type[] GetTypesInNamespace(Assembly assembly, string nameSpace)
         {
             return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
         }
         
-        //todo Implement
-//        private static Type[] GetAllCommandHandlers(Assembly assembly, string nameSpace)
-//        {
-//            
-//            //return assembly.GetTypes().Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal)).ToArray();
-//        }
     }
 }

@@ -12,7 +12,7 @@ namespace DDD.Light.Realtor.Controllers
 {
     public class RealtorController : ApiController
     {
-        [POST("api/realtor/{realtorId}/listings")]
+        [POST("api/realtor/listings")]
         public HttpResponseMessage PostListing([FromBody]RealtorListingResource realtorListingResource)
         {
             var postListingCommand = Mapper.Map<RealtorListingResource, PostListingCommand>(realtorListingResource);
