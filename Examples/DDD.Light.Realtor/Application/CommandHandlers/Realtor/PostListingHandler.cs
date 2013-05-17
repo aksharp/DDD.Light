@@ -6,7 +6,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
 {
-    public class PostListingHandler : ICommandHandler<PostListingCommand>
+    public class PostListingHandler : CommandHandler<PostListingCommand>
     {
         private readonly IRepository<Domain.Model.Realtor> _realtorRepo;
 
@@ -15,7 +15,7 @@ namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
             _realtorRepo = realtorRepo;
         }
 
-        public void Handle(PostListingCommand command)
+        public override void Handle(PostListingCommand command)
         {
             var listing = new Listing
                 {
@@ -35,7 +35,6 @@ namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
                                 Zip = command.Zip
                             }
                 };
-//            var realtor = _realtorRepo.GetById(command.RealtorId);
             var realtor = _realtorRepo.Get().First();
             realtor.PostListing(listing);
         }

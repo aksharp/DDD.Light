@@ -5,7 +5,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Buyers
 {
-    public class TookOwnershipOfListingHandler : IEventHandler<TookOwnershipOfListing>
+    public class TookOwnershipOfListingHandler : EventHandler<TookOwnershipOfListing>
     {
         private readonly IRepository<IBuyer> _buyerRepo;
 
@@ -14,7 +14,7 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Buyers
             _buyerRepo = buyerRepo;
         }
 
-        public void Handle(TookOwnershipOfListing @event)
+        public override void Handle(TookOwnershipOfListing @event)
         {
             _buyerRepo.Save(@event.RepeatBuyer);
         }

@@ -23,7 +23,7 @@ namespace DDD.Light.Messaging
                 return _instance;
             }
         }
-
+       
         public void Subscribe<T>(IEventHandler<T> handler)
         {
             EventHandlersDatabase<T>.Instance.Add(handler);

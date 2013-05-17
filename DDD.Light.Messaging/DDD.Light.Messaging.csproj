@@ -46,7 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandBus.cs" />
+    <Compile Include="CommandHandler.cs" />
     <Compile Include="CommandHandlersDatabase.cs" />
+    <Compile Include="EventHandler.cs" />
     <Compile Include="ICommandHandlersDatabase.cs" />
     <Compile Include="ICommandHandler.cs" />
     <Compile Include="ICommandBus.cs" />

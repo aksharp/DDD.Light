@@ -29,8 +29,20 @@ namespace DDD.Light.Realtor
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
             CreateRealtorIfNoneExist();
-            ObjectFactory.GetInstance<EventHandlerSubscribtions>().SubscribeEventHandlers();
-            ObjectFactory.GetInstance<CommandHandlerSubscribtions>().SubscribeCommandHandlers();
+
+            SubscribeHandlers();
+        }
+
+        private static void SubscribeHandlers()
+        {
+            //todo refactor so it either looks in namespace recursivley or just gets all handlers in assembly and subscribes
+            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers");
+            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Buyers");
+            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Listings");
+            HandlerSubscribtions.SubscribeEventHandlersInNamespace("DDD.Light.Realtor.Application.EventHandlers.Offers");
+
+            HandlerSubscribtions.SubscribeCommandHandlersInNamespace("DDD.Light.Realtor.Application.CommandHandlers");
+            HandlerSubscribtions.SubscribeCommandHandlersInNamespace("DDD.Light.Realtor.Application.CommandHandlers.Realtor");
         }
 
         private void ConfigureMappings()

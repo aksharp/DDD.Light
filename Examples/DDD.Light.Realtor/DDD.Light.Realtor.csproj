@@ -145,12 +145,11 @@
     <Compile Include="Application\EventHandlers\Offers\OfferAcceptedHandler.cs" />
     <Compile Include="Application\EventHandlers\Offers\OfferRejectedHandler.cs" />
     <Compile Include="App_Start\AttributeRoutingHttpConfig.cs" />
-    <Compile Include="Bootstrap\EventHandlerSubscribtions.cs" />
     <Compile Include="Bootstrap\BundleConfig.cs" />
     <Compile Include="Bootstrap\FilterConfig.cs" />
+    <Compile Include="Bootstrap\HandlerSubscribtions.cs" />
     <Compile Include="Bootstrap\RouteConfig.cs" />
     <Compile Include="Bootstrap\WebApiConfig.cs" />
-    <Compile Include="Bootstrap\CommandHandlerSubscribtions.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />

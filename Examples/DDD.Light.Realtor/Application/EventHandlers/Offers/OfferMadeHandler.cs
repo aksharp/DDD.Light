@@ -1,12 +1,11 @@
 ﻿using System;
-using DDD.Light.Messaging;
 using DDD.Light.Realtor.Domain.Events;
 using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Offers
 {
-    public class OfferMadeHandler : IEventHandler<OfferMade>
+    public class OfferMadeHandler : Messaging.EventHandler<OfferMade>
     {
         private readonly IRepository<Domain.Model.Realtor> _realtorRepo;
         private readonly IRepository<Offer> _offerRepo;
@@ -17,7 +16,7 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Offers
             _offerRepo = offerRepo;
         }
 
-        public void Handle(OfferMade @event)
+        public override void Handle(OfferMade @event)
         {
             _offerRepo.Save(@event.Offer);
             var realtor = _realtorRepo.GetById(Guid.Empty);

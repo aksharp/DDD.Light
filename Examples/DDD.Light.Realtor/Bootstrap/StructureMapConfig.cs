@@ -1,4 +1,7 @@
-﻿using DDD.Light.Realtor.Domain.Model;
+﻿using DDD.Light.Messaging;
+using DDD.Light.Realtor.Application.EventHandlers.Listings;
+using DDD.Light.Realtor.Domain.Events;
+using DDD.Light.Realtor.Domain.Model;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
 using StructureMap;

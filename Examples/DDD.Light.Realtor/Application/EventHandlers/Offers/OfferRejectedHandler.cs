@@ -5,7 +5,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Offers
 {
-    public class OfferRejectedHandler : IEventHandler<OfferRejected>
+    public class OfferRejectedHandler : EventHandler<OfferRejected>
     {
          private readonly IRepository<Offer> _offerRepo;
         private readonly IRepository<IBuyer> _buyerRepo;
@@ -16,7 +16,7 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Offers
              _buyerRepo = buyerRepo;
          }
 
-        public void Handle(OfferRejected @event)
+        public override void Handle(OfferRejected @event)
         {
             _offerRepo.Save(@event.Offer);
             var buyer = _buyerRepo.GetById(@event.Offer.BuyerId);

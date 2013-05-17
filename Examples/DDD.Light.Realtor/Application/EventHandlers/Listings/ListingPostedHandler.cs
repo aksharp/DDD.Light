@@ -5,7 +5,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Listings
 {
-    public class ListingPostedHandler : IEventHandler<ListingPosted>
+    public class ListingPostedHandler : EventHandler<ListingPosted>
     {
         private readonly IRepository<Domain.Model.Realtor> _realtorRepo;
         private readonly IRepository<Listing> _listingRepo;
@@ -16,7 +16,7 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Listings
             _listingRepo = listingRepo;
         }
 
-        public void Handle(ListingPosted @event)
+        public override void Handle(ListingPosted @event)
         {
             _realtorRepo.Save(@event.Realtor);
             _listingRepo.Save(@event.Listing);

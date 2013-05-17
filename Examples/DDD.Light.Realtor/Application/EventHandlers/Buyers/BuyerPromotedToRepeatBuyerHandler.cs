@@ -5,7 +5,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Buyers
 {
-    public class BuyerPromotedToRepeatBuyerHandler : IEventHandler<BuyerPromotedToRepeatBuyer>
+    public class BuyerPromotedToRepeatBuyerHandler : EventHandler<BuyerPromotedToRepeatBuyer>
     {
         private readonly IRepository<IBuyer> _buyerRepo;
 
@@ -14,7 +14,7 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Buyers
             _buyerRepo = buyerRepo;
         }
 
-        public void Handle(BuyerPromotedToRepeatBuyer @event)
+        public override void Handle(BuyerPromotedToRepeatBuyer @event)
         {
             _buyerRepo.Save(@event.Buyer);
         }
