@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace DDD.Light.Realtor.Bootstrap
+namespace DDD.Light.Realtor.REST.API.Bootstrap
 {
     public class FilterConfig
     {

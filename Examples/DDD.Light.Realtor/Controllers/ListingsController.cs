@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using DDD.Light.Realtor.Domain.Model;
+using DDD.Light.Realtor.Core.Domain.Model;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Controllers
+namespace DDD.Light.Realtor.REST.API.Controllers
 {
     public class ListingsController : ApiController
     {

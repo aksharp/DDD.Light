@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
 
-namespace DDD.Light.Realtor.Bootstrap
+namespace DDD.Light.Realtor.REST.API.Bootstrap
 {
     public static class WebApiConfig
     {

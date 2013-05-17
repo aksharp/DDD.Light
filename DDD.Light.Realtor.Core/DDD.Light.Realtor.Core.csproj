@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DA3613C6-0F35-492E-89DA-49560CA56BFF}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDD.Light.Realtor.Core</RootNamespace>
+    <AssemblyName>DDD.Light.Realtor.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Domain\Events\BuyerPromotedToRepeatBuyer.cs" />
+    <Compile Include="Domain\Events\ListingDeactivated.cs" />
+    <Compile Include="Domain\Events\ListingPosted.cs" />
+    <Compile Include="Domain\Events\OfferAccepted.cs" />
+    <Compile Include="Domain\Events\OfferMade.cs" />
+    <Compile Include="Domain\Events\OfferRejected.cs" />
+    <Compile Include="Domain\Events\RepeatBuyerNotifiedOfAcceptedOffer.cs" />
+    <Compile Include="Domain\Events\TookOwnershipOfListing.cs" />
+    <Compile Include="Domain\Model\Address.cs" />
+    <Compile Include="Domain\Model\Buyer.cs" />
+    <Compile Include="Domain\Model\Description.cs" />
+    <Compile Include="Domain\Model\IBuyer.cs" />
+    <Compile Include="Domain\Model\IOfferReply.cs" />
+    <Compile Include="Domain\Model\Listing.cs" />
+    <Compile Include="Domain\Model\Location.cs" />
+    <Compile Include="Domain\Model\Offer.cs" />
+    <Compile Include="Domain\Model\OfferAcceptance.cs" />
+    <Compile Include="Domain\Model\OfferDenial.cs" />
+    <Compile Include="Domain\Model\Property.cs" />
+    <Compile Include="Domain\Model\Prospect.cs" />
+    <Compile Include="Domain\Model\Realtor.cs" />
+    <Compile Include="Domain\Model\RepeatBuyer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Light.Messaging\DDD.Light.Messaging.csproj">
+      <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
+      <Name>DDD.Light.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
+      <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
+      <Name>DDD.Light.Repo.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

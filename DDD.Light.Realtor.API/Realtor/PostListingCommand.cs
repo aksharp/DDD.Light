@@ -1,9 +1,11 @@
-namespace DDD.Light.Realtor.REST.API.Resources
+using System;
+
+namespace DDD.Light.Realtor.API.Realtor
 {
-    public class RealtorListingResource
+    public class PostListingCommand
     {
-        public string RealtorId { get; set; }
-        public string Id { get; set; }
+        public Guid RealtorId { get; set; }
+        public Guid ListingId { get; set; }
         public int NumberOfBathrooms { get; set; }
         public int NumberOfBedrooms { get; set; }
         public int YearBuilt { get; set; }

@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace DDD.Light.Realtor.Bootstrap
+namespace DDD.Light.Realtor.REST.API.Bootstrap
 {
     public class RouteConfig
     {

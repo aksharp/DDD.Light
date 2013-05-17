@@ -1,1 +1,1 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="DDD.Light.Realtor.WebApiApplication" Language="C#" %>
+﻿<%@ Application Codebehind="Global.asax.cs" Inherits="DDD.Light.Realtor.REST.API.WebApiApplication" Language="C#" %>

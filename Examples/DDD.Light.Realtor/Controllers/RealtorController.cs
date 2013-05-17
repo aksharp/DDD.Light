@@ -5,10 +5,10 @@ using System.Web.Http;
 using AttributeRouting.Web.Http;
 using AutoMapper;
 using DDD.Light.Messaging;
-using DDD.Light.Realtor.Application.Commands;
-using DDD.Light.Realtor.Resources;
+using DDD.Light.Realtor.API.Realtor;
+using DDD.Light.Realtor.REST.API.Resources;
 
-namespace DDD.Light.Realtor.Controllers
+namespace DDD.Light.Realtor.REST.API.Controllers
 {
     public class RealtorController : ApiController
     {
