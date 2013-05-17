@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using DDD.Light.Messaging;
 using DDD.Light.Realtor.Core.Domain.Events.Buyer;
 using DDD.Light.Realtor.Core.Domain.Events.Offer;
+using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot.Contract;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Core.Domain.Model.Buyer
+namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
 {
     public class Buyer : Entity, IBuyer
     {
@@ -15,20 +16,20 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer
         }
 
         public List<Guid> OfferIds { get; set; }
-        public Prospect.Prospect Prospect { get; set; }
+        public Prospect.AggregateRoot.Prospect Prospect { get; set; }
 
-        public void NotifyOfAcceptedOffer(Offer.Offer offer)
+        public void NotifyOfAcceptedOffer(Offer.AggregateRoot.Offer offer)
         {
             OfferIds.Add(offer.Id);
             EventBus.Instance.Publish(new NotifiedOfAcceptedOffer { Buyer = this });
         }
 
-        public void NotifyOfRejectedOffer(Offer.Offer offer)
+        public void NotifyOfRejectedOffer(Offer.AggregateRoot.Offer offer)
         {
             throw new NotImplementedException();
         }
 
-        public void PurchaseProperty(Listing.Listing listing)
+        public void PurchaseProperty(Listing.AggregateRoot.Listing listing)
         {
             PromoteToRepeatBuyer();
         }
@@ -36,7 +37,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer
         public virtual void MakeAnOffer(Guid listingId, decimal price)
         {
             var offerId = Guid.NewGuid();
-            var offer = new Offer.Offer {Id = offerId, BuyerId = Id, ListingId = listingId, Price = price};
+            var offer = new Offer.AggregateRoot.Offer {Id = offerId, BuyerId = Id, ListingId = listingId, Price = price};
             OfferIds.Add(offerId);
             var offerMade = new Made{Offer = offer};
             EventBus.Instance.Publish(offerMade);

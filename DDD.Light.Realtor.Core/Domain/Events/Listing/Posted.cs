@@ -2,7 +2,7 @@
 {
     public class Posted
     {
-        public Model.Realtor.Realtor Realtor { get; set; }
-        public Model.Listing.Listing Listing { get; set; }
+        public Model.Realtor.AggregateRoot.Realtor Realtor { get; set; }
+        public Model.Listing.AggregateRoot.Listing Listing { get; set; }
     }
 }

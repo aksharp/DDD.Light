@@ -10,7 +10,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer
             Address = new Address();
         }
 
-        public Property(Listing.Listing listing)
+        public Property(Listing.AggregateRoot.Listing listing)
         {
             ListingId = listing.Id;
             Address = new Address

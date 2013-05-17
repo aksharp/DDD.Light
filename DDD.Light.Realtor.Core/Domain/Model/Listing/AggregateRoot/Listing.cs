@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using DDD.Light.Messaging;
-using DDD.Light.Realtor.Core.Domain.Events;
 using DDD.Light.Realtor.Core.Domain.Events.Listing;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Core.Domain.Model.Listing
+namespace DDD.Light.Realtor.Core.Domain.Model.Listing.AggregateRoot
 {
     // aggregate root
     public class Listing : Entity

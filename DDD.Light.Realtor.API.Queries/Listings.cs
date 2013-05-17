@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using DDD.Light.Realtor.Core.Domain.Model;
 using DDD.Light.Realtor.Core.Domain.Model.Listing;
+using DDD.Light.Realtor.Core.Domain.Model.Listing.AggregateRoot;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.API.Queries

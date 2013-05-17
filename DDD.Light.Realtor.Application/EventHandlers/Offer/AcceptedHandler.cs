@@ -1,5 +1,6 @@
 ﻿using DDD.Light.Messaging;
 using DDD.Light.Realtor.Core.Domain.Model.Buyer;
+using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot.Contract;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Offer

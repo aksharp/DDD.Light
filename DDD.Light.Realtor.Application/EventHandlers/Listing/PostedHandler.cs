@@ -5,10 +5,10 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Listing
 {
     public class PostedHandler : EventHandler<Core.Domain.Events.Listing.Posted>
     {
-        private readonly IRepository<Core.Domain.Model.Realtor.Realtor> _realtorRepo;
-        private readonly IRepository<Core.Domain.Model.Listing.Listing> _listingRepo;
+        private readonly IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> _realtorRepo;
+        private readonly IRepository<Core.Domain.Model.Listing.AggregateRoot.Listing> _listingRepo;
 
-        public PostedHandler(IRepository<Core.Domain.Model.Realtor.Realtor> realtorRepo, IRepository<Core.Domain.Model.Listing.Listing> listingRepo)
+        public PostedHandler(IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> realtorRepo, IRepository<Core.Domain.Model.Listing.AggregateRoot.Listing> listingRepo)
         {
             _realtorRepo = realtorRepo;
             _listingRepo = listingRepo;

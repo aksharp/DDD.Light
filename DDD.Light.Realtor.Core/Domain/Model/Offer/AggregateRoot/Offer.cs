@@ -3,7 +3,7 @@ using DDD.Light.Messaging;
 using DDD.Light.Realtor.Core.Domain.Events.Offer;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Core.Domain.Model.Offer
+namespace DDD.Light.Realtor.Core.Domain.Model.Offer.AggregateRoot
 {
     // aggregate root
     public class Offer : Entity

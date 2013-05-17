@@ -52,9 +52,9 @@ namespace DDD.Light.Realtor.REST.API
 
         private static void CreateRealtorIfNoneExist()
         {
-            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.Realtor>>();
+            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor>>();
             if (!realtorRepo.Get().Any())
-                realtorRepo.Save(new Core.Domain.Model.Realtor.Realtor {Id = Guid.Empty});
+                realtorRepo.Save(new Core.Domain.Model.Realtor.AggregateRoot.Realtor {Id = Guid.Empty});
         }
     }
 }

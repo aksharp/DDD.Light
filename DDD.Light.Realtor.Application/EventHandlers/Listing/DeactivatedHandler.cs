@@ -5,9 +5,9 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Listing
 {
     public class DeactivatedHandler : EventHandler<Core.Domain.Events.Listing.Deactivated>
     {
-        private readonly IRepository<Core.Domain.Model.Listing.Listing> _listingRepo;
+        private readonly IRepository<Core.Domain.Model.Listing.AggregateRoot.Listing> _listingRepo;
 
-        public DeactivatedHandler(IRepository<Core.Domain.Model.Listing.Listing> listingRepo)
+        public DeactivatedHandler(IRepository<Core.Domain.Model.Listing.AggregateRoot.Listing> listingRepo)
         {
             _listingRepo = listingRepo;
         }

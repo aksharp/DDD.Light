@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.Realtor.Core.Domain.Model.Prospect
+namespace DDD.Light.Realtor.Core.Domain.Model.Prospect.AggregateRoot
 {
     // aggregate root
     public class Prospect : Entity

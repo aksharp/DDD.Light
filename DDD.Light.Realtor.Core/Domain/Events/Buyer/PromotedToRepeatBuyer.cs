@@ -1,10 +1,11 @@
 ﻿using DDD.Light.Realtor.Core.Domain.Model.Buyer;
+using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot;
 
 namespace DDD.Light.Realtor.Core.Domain.Events.Buyer
 {
     public class PromotedToRepeatBuyer
     {
-        public Model.Buyer.Buyer Buyer { get; set; }
+        public Model.Buyer.AggregateRoot.Buyer Buyer { get; set; }
         public RepeatBuyer RepeatBuyer { get; set; }
     }
 }

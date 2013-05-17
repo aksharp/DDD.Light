@@ -3,15 +3,16 @@ using DDD.Light.Messaging;
 using DDD.Light.Realtor.API.Commands.Realtor;
 using DDD.Light.Realtor.Core.Domain.Model;
 using DDD.Light.Realtor.Core.Domain.Model.Listing;
+using DDD.Light.Realtor.Core.Domain.Model.Listing.AggregateRoot;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.CommandHandlers.Realtor
 {
     public class PostListingHandler : CommandHandler<PostListing>
     {
-        private readonly IRepository<Core.Domain.Model.Realtor.Realtor> _realtorRepo;
+        private readonly IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> _realtorRepo;
 
-        public PostListingHandler(IRepository<Core.Domain.Model.Realtor.Realtor> realtorRepo)
+        public PostListingHandler(IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> realtorRepo)
         {
             _realtorRepo = realtorRepo;
         }

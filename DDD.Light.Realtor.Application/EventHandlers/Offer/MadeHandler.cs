@@ -5,10 +5,10 @@ namespace DDD.Light.Realtor.Application.EventHandlers.Offer
 {
     public class MadeHandler : Messaging.EventHandler<Core.Domain.Events.Offer.Made>
     {
-        private readonly IRepository<Core.Domain.Model.Realtor.Realtor> _realtorRepo;
-        private readonly IRepository<Core.Domain.Model.Offer.Offer> _offerRepo;
+        private readonly IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> _realtorRepo;
+        private readonly IRepository<Core.Domain.Model.Offer.AggregateRoot.Offer> _offerRepo;
 
-        public MadeHandler(IRepository<Core.Domain.Model.Realtor.Realtor> realtorRepo, IRepository<Core.Domain.Model.Offer.Offer> offerRepo)
+        public MadeHandler(IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> realtorRepo, IRepository<Core.Domain.Model.Offer.AggregateRoot.Offer> offerRepo)
         {
             _realtorRepo = realtorRepo;
             _offerRepo = offerRepo;
