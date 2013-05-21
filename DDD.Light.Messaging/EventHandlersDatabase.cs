@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.InProcess
 {
     public class EventHandlersDatabase<T> : IEventHandlersDatabase<T>
     {

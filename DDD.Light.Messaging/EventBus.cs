@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Linq;
+using DDD.Light.EventStore;
+using Newtonsoft.Json;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.InProcess
 {
     public class EventBus : IEventBus
     {
@@ -34,10 +36,28 @@ namespace DDD.Light.Messaging
             EventHandlersDatabase<T>.Instance.Add(handleMethod);
         }
 
-        public void Publish<T>(T @event) 
+        public void Publish<T>(Guid aggregateId, T @event)
         {
-            if ( !Equals( @event, default(T) ) )
+            StoreEvent(aggregateId, @event);
+            HandleEvent(@event);
+        }
+
+        private static void HandleEvent<T>(T @event)
+        {
+            if (!Equals(@event, default(T)))
                 new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
+        }
+
+        private static void StoreEvent<T>(Guid aggregateId, T @event)
+        {
+            MongoEventStore.Save(new AggregateEvent
+                {
+                    Id = Guid.NewGuid(),
+                    AggregateId = aggregateId,
+                    EventType = typeof (T),
+                    CreatedOn = DateTime.UtcNow,
+                    SerializedEvent = JsonConvert.SerializeObject(@event)
+                });
         }
     }
 }

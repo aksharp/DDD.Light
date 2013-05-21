@@ -4,7 +4,7 @@ using System.Linq;
 using System.Reflection;
 using log4net;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.InProcess
 {
     [Serializable]
     public class Transaction<T>

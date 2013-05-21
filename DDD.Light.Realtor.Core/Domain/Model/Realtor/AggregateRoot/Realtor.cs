@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.Core.Domain.Events.Listing;
 using DDD.Light.Repo.Contracts;
 
@@ -26,7 +26,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Realtor.AggregateRoot
         public void PostListing(Listing.AggregateRoot.Listing listing)
         {
             Listings.Add(listing.Id);
-            EventBus.Instance.Publish(new Posted{Realtor = this, Listing = listing});
+            EventBus.Instance.Publish(Id, new Posted{Realtor = this, Listing = listing});
         }
     }
 }

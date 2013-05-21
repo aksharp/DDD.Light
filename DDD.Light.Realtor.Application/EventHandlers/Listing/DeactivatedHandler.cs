@@ -1,4 +1,5 @@
 ﻿using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Listing

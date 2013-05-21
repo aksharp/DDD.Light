@@ -6,6 +6,6 @@ namespace DDD.Light.Messaging
     {
         void Subscribe<T>(IEventHandler<T> handler);
         void Subscribe<T>(Action<T> handler);
-        void Publish<T>(T @event);
+        void Publish<T>(Guid aggregateId, T @event);
     }
 }

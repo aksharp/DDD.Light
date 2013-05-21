@@ -1,5 +1,6 @@
 ﻿using System;
 using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.Core.Domain.Events.Offer;
 using DDD.Light.Repo.Contracts;
 
@@ -18,14 +19,14 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Offer.AggregateRoot
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferAcceptance{ RepliedOn = DateTime.UtcNow };
-            EventBus.Instance.Publish(new Accepted{ Offer = this });
+            EventBus.Instance.Publish(Id, new Accepted{ Offer = this });
         }
         
         public void Reject()
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferDenial{ RepliedOn = DateTime.UtcNow };
-            EventBus.Instance.Publish(new Rejected{ Offer = this });
+            EventBus.Instance.Publish(Id, new Rejected{ Offer = this });
         }
     }
 }

@@ -3,7 +3,7 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.Realtor.Application.EventHandlers.Offer
 {
-    public class MadeHandler : Messaging.EventHandler<Core.Domain.Events.Offer.Made>
+    public class MadeHandler : Messaging.InProcess.EventHandler<Core.Domain.Events.Offer.Made>
     {
         private readonly IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor> _realtorRepo;
         private readonly IRepository<Core.Domain.Model.Offer.AggregateRoot.Offer> _offerRepo;

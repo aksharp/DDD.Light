@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.Core.Domain.Events.Buyer;
 using DDD.Light.Realtor.Core.Domain.Events.Offer;
 using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot.Contract;
@@ -21,7 +22,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
         public void NotifyOfAcceptedOffer(Offer.AggregateRoot.Offer offer)
         {
             OfferIds.Add(offer.Id);
-            EventBus.Instance.Publish(new NotifiedOfAcceptedOffer { Buyer = this });
+            EventBus.Instance.Publish(Id, new NotifiedOfAcceptedOffer { Buyer = this });
         }
 
         public void NotifyOfRejectedOffer(Offer.AggregateRoot.Offer offer)
@@ -40,7 +41,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
             var offer = new Offer.AggregateRoot.Offer {Id = offerId, BuyerId = Id, ListingId = listingId, Price = price};
             OfferIds.Add(offerId);
             var offerMade = new Made{Offer = offer};
-            EventBus.Instance.Publish(offerMade);
+            EventBus.Instance.Publish(Id, offerMade);
         }
 
         public void PromoteToRepeatBuyer()
@@ -51,7 +52,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
                 OfferIds = OfferIds,
                 Prospect = Prospect
             };
-            EventBus.Instance.Publish(new PromotedToRepeatBuyer { Buyer = this, RepeatBuyer = repeatBuyer });
+            EventBus.Instance.Publish(Id, new PromotedToRepeatBuyer { Buyer = this, RepeatBuyer = repeatBuyer });
         }
 
     }

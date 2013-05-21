@@ -6,6 +6,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
 using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Commands.Realtor;
 using DDD.Light.Realtor.REST.API.Bootstrap;
 using DDD.Light.Realtor.REST.API.Resources;

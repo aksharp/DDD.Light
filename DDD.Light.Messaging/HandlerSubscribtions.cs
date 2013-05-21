@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.InProcess
 {
     public class HandlerSubscribtions
     {
@@ -9,7 +9,7 @@ namespace DDD.Light.Messaging
         {
             AppDomain.CurrentDomain.GetAssemblies().ToList()
                      .SelectMany(s => s.GetTypes())
-                     .Where( t => typeof (IHandler).IsAssignableFrom(t) && t != typeof(IHandler) && t != typeof(CommandHandler<>) && t!= typeof(Messaging.EventHandler<>))
+                     .Where( t => typeof (IHandler).IsAssignableFrom(t) && t != typeof(IHandler) && t != typeof(CommandHandler<>) && t!= typeof(EventHandler<>))
                      .ToList()
                      .ForEach(t =>
                          {

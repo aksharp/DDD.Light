@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.Core.Domain.Events.Buyer;
 
 namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
@@ -19,7 +20,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
         public void TakeOwnershipOf(Listing.AggregateRoot.Listing listing)
         {
             Properties.Add(new Property(listing));
-            EventBus.Instance.Publish(new TookOwnershipOfListing{RepeatBuyer = this});
+            EventBus.Instance.Publish(Id, new TookOwnershipOfListing{RepeatBuyer = this});
         }
         
     }

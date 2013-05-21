@@ -5,6 +5,7 @@ using System.Web.Http;
 using AttributeRouting.Web.Http;
 using AutoMapper;
 using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Commands.Realtor;
 using DDD.Light.Realtor.API.Queries;
 using DDD.Light.Realtor.REST.API.Resources;

@@ -1,4 +1,4 @@
-﻿namespace DDD.Light.Messaging
+﻿namespace DDD.Light.Messaging.InProcess
 {
     public abstract class CommandHandler<T> : ICommandHandler<T>, IHandler
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.InProcess
 {
     public class CommandBus : ICommandBus
     {

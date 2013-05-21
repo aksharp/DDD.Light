@@ -1,4 +1,5 @@
 ﻿using DDD.Light.Messaging;
+using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.Core.Domain.Model.Buyer;
 using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot.Contract;
 using DDD.Light.Repo.Contracts;
