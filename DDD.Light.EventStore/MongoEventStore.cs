@@ -55,9 +55,28 @@ namespace DDD.Light.MongoEventStore
                 {
                     var eventType = Type.GetType(aggregateEvent.EventType);
                     var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
-                    var method = typeof(T).GetMethod("ApplyEvent", new[]{eventType});
+                    var method = typeof(T).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
                     method.Invoke(aggregate, new[] { @event });
                 });
+            return aggregate;
+        }
+
+        public object GetById(Guid id)
+        {
+            VerifyRepoIsConfigured();
+
+            var aggregateType = Type.GetType(_repo.Get().First(x => x.AggregateId == id).AggregateType);
+
+            var constructors = aggregateType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
+            var aggregate = constructors[0].Invoke(new object[] { });
+
+            _repo.Get().Where(x => x.AggregateId == id).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
+            {
+                var eventType = Type.GetType(aggregateEvent.EventType);
+                var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+                var method = aggregateType.GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
+                method.Invoke(aggregate, new[] { @event });
+            });
             return aggregate;
         }
 

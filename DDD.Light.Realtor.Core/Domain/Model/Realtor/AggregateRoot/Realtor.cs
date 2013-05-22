@@ -26,7 +26,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Realtor.AggregateRoot
         public void PostListing(Listing.AggregateRoot.Listing listing)
         {
             Listings.Add(listing.Id);
-            EventBus.Instance.Publish(Id, new Posted{Realtor = this, Listing = listing});
+            EventBus.Instance.Publish(GetType(), Id, new Posted { Realtor = this, Listing = listing });
         }
     }
 }

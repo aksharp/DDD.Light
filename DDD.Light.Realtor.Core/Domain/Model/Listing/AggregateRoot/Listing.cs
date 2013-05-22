@@ -25,7 +25,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Listing.AggregateRoot
         public void Deactivate()
         {
             Active = false;
-            EventBus.Instance.Publish(Id, new Deactivated{Listing = this});
+            EventBus.Instance.Publish(GetType(), Id, new Deactivated { Listing = this });
         }
     }
 }

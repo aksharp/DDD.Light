@@ -67,7 +67,9 @@ namespace DDD.Light.MongoEventStore.Example
 
             Console.Write("Enter person's Name: ");
             var renamedName = Console.ReadLine();
-            person = MongoEventStore.Instance.GetById<Person>(id);
+            person = MongoEventStore.Instance.GetById<Person>(id); 
+            //can also do this: 
+            // person = MongoEventStore.Instance.GetById(id) as Person;
             person.NameMe(renamedName);
 
             var personDTO = personReadModel.GetById(id);
@@ -76,11 +78,5 @@ namespace DDD.Light.MongoEventStore.Example
             Console.WriteLine("Person Was Renamed: " + personDTO.WasRenamed);
             Console.ReadLine();
         }
-    }
-
-    internal class PersonDTO : Entity
-    {
-        public string Name { get; set; }
-        public bool WasRenamed { get; set; }
     }
 }

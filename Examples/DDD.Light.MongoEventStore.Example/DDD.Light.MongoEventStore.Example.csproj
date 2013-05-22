@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Person.cs" />
     <Compile Include="PersonCreated.cs" />
+    <Compile Include="PersonDTO.cs" />
     <Compile Include="PersonNamed.cs" />
     <Compile Include="PersonRenamed.cs" />
     <Compile Include="Program.cs" />

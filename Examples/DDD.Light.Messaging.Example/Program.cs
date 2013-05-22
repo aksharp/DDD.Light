@@ -28,10 +28,10 @@ namespace DDD.Light.Messaging.Example
 
             // publish events to state something was done
             // events in real life would be published from methods in aggregate root entity
-            var Id = Guid.NewGuid();
-            EventBus.Instance.Publish(Id, new PersonLeftEvent("Jane Doe", "California"));
-            EventBus.Instance.Publish<PersonLeftEvent>(Id, null);
-            EventBus.Instance.Publish(Id, new PersonArrivedEvent("Jane Doe", "New York"));
+//            var Id = Guid.NewGuid();
+//            EventBus.Instance.Publish(Id, new PersonLeftEvent("Jane Doe", "California"));
+//            EventBus.Instance.Publish<PersonLeftEvent>(Id, null);
+//            EventBus.Instance.Publish(Id, new PersonArrivedEvent("Jane Doe", "New York"));
 
             log.Info("------- END ---------");
 

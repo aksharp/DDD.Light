@@ -37,9 +37,15 @@ namespace DDD.Light.Messaging.InProcess
             EventHandlersDatabase<T>.Instance.Add(handleMethod);
         }
 
-        public void Publish<T>(Guid aggregateId, T @event)
+        public void Publish<T>(Type aggregateType, Guid aggregateId, T @event)
         {
-            StoreEvent(aggregateId, @event);
+            StoreEvent(aggregateType, aggregateId, @event);
+            HandleEvent(@event);
+        }
+        
+        public void Publish<TAggregate, T>(Guid aggregateId, T @event)
+        {
+            StoreEvent(typeof(TAggregate), aggregateId, @event);
             HandleEvent(@event);
         }
 
@@ -49,13 +55,14 @@ namespace DDD.Light.Messaging.InProcess
                 new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
         }
 
-        private void StoreEvent<T>(Guid aggregateId, T @event)
+        private void StoreEvent<T>(Type aggregateType, Guid aggregateId, T @event)
         {
             if (_eventStore == null) throw new Exception("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore);' to configure it.");
             _eventStore.Save(new AggregateEvent
                 {
                     Id = Guid.NewGuid(),
                     AggregateId = aggregateId,
+                    AggregateType = aggregateType.AssemblyQualifiedName,
                     EventType = typeof(T).AssemblyQualifiedName,
                     CreatedOn = DateTime.UtcNow,
                     SerializedEvent = JsonConvert.SerializeObject(@event)

@@ -7,7 +7,8 @@ namespace DDD.Light.Messaging.Contracts
     {
         void Subscribe<T>(IEventHandler<T> handler);
         void Subscribe<T>(Action<T> handler);
-        void Publish<T>(Guid aggregateId, T @event);
+        void Publish<T>(Type aggregateType, Guid aggregateId, T @event);
+        void Publish<TAggregate, T>(Guid aggregateId, T @event);
         void Configure(IEventStore instance);
     }
 }

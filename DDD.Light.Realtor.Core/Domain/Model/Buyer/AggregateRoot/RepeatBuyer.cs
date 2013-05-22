@@ -20,7 +20,7 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot
         public void TakeOwnershipOf(Listing.AggregateRoot.Listing listing)
         {
             Properties.Add(new Property(listing));
-            EventBus.Instance.Publish(Id, new TookOwnershipOfListing{RepeatBuyer = this});
+            EventBus.Instance.Publish(GetType(), Id, new TookOwnershipOfListing{RepeatBuyer = this});
         }
         
     }

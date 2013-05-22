@@ -16,32 +16,40 @@ namespace DDD.Light.MongoEventStore.Example
         public Person(Guid id)
         {
             Id = id;
-            EventBus.Instance.Publish(Id, new PersonCreated(Id));
+            // cleanest way to call publish
+            EventBus.Instance.Publish(GetType(), Id, new PersonCreated(Id));
         }
+
+
+        // Aggregate API, all public
 
         public void NameMe(string name)
         {
             if (string.IsNullOrEmpty(_name))
-                EventBus.Instance.Publish(Id, new PersonNamed(Id, name));
+            {
+                // can call publish this way too, generic way
+                EventBus.Instance.Publish<Person, PersonNamed>(Id, new PersonNamed(Id, name));
+            }
             else
-                EventBus.Instance.Publish(Id, new PersonRenamed(Id, name));
+                // yes, this will work too, non generic way
+                EventBus.Instance.Publish(typeof(Person), Id, new PersonRenamed(Id, name));
         }
 
 
 
-        // Apply Events
+        // Apply Events (For rebuilding aggregate) all private
 
-        public void ApplyEvent(PersonCreated personCreated)
+        private void ApplyEvent(PersonCreated personCreated)
         {
             Id = personCreated.Id;
         }
 
-        public void ApplyEvent(PersonNamed personNamed)
+        private void ApplyEvent(PersonNamed personNamed)
         {
             _name = personNamed.Name;
         }
-        
-        public void ApplyEvent(PersonRenamed personNamed)
+
+        private void ApplyEvent(PersonRenamed personNamed)
         {
             _name = personNamed.Name;
         }

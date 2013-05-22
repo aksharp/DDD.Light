@@ -19,14 +19,14 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Offer.AggregateRoot
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferAcceptance{ RepliedOn = DateTime.UtcNow };
-            EventBus.Instance.Publish(Id, new Accepted{ Offer = this });
+            EventBus.Instance.Publish(GetType(), Id, new Accepted { Offer = this });
         }
         
         public void Reject()
         {
             if (Id == null) throw new Exception("Offer does not have Id");
             OfferReply = new OfferDenial{ RepliedOn = DateTime.UtcNow };
-            EventBus.Instance.Publish(Id, new Rejected{ Offer = this });
+            EventBus.Instance.Publish(GetType(), Id, new Rejected { Offer = this });
         }
     }
 }
