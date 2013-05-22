@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using DDD.Light.Messaging.Contracts;
 
 namespace DDD.Light.Messaging.InProcess
 {

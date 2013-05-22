@@ -1,4 +1,4 @@
-﻿namespace DDD.Light.EventStore
+﻿namespace DDD.Light.EventStore.Contracts
 {
     public interface IAggregate
     {

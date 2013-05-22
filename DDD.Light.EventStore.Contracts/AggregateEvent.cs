@@ -1,7 +1,7 @@
 ﻿using System;
 using DDD.Light.Repo.Contracts;
 
-namespace DDD.Light.EventStore
+namespace DDD.Light.EventStore.Contracts
 {
     public class AggregateEvent : IEntity
     {
@@ -9,7 +9,6 @@ namespace DDD.Light.EventStore
         public Guid AggregateId { get; set; }
         public DateTime CreatedOn { get; set; }
         public string SerializedEvent { get; set; }
-        public Type AggregateType { get; set; }
-        public Type EventType { get; set; }        
+        public string EventType { get; set; }        
     }
 }

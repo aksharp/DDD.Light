@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
-using DDD.Light.EventStore;
+using DDD.Light.EventStore.Contracts;
+using DDD.Light.Messaging.Contracts;
 using Newtonsoft.Json;
 
 namespace DDD.Light.Messaging.InProcess
@@ -42,22 +43,29 @@ namespace DDD.Light.Messaging.InProcess
             HandleEvent(@event);
         }
 
-        private static void HandleEvent<T>(T @event)
+        private void HandleEvent<T>(T @event)
         {
             if (!Equals(@event, default(T)))
                 new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
         }
 
-        private static void StoreEvent<T>(Guid aggregateId, T @event)
+        private void StoreEvent<T>(Guid aggregateId, T @event)
         {
-            MongoEventStore.Save(new AggregateEvent
+            if (_eventStore == null) throw new Exception("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore);' to configure it.");
+            _eventStore.Save(new AggregateEvent
                 {
                     Id = Guid.NewGuid(),
                     AggregateId = aggregateId,
-                    EventType = typeof (T),
+                    EventType = typeof(T).AssemblyQualifiedName,
                     CreatedOn = DateTime.UtcNow,
                     SerializedEvent = JsonConvert.SerializeObject(@event)
                 });
+        }
+
+        private IEventStore _eventStore;
+        public void Configure(IEventStore eventStore)
+        {
+            _eventStore = eventStore;
         }
     }
 }

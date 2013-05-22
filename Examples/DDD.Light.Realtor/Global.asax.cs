@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using DDD.Light.EventStore;
 using DDD.Light.Messaging;
 using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Commands.Realtor;
@@ -30,7 +31,9 @@ namespace DDD.Light.Realtor.REST.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
-            InitApp();            
+            InitApp();
+            MongoEventStore.MongoEventStore.Instance.Configure("mongodb://localhost", "DDD.Light.Realtor", "EventStore");
+            EventBus.Instance.Configure(MongoEventStore.MongoEventStore.Instance);
         }
 
         private static void InitApp()

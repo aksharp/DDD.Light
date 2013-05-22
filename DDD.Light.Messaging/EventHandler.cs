@@ -1,4 +1,6 @@
-﻿namespace DDD.Light.Messaging.InProcess
+﻿using DDD.Light.Messaging.Contracts;
+
+namespace DDD.Light.Messaging.InProcess
 {
     public abstract class EventHandler<T> : IEventHandler<T>, IHandler
     {

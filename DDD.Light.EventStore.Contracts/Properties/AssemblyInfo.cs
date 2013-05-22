@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.MongoEventStore")]
+[assembly: AssemblyTitle("DDD.Light.EventStore.Contracts")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DDD.Light.MongoEventStore")]
+[assembly: AssemblyProduct("DDD.Light.EventStore.Contracts")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("32c7584f-f3a8-45ee-89ee-5a1faa9bb545")]
+[assembly: Guid("aafb9201-b725-4b17-9246-3790b9e3eb59")]
 
 // Version information for an assembly consists of the following four values:
 //

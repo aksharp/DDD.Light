@@ -1,4 +1,5 @@
 ﻿using System;
+using DDD.Light.Messaging.Contracts;
 
 namespace DDD.Light.Messaging.Example
 {

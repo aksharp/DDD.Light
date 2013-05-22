@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Reflection;
+using DDD.Light.EventStore;
 using DDD.Light.Messaging.InProcess;
 using log4net;
 using log4net.Config;
@@ -12,6 +13,9 @@ namespace DDD.Light.Messaging.Example
         {
             XmlConfigurator.Configure();
             var log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+            MongoEventStore.MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_Messaging_Example", "EventStore");
+            EventBus.Instance.Configure(MongoEventStore.MongoEventStore.Instance);
+
 
             log.Info("------- START ---------");
 

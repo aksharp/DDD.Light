@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DDD.Light.Messaging
+namespace DDD.Light.Messaging.Contracts
 {
     public interface ICommandBus
     {
