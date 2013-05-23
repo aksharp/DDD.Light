@@ -10,5 +10,9 @@ namespace DDD.Light.Messaging.Contracts
         void Publish<T>(Type aggregateType, Guid aggregateId, T @event);
         void Publish<TAggregate, T>(Guid aggregateId, T @event);
         void Configure(IEventStore instance);
+        void RestoreReadModel();
+        void RestoreReadModel(DateTime until);
+        Guid GetUniqueInstanceID();
+        IEventStore GetEventStore();
     }
 }

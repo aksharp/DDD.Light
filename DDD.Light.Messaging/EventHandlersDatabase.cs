@@ -29,6 +29,13 @@ namespace DDD.Light.Messaging.InProcess
         private EventHandlersDatabase()
         {
             _registeredHandlerActions = new List<Action<T>>();
+            _instanceID = Guid.NewGuid();
+        }
+
+        private readonly Guid _instanceID;
+        public Guid GetUniqueInstanceID()
+        {
+            return _instanceID;
         }
 
         public void Add(IEventHandler<T> eventHandler)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Reflection;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.Messaging.Contracts;
 using Newtonsoft.Json;
@@ -26,7 +27,18 @@ namespace DDD.Light.Messaging.InProcess
                 return _instance;
             }
         }
+
+        private readonly Guid _instanceID;
+        private EventBus()
+        {
+            _instanceID = Guid.NewGuid();
+        }
        
+        public Guid GetUniqueInstanceID()
+        {
+            return _instanceID;
+        }
+
         public void Subscribe<T>(IEventHandler<T> handler)
         {
             EventHandlersDatabase<T>.Instance.Add(handler);
@@ -42,7 +54,7 @@ namespace DDD.Light.Messaging.InProcess
             StoreEvent(aggregateType, aggregateId, @event);
             HandleEvent(@event);
         }
-        
+
         public void Publish<TAggregate, T>(Guid aggregateId, T @event)
         {
             StoreEvent(typeof(TAggregate), aggregateId, @event);
@@ -74,5 +86,30 @@ namespace DDD.Light.Messaging.InProcess
         {
             _eventStore = eventStore;
         }
+
+        public IEventStore GetEventStore()
+        {
+            return _eventStore;
+        }
+
+        public void RestoreReadModel()
+        {
+            _eventStore.GetAll().ToList().ForEach(HandleRestoreReadModelEvent);
+        }
+
+        public void RestoreReadModel(DateTime until)
+        {
+            _eventStore.GetAll(until).ToList().ForEach(HandleRestoreReadModelEvent);
+        }
+
+        private void HandleRestoreReadModelEvent(AggregateEvent aggregateEvent)
+        {
+            var eventType = Type.GetType(aggregateEvent.EventType);
+            var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+            GetType().GetMethod("HandleEvent", BindingFlags.NonPublic | BindingFlags.Instance)
+                     .MakeGenericMethod(eventType)
+                     .Invoke(Instance, new[] {@event});
+        }
+
     }
 }

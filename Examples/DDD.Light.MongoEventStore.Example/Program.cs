@@ -12,6 +12,7 @@ namespace DDD.Light.MongoEventStore.Example
             var personReadModel = new MongoRepository<PersonDTO>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "Person_ReadModel");
             MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "EventStore");
             EventBus.Instance.Configure(MongoEventStore.Instance);
+
             EventBus.Instance.Subscribe((PersonCreated personCreated) =>
                 {                    
                     var personDTO = new PersonDTO {Id = personCreated.Id};
@@ -34,10 +35,15 @@ namespace DDD.Light.MongoEventStore.Example
                     personReadModel.Save(personDTO);
                 });
 
-            
-            NamePerson(personReadModel);
 
+            NamePerson(personReadModel);
             NameAndRenamePerson(personReadModel);
+
+            // Drop readmodel on mongo and then run this to restore
+            //EventBus.Instance.RestoreReadModel(EventBus.Instance);
+
+
+            Console.ReadLine();
         }
 
         private static void NamePerson(IRepository<PersonDTO> personReadModel)
@@ -53,7 +59,6 @@ namespace DDD.Light.MongoEventStore.Example
             Console.WriteLine("Person ID: " + personDTO.Id);
             Console.WriteLine("Person Name: " + personDTO.Name);
             Console.WriteLine("Person Was Renamed: " + personDTO.WasRenamed);
-            Console.ReadLine();
         }
 
         private static void NameAndRenamePerson(IRepository<PersonDTO> personReadModel)
@@ -76,7 +81,6 @@ namespace DDD.Light.MongoEventStore.Example
             Console.WriteLine("Person ID: " + personDTO.Id);
             Console.WriteLine("Person Name: " + personDTO.Name);
             Console.WriteLine("Person Was Renamed: " + personDTO.WasRenamed);
-            Console.ReadLine();
         }
     }
 }

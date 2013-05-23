@@ -16,17 +16,17 @@ namespace DDD.Light.Messaging.InProcess
             
         }
 
-        public Transaction(T @event, IEnumerable<Action<T>> eventHandlers)
+        public Transaction(T message, IEnumerable<Action<T>> handlers)
         {
-            Event = @event;
+            Message = message;
             Id = Guid.NewGuid();
             ProcessedActions = new List<Action<T>>();
             ErroredOutActions = new Dictionary<Action<T>, Exception>();
-            NotProcessedActions = new Queue<Action<T>>(eventHandlers);
+            NotProcessedActions = new Queue<Action<T>>(handlers);
         }
 
         public Guid Id { get; private set; }
-        public T Event { get; set; }
+        public T Message { get; set; }
         public List<Action<T>> ProcessedActions { get; private set; }
         public IDictionary<Action<T>, Exception> ErroredOutActions { get; private set; }
         public Queue<Action<T>> NotProcessedActions { get; private set; }
@@ -38,26 +38,17 @@ namespace DDD.Light.Messaging.InProcess
                 var handler = NotProcessedActions.Dequeue();
                 try
                 {
-                    handler.Invoke(Event);
+                    handler.Invoke(Message);
                     ProcessedActions.Add(handler);
                 }
                 catch (Exception ex)
                 {
                     ErroredOutActions.Add(handler, ex);
-                    LogFailedCommit();
+//                    LogFailedCommit();
                     throw;
                 }
             }
-            LogSuccessfulCommit();
-        }
-
-        private void LogCommit()
-        {
-            var success = NotProcessedActions.Count == 0 && ErroredOutActions.Count == 0;
-            if (success)
-                LogSuccessfulCommit();
-            else
-                LogFailedCommit();
+//            LogSuccessfulCommit();
         }
 
         //todo: adjust text (now command, not only event)
@@ -70,7 +61,7 @@ namespace DDD.Light.Messaging.InProcess
                     let stackTrace = entry.Value.StackTrace 
                     let innerExceptionMessage = entry.Value.InnerException != null ? entry.Value.InnerException.Message : string.Empty 
                     let innerExceptionStackTrace = entry.Value.InnerException != null ? entry.Value.InnerException.StackTrace : string.Empty 
-                select string.Format("EVENT HANDLER: {0} ::: ERROR MESSAGE: {1} ::: STACK TRACE: {2} ::: INNER EXCEPTION MESSAGE: {3} ::: INNER EXCEPTION STACK TRACE: {4}", 
+                select string.Format("ACTION HANDLER: {0} ::: ERROR MESSAGE: {1} ::: STACK TRACE: {2} ::: INNER EXCEPTION MESSAGE: {3} ::: INNER EXCEPTION STACK TRACE: {4}", 
                     eventHandlerType, errorMessage, stackTrace, innerExceptionMessage, innerExceptionStackTrace)
                 ).ToList();
 
@@ -86,12 +77,12 @@ namespace DDD.Light.Messaging.InProcess
 
             var message = string.Format(
                 "TRANSACTION ERROR [ID: {0}] " +
-                "[EVENT TYPE: {1}] " +
-                "[EVENT DATA: {2}] " +
+                "[ACTION TYPE: {1}] " +
+                "[ACTION DATA: {2}] " +
                 "[ERRORS: {3}] " +
-                "[NOT PROCESSED EVENT HANDLERS: {4}] " +
-                "[PROCESSED EVENT HANDLERS: {5}]",
-                Id, Event.GetType(), Event, string.Join(" ^^^ ", errors), string.Join(", ", notProcessedEventHandlerTypes), string.Join(", ", processedEventHandlerTypes));
+                "[NOT PROCESSED ACTION HANDLERS: {4}] " +
+                "[PROCESSED ACTION HANDLERS: {5}]",
+                Id, Message.GetType(), Message, string.Join(" ^^^ ", errors), string.Join(", ", notProcessedEventHandlerTypes), string.Join(", ", processedEventHandlerTypes));
 
             _log.Error(message);
         }
@@ -106,10 +97,10 @@ namespace DDD.Light.Messaging.InProcess
 
             var message = string.Format(
                 "TRANSACTION SUCCESS [ID: {0}] " +
-                "[EVENT TYPE: {1}] " +
-                "[EVENT DATA: {2}] " +
-                "[PROCESSED EVENT HANDLERS: {3}]",
-                Id, Event.GetType(), Event, string.Join(", ", processedEventHandlerTypes));
+                "[ACTION TYPE: {1}] " +
+                "[ACTION DATA: {2}] " +
+                "[PROCESSED ACTION HANDLERS: {3}]",
+                Id, Message.GetType(), Message, string.Join(", ", processedEventHandlerTypes));
 
             _log.Error(message);
         }

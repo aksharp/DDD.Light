@@ -7,9 +7,9 @@ namespace DDD.Light.MongoEventStore.Example
         public Guid PersonId { get; private set; }
         public string Name { get; private set; }
 
-        public PersonRenamed(Guid id, string name)
+        public PersonRenamed(Guid personId, string name)
         {
-            PersonId = id;
+            PersonId = personId;
             Name = name;
         }
     }
