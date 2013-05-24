@@ -1,4 +1,6 @@
-﻿using DDD.Light.Realtor.API.Query;
+﻿using DDD.Light.CQRS.Contracts;
+using DDD.Light.CQRS.InProcess;
+using DDD.Light.Realtor.API.Query;
 using DDD.Light.Realtor.API.Query.Contract;
 using DDD.Light.Realtor.Domain.Model.Buyer;
 using DDD.Light.Realtor.Domain.Model.Listing;
@@ -50,6 +52,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("collectionName").Is("Offers")
                 );
             container.Configure(x => x.For<IActiveListings>().Use<ActiveListings>());
+            container.Configure(x => x.For<ICommandBus>().Use(CommandBus.Instance));
             return container;
         }
     }

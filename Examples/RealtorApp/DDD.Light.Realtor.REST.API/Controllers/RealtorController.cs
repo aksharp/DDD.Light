@@ -3,7 +3,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AttributeRouting.Web.Http;
-using DDD.Light.CQRS.InProcess;
+using DDD.Light.CQRS.Contracts;
 using DDD.Light.Realtor.API.Command.Realtor;
 using DDD.Light.Realtor.API.Query.Contract;
 using DDD.Light.Realtor.REST.API.Resources;
@@ -12,10 +12,12 @@ namespace DDD.Light.Realtor.REST.API.Controllers
 {
     public class RealtorController : ApiController
     {
+        private readonly ICommandBus _commandBus;
         private readonly IActiveListings _activeListings;
 
-        public RealtorController(IActiveListings activeListings)
+        public RealtorController(ICommandBus commandBus, IActiveListings activeListings)
         {
+            _commandBus = commandBus;
             _activeListings = activeListings;
         }
 
@@ -35,7 +37,7 @@ namespace DDD.Light.Realtor.REST.API.Controllers
                 realtorListing.Price);
             try
             {
-                CommandBus.Instance.Dispatch(postListing);
+                _commandBus.Dispatch(postListing);
             }
             catch (Exception ex)
             {
