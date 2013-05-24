@@ -47,7 +47,6 @@
     <Compile Include="EventHandler\Buyer\NotifiedOfAcceptedOfferHandler.cs" />
     <Compile Include="EventHandler\Buyer\TookOwnershipOfListingHandler.cs" />
     <Compile Include="EventHandler\Listing\ListingPostedHandler.cs" />
-    <Compile Include="EventHandler\Listing\ListingCreatedHandler.cs" />
     <Compile Include="EventHandler\Listing\ListingRemovedHandler.cs" />
     <Compile Include="EventHandler\Listing\RealtorPostedListingHandler.cs" />
     <Compile Include="EventHandler\Offer\AcceptedHandler.cs" />

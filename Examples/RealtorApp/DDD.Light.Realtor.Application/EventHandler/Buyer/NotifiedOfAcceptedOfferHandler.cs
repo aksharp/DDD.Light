@@ -5,9 +5,9 @@ namespace DDD.Light.Realtor.Application.EventHandler.Buyer
 {
     public class NotifiedOfAcceptedOfferHandler : EventHandler<NotifiedOfAcceptedOffer>
     {
-
         public override void Handle(NotifiedOfAcceptedOffer @event)
         {
+            throw new System.NotImplementedException();
         }
     }
 }

@@ -23,7 +23,7 @@ namespace DDD.Light.Realtor.Domain.Model.Listing
             _price = price;
             _posted = false;
 
-            PublishEvent(new ListingCreated(this));
+            PublishEvent(new ListingCreated(id, location, description, price));
         }
 
         // API
@@ -50,6 +50,14 @@ namespace DDD.Light.Realtor.Domain.Model.Listing
         // Apply Domain Events to rebuild aggregate
         private void ApplyEvent(ListingRemoved @event)
         {
+            _posted = false;
+        }
+        
+        private void ApplyEvent(ListingCreated @event)
+        {
+            _location = @event.Location;
+            _description = @event.Description;
+            _price = @event.Price;
             _posted = false;
         }
     }

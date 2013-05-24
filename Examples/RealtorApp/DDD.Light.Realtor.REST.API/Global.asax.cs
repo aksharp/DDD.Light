@@ -45,7 +45,6 @@ namespace DDD.Light.Realtor.REST.API
 
         private static void CreateRealtorIfNoneExist(IEventStore eventStore)
         {
-            //todo: add any valid guid string here
             var realtorId = Guid.Parse("10000000-0000-0000-0000-000000000000");
             if (eventStore.GetById(realtorId) == null)
                 CommandBus.Instance.Dispatch(new SetUpRealtor(realtorId));
