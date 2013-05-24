@@ -2,6 +2,7 @@
 using DDD.Light.CQRS.InProcess;
 using DDD.Light.Realtor.API.Query;
 using DDD.Light.Realtor.API.Query.Contract;
+using DDD.Light.Realtor.API.Query.Model;
 using DDD.Light.Realtor.Domain.Model.Buyer;
 using DDD.Light.Realtor.Domain.Model.Listing;
 using DDD.Light.Realtor.Domain.Model.Offer;
@@ -24,6 +25,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
 
             const string mongoConnectionString = "mongodb://localhost";
             const string realtorDB = "Realtor";
+            const string realtorReadModel = "Realtor_ReadModel";
 
             IContainer container = ObjectFactory.Container;
             container.Configure(x => x.For<IRepository<Listing>>().Use<MongoRepository<Listing>>()
@@ -50,6 +52,11 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Offers")
+                );
+            container.Configure(x => x.For<IRepository<ActiveListing>>().Use<MongoRepository<ActiveListing>>()
+                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
+                                      .Ctor<string>("databaseName").Is(realtorReadModel)
+                                      .Ctor<string>("collectionName").Is("ActiveListings")
                 );
             container.Configure(x => x.For<IActiveListings>().Use<ActiveListings>());
             container.Configure(x => x.For<ICommandBus>().Use(CommandBus.Instance));

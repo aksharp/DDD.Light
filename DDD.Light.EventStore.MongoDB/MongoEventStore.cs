@@ -100,7 +100,13 @@ namespace DDD.Light.EventStore.MongoDB
         {
             VerifyRepoIsConfigured();
 
-            var aggregateType = Type.GetType(_repo.Get().First(x => x.AggregateId == id).AggregateType);
+            if (!_repo.Get().Any(x => x.AggregateId == id)) return null;
+
+            var serializedAggregateType = _repo.Get().First(x => x.AggregateId == id).AggregateType;
+
+            var aggregateType = Type.GetType(serializedAggregateType);
+
+            if (aggregateType == null) return null;
 
             var constructors = aggregateType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
             var aggregate = constructors[0].Invoke(new object[] { });
@@ -110,7 +116,14 @@ namespace DDD.Light.EventStore.MongoDB
                 var eventType = Type.GetType(aggregateEvent.EventType);
                 var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
                 var method = aggregateType.GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
-                method.Invoke(aggregate, new[] { @event });
+                try
+                {
+                    method.Invoke(aggregate, new[] {@event});
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Please check if ApplyEvent for eventTyoe: " + aggregateEvent.EventType + " defined on aggregate: " + serializedAggregateType, ex);
+                }
             });
             return aggregate;
         }

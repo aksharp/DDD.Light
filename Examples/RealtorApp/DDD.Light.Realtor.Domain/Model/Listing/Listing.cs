@@ -31,6 +31,21 @@ namespace DDD.Light.Realtor.Domain.Model.Listing
         {
             PublishEvent(new ListingRemoved(Id));
         }
+        
+        public void Post()
+        {
+            PublishEvent(new ListingPosted(
+                Id, 
+                _description.NumberOfBathrooms, 
+                _description.NumberOfBedrooms, 
+                _description.YearBuilt,
+                _location.Street,
+                _location.City,
+                _location.State,
+                _location.Zip,
+                _price)
+            );
+        }
 
         // Apply Domain Events to rebuild aggregate
         private void ApplyEvent(ListingRemoved @event)

@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Event\Listing\ListingRemoved.cs" />
-    <Compile Include="Event\Realtor\PostedListing.cs" />
+    <Compile Include="Event\Realtor\RealtorPostedListing.cs" />
     <Compile Include="Event\Offer\Accepted.cs" />
     <Compile Include="Event\Offer\OfferMade.cs" />
     <Compile Include="Event\Offer\Rejected.cs" />
@@ -52,6 +52,7 @@
     <Compile Include="Event\Listing\ListingCreated.cs" />
     <Compile Include="Event\Buyer\ProspectPromotedToBuyer.cs" />
     <Compile Include="Model\Listing\Description.cs" />
+    <Compile Include="Event\Listing\ListingPosted.cs" />
     <Compile Include="Model\Offer\IOfferReply.cs" />
     <Compile Include="Model\Listing\Listing.cs" />
     <Compile Include="Model\Listing\Location.cs" />

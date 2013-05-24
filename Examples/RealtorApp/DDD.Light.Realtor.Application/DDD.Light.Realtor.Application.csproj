@@ -46,9 +46,10 @@
     <Compile Include="CommandHandler\Realtor\SetUpRealtorHandler.cs" />
     <Compile Include="EventHandler\Buyer\NotifiedOfAcceptedOfferHandler.cs" />
     <Compile Include="EventHandler\Buyer\TookOwnershipOfListingHandler.cs" />
+    <Compile Include="EventHandler\Listing\ListingPostedHandler.cs" />
     <Compile Include="EventHandler\Listing\ListingCreatedHandler.cs" />
     <Compile Include="EventHandler\Listing\ListingRemovedHandler.cs" />
-    <Compile Include="EventHandler\Listing\PostedHandler.cs" />
+    <Compile Include="EventHandler\Listing\RealtorPostedListingHandler.cs" />
     <Compile Include="EventHandler\Offer\AcceptedHandler.cs" />
     <Compile Include="EventHandler\Offer\OfferMadeHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,10 @@
     <ProjectReference Include="..\..\..\DDD.Light.CQRS.InProcess\DDD.Light.CQRS.InProcess.csproj">
       <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
       <Name>DDD.Light.CQRS.InProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
+      <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
+      <Name>DDD.Light.EventStore.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>

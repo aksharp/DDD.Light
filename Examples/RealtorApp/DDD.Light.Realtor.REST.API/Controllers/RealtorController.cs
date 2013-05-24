@@ -24,9 +24,9 @@ namespace DDD.Light.Realtor.REST.API.Controllers
         [POST("api/realtor/listings")]
         public HttpResponseMessage PostListing([FromBody]RealtorListing realtorListing)
         {
+            var listingId = Guid.NewGuid();
             var postListing = new PostListing(
-                Guid.Parse(realtorListing.RealtorId),
-                Guid.NewGuid(),
+                listingId,
                 realtorListing.NumberOfBathrooms,
                 realtorListing.NumberOfBedrooms,
                 realtorListing.YearBuilt,

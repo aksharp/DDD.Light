@@ -1,10 +1,10 @@
-using System;
+﻿using System;
 
-namespace DDD.Light.Realtor.API.Command.Realtor
+namespace DDD.Light.Realtor.Domain.Event.Listing
 {
-    public class PostListing
+    public class ListingPosted
     {
-        public Guid ListingId { get; private set; }
+        public Guid Id { get; private set; }
         public int NumberOfBathrooms { get; private set; }
         public int NumberOfBedrooms { get; private set; }
         public int YearBuilt { get; private set; }
@@ -14,19 +14,18 @@ namespace DDD.Light.Realtor.API.Command.Realtor
         public string Zip { get; private set; }
         public decimal Price { get; private set; }
 
-        public PostListing(
-            Guid listingId,
-            int numberOfBathrooms,
-            int numberOfBedrooms,
-            int yearBuilt,
-            string street,
-            string city,
-            string state,
-            string zip,
-            decimal price
-        )
+        public ListingPosted(
+            Guid id, 
+            int numberOfBathrooms, 
+            int numberOfBedrooms, 
+            int yearBuilt, 
+            string street, 
+            string city, 
+            string state, 
+            string zip, 
+            decimal price)
         {
-            ListingId = listingId;
+            Id = id;
             NumberOfBathrooms = numberOfBathrooms;
             NumberOfBedrooms = numberOfBedrooms;
             YearBuilt = yearBuilt;

@@ -28,11 +28,16 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
 
         public void PostListing(Guid listingId)
         {
-            PublishEvent(new PostedListing(listingId));
+            PublishEvent(new RealtorPostedListing(listingId));
         }
 
         // Apply Events
-        private void ApplyEvent(PostedListing @event)
+        private void ApplyEvent(RealtorWasSetUp @event)
+        {
+            Id = @event.RealtorId;
+        }
+        
+        private void ApplyEvent(RealtorPostedListing @event)
         {
             if (_listingIds == null)
                 _listingIds = new List<Guid>();

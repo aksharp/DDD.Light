@@ -26,7 +26,7 @@ namespace DDD.Light.Realtor.REST.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
-            MongoEventStore.Instance.Configure("mongodb://localhost", "DDD.Light.Realtor", "EventStore");
+            MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_Realtor", "EventStore");
             EventBus.Instance.Configure(MongoEventStore.Instance);
             InitApp(MongoEventStore.Instance);
         }
@@ -46,7 +46,7 @@ namespace DDD.Light.Realtor.REST.API
         private static void CreateRealtorIfNoneExist(IEventStore eventStore)
         {
             //todo: add any valid guid string here
-            var realtorId = Guid.Parse(" put guid here ");
+            var realtorId = Guid.Parse("10000000-0000-0000-0000-000000000000");
             if (eventStore.GetById(realtorId) == null)
                 CommandBus.Instance.Dispatch(new SetUpRealtor(realtorId));
         }
