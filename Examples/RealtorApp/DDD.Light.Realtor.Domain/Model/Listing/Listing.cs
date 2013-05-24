@@ -55,6 +55,7 @@ namespace DDD.Light.Realtor.Domain.Model.Listing
         
         private void ApplyEvent(ListingCreated @event)
         {
+            Id = @event.Id;
             _location = @event.Location;
             _description = @event.Description;
             _price = @event.Price;
