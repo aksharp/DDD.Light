@@ -1,16 +1,14 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
+using DDD.Light.EventStore.Contracts;
 using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Command.Realtor;
-using DDD.Light.Realtor.Application;
 using DDD.Light.Realtor.REST.API.Bootstrap;
 using DDD.Light.Realtor.REST.API.Resources;
-using DDD.Light.Repo.Contracts;
 using StructureMap;
 
 namespace DDD.Light.Realtor.REST.API
@@ -30,15 +28,15 @@ namespace DDD.Light.Realtor.REST.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
-            InitApp();
             MongoEventStore.MongoEventStore.Instance.Configure("mongodb://localhost", "DDD.Light.Realtor", "EventStore");
             EventBus.Instance.Configure(MongoEventStore.MongoEventStore.Instance);
+            InitApp(MongoEventStore.MongoEventStore.Instance);
         }
 
-        private static void InitApp()
+        private static void InitApp(IEventStore eventStore)
         {
-            CreateRealtorIfNoneExist();
             HandlerSubscribtions.SubscribeAllHandlers(ObjectFactory.GetInstance);
+            CreateRealtorIfNoneExist(eventStore);
         }
 
         private static void ConfigureMappings()
@@ -53,11 +51,12 @@ namespace DDD.Light.Realtor.REST.API
             GlobalConfiguration.Configuration.DependencyResolver = new StructureMapDependencyResolver(container);
         }
 
-        private static void CreateRealtorIfNoneExist()
+        private static void CreateRealtorIfNoneExist(IEventStore eventStore)
         {
-            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.Realtor>>();
-            if (!realtorRepo.Get().Any())
-                realtorRepo.Save(new Core.Domain.Model.Realtor.Realtor {Id = Guid.Empty});
+            //todo: add any valid guid string here
+            var realtorId = Guid.Parse(" put guid here ");
+            if (eventStore.GetById(realtorId) == null)
+                CommandBus.Instance.Dispatch(new SetUpRealtor(realtorId));
         }
     }
 }

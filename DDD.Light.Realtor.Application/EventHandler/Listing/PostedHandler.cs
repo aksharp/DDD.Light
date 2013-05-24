@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using DDD.Light.Messaging.InProcess;
+﻿using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Query.Model;
 using DDD.Light.Realtor.Core.Domain.Event.Listing;
 using DDD.Light.Realtor.Core.Domain.Event.Realtor;
@@ -18,7 +17,7 @@ namespace DDD.Light.Realtor.Application.EventHandler.Listing
 
         public override void Handle(PostedListing @event)
         {
-            _activeListings.Save(Mapper.Map<Core.Domain.Model.Listing.Listing, ActiveListing>(@event.Listing));
+            //todo: implement
         }
     }
 }

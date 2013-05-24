@@ -24,7 +24,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor.REST.API"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RealtorApp", "RealtorApp", "{8704EF9B-9E3C-48EF-8398-4E7B16FAB434}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor.Core", "DDD.Light.Realtor.Core\DDD.Light.Realtor.Core.csproj", "{DA3613C6-0F35-492E-89DA-49560CA56BFF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor.Core.Domain", "DDD.Light.Realtor.Core\DDD.Light.Realtor.Core.Domain.csproj", "{DA3613C6-0F35-492E-89DA-49560CA56BFF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DDD.Light.Realtor.Application", "DDD.Light.Realtor.Application\DDD.Light.Realtor.Application.csproj", "{AFA2227D-796B-41CE-B34F-2C917C8F959C}"
 EndProject

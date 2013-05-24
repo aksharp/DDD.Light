@@ -281,9 +281,9 @@
       <Project>{AFA2227D-796B-41CE-B34F-2C917C8F959C}</Project>
       <Name>DDD.Light.Realtor.Application</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Realtor.Core\DDD.Light.Realtor.Core.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Realtor.Core\DDD.Light.Realtor.Core.Domain.csproj">
       <Project>{DA3613C6-0F35-492E-89DA-49560CA56BFF}</Project>
-      <Name>DDD.Light.Realtor.Core</Name>
+      <Name>DDD.Light.Realtor.Core.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>

@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Command\Realtor\SetUpRealtor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Command\Realtor\PostListing.cs" />
     <Compile Include="Query\ActiveListings.cs" />

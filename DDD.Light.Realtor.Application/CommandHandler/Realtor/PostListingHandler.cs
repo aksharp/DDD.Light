@@ -25,7 +25,7 @@ namespace DDD.Light.Realtor.Application.CommandHandler.Realtor
             );
 
             var realtor = _realtorRepo.Get().First();
-            realtor.PostListing(listing);
+            realtor.PostListing(listing.Id);
         }
     }
 }

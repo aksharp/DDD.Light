@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{AFA2227D-796B-41CE-B34F-2C917C8F959C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DDD.Light.Realtor.Application</RootNamespace>
+    <AssemblyName>DDD.Light.Realtor.Application</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CommandHandlers\Realtor\PostListingHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\PromotedToRepeatBuyerHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\NotifiedOfAcceptedOfferHandler.cs" />
+    <Compile Include="EventHandlers\Buyer\TookOwnershipOfListingHandler.cs" />
+    <Compile Include="EventHandlers\Listing\DeactivatedHandler.cs" />
+    <Compile Include="EventHandlers\Listing\PostedHandler.cs" />
+    <Compile Include="EventHandlers\Offer\AcceptedHandler.cs" />
+    <Compile Include="EventHandlers\Offer\MadeHandler.cs" />
+    <Compile Include="EventHandlers\Offer\RejectedHandler.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\DDD.Light.Messaging.Contracts\DDD.Light.Messaging.Contracts.csproj">
+      <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
+      <Name>DDD.Light.Messaging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.Messaging\DDD.Light.Messaging.InProcess.csproj">
+      <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
+      <Name>DDD.Light.Messaging.InProcess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.Realtor.API.Commands\DDD.Light.Realtor.API.Commands.csproj">
+      <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>
+      <Name>DDD.Light.Realtor.API.Commands</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.Realtor.Core\DDD.Light.Realtor.Core.csproj">
+      <Project>{DA3613C6-0F35-492E-89DA-49560CA56BFF}</Project>
+      <Name>DDD.Light.Realtor.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
+      <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
+      <Name>DDD.Light.Repo.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
