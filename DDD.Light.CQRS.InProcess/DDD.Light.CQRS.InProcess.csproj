@@ -5,13 +5,15 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{DA3613C6-0F35-492E-89DA-49560CA56BFF}</ProjectGuid>
+    <ProjectGuid>{80F4D478-672E-4687-9997-0EDF466D55A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.Realtor.Domain</RootNamespace>
-    <AssemblyName>DDD.Light.Realtor.Domain</AssemblyName>
+    <RootNamespace>DDD.Light.CQRS.InProcess</RootNamespace>
+    <AssemblyName>DDD.Light.CQRS.InProcess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +33,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -40,50 +48,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Event\Listing\ListingRemoved.cs" />
-    <Compile Include="Event\Realtor\PostedListing.cs" />
-    <Compile Include="Event\Offer\Accepted.cs" />
-    <Compile Include="Event\Offer\OfferMade.cs" />
-    <Compile Include="Event\Offer\Rejected.cs" />
-    <Compile Include="Event\Buyer\NotifiedOfAcceptedOffer.cs" />
-    <Compile Include="Event\Buyer\TookOwnershipOfListing.cs" />
-    <Compile Include="Model\Buyer\Address.cs" />
-    <Compile Include="Model\Buyer\Buyer.cs" />
-    <Compile Include="Event\Listing\ListingCreated.cs" />
-    <Compile Include="Event\Buyer\ProspectPromotedToBuyer.cs" />
-    <Compile Include="Model\Listing\Description.cs" />
-    <Compile Include="Model\Offer\IOfferReply.cs" />
-    <Compile Include="Model\Listing\Listing.cs" />
-    <Compile Include="Model\Listing\Location.cs" />
-    <Compile Include="Model\Offer\Offer.cs" />
-    <Compile Include="Model\Offer\OfferAcceptance.cs" />
-    <Compile Include="Model\Offer\OfferDenial.cs" />
-    <Compile Include="Model\Buyer\Property.cs" />
-    <Compile Include="Model\Prospect\Prospect.cs" />
-    <Compile Include="Model\Realtor\Realtor.cs" />
-    <Compile Include="Event\Realtor\RealtorNotifiedThatOfferWasMade.cs" />
-    <Compile Include="Event\Realtor\RealtorWasSetUp.cs" />
+    <Compile Include="CommandBus.cs" />
+    <Compile Include="CommandHandler.cs" />
+    <Compile Include="CommandHandlersDatabase.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="EventHandler.cs" />
+    <Compile Include="HandlerSubscribtions.cs" />
+    <Compile Include="EventBus.cs" />
+    <Compile Include="EventHandlersDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
+      <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
+      <Name>DDD.Light.EventStore.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
       <Name>DDD.Light.CQRS.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.CQRS.InProcess\DDD.Light.CQRS.InProcess.csproj">
-      <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
-      <Name>DDD.Light.CQRS.InProcess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
+    <ProjectReference Include="..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

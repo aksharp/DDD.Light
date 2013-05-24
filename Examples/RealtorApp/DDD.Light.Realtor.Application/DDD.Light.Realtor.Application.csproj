@@ -54,13 +54,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DDD.Light.Messaging.Contracts\DDD.Light.Messaging.Contracts.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
-      <Name>DDD.Light.Messaging.Contracts</Name>
+      <Name>DDD.Light.CQRS.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.Messaging\DDD.Light.Messaging.InProcess.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.CQRS.InProcess\DDD.Light.CQRS.InProcess.csproj">
       <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
-      <Name>DDD.Light.Messaging.InProcess</Name>
+      <Name>DDD.Light.CQRS.InProcess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>

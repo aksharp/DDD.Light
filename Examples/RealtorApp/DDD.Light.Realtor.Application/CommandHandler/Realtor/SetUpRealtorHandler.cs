@@ -1,5 +1,5 @@
-﻿using DDD.Light.Messaging.InProcess;
-using DDD.Light.Realtor.API.Command.Realtor;
+﻿using DDD.Light.Realtor.API.Command.Realtor;
+using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.Realtor.Application.CommandHandler.Realtor
 {

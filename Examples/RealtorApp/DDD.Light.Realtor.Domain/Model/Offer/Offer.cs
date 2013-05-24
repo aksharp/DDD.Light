@@ -1,5 +1,5 @@
 ﻿using System;
-using DDD.Light.Messaging.InProcess;
+using DDD.Light.CQRS.InProcess;
 using DDD.Light.Realtor.Domain.Event.Offer;
 
 namespace DDD.Light.Realtor.Domain.Model.Offer

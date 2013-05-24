@@ -1,6 +1,6 @@
-﻿using DDD.Light.Messaging.InProcess;
-using DDD.Light.Realtor.Domain.Event.Buyer;
+﻿using DDD.Light.Realtor.Domain.Event.Buyer;
 using DDD.Light.Repo.Contracts;
+using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.Realtor.Application.EventHandler.Buyer
 {

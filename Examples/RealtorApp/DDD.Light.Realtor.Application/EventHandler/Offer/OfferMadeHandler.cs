@@ -1,10 +1,10 @@
-﻿using System;
-using DDD.Light.Realtor.Domain.Event.Offer;
+﻿using DDD.Light.Realtor.Domain.Event.Offer;
 using DDD.Light.Repo.Contracts;
+using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.Realtor.Application.EventHandler.Offer
 {
-    public class OfferMadeHandler : Messaging.InProcess.EventHandler<OfferMade>
+    public class OfferMadeHandler : EventHandler<OfferMade>
     {
         private readonly IRepository<Domain.Model.Realtor.Realtor> _realtorRepo;
         private readonly IRepository<Domain.Model.Offer.Offer> _offerRepo;

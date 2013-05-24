@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using DDD.Light.Messaging.InProcess;
+using DDD.Light.CQRS.InProcess;
 using DDD.Light.Realtor.Domain.Event.Buyer;
 
 namespace DDD.Light.Realtor.Domain.Model.Buyer

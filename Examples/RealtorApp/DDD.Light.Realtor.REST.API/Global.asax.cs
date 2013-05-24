@@ -3,12 +3,11 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using AutoMapper;
+using DDD.Light.CQRS.InProcess;
 using DDD.Light.EventStore.Contracts;
-using DDD.Light.Messaging.InProcess;
+using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Realtor.API.Command.Realtor;
 using DDD.Light.Realtor.REST.API.Bootstrap;
-using DDD.Light.Realtor.REST.API.Resources;
 using StructureMap;
 
 namespace DDD.Light.Realtor.REST.API
@@ -22,27 +21,20 @@ namespace DDD.Light.Realtor.REST.API
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
-            ConfigureMappings();
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
-            MongoEventStore.MongoEventStore.Instance.Configure("mongodb://localhost", "DDD.Light.Realtor", "EventStore");
-            EventBus.Instance.Configure(MongoEventStore.MongoEventStore.Instance);
-            InitApp(MongoEventStore.MongoEventStore.Instance);
+            MongoEventStore.Instance.Configure("mongodb://localhost", "DDD.Light.Realtor", "EventStore");
+            EventBus.Instance.Configure(MongoEventStore.Instance);
+            InitApp(MongoEventStore.Instance);
         }
 
         private static void InitApp(IEventStore eventStore)
         {
             HandlerSubscribtions.SubscribeAllHandlers(ObjectFactory.GetInstance);
             CreateRealtorIfNoneExist(eventStore);
-        }
-
-        private static void ConfigureMappings()
-        {
-            Mapper.CreateMap<RealtorListing, PostListing>()
-                .ForMember(command => command.ListingId, mapper => mapper.MapFrom(resource => resource.Id));
         }
 
         private static void SetUpIoC()

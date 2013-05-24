@@ -1,7 +1,7 @@
-﻿using DDD.Light.Messaging.InProcess;
-using DDD.Light.Realtor.API.Query.Model;
+﻿using DDD.Light.Realtor.API.Query.Model;
 using DDD.Light.Realtor.Domain.Event.Listing;
 using DDD.Light.Repo.Contracts;
+using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.Realtor.Application.EventHandler.Listing
 {

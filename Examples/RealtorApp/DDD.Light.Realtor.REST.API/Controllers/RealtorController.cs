@@ -3,11 +3,8 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AttributeRouting.Web.Http;
-using AutoMapper;
-using DDD.Light.Messaging;
-using DDD.Light.Messaging.InProcess;
+using DDD.Light.CQRS.InProcess;
 using DDD.Light.Realtor.API.Command.Realtor;
-using DDD.Light.Realtor.API.Query;
 using DDD.Light.Realtor.API.Query.Contract;
 using DDD.Light.Realtor.REST.API.Resources;
 
@@ -25,8 +22,17 @@ namespace DDD.Light.Realtor.REST.API.Controllers
         [POST("api/realtor/listings")]
         public HttpResponseMessage PostListing([FromBody]RealtorListing realtorListing)
         {
-            var postListing = Mapper.Map<RealtorListing, PostListing>(realtorListing);
-            postListing.ListingId = Guid.NewGuid();
+            var postListing = new PostListing(
+                Guid.Parse(realtorListing.RealtorId),
+                Guid.NewGuid(),
+                realtorListing.NumberOfBathrooms,
+                realtorListing.NumberOfBedrooms,
+                realtorListing.YearBuilt,
+                realtorListing.Street,
+                realtorListing.City,
+                realtorListing.State,
+                realtorListing.Zip,
+                realtorListing.Price);
             try
             {
                 CommandBus.Instance.Dispatch(postListing);

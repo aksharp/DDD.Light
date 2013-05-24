@@ -11,5 +11,6 @@ namespace DDD.Light.Realtor.REST.API.Resources
         public string City { get; set; }
         public string State { get; set; }        
         public string Zip { get; set; }
+        public decimal Price { get; set; }
     }
 }

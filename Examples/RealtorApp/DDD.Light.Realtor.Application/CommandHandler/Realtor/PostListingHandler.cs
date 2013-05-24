@@ -1,8 +1,8 @@
 ﻿using System.Linq;
-using DDD.Light.Messaging.InProcess;
 using DDD.Light.Realtor.API.Command.Realtor;
 using DDD.Light.Realtor.Domain.Model.Listing;
 using DDD.Light.Repo.Contracts;
+using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.Realtor.Application.CommandHandler.Realtor
 {
