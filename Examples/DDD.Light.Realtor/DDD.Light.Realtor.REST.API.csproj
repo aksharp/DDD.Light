@@ -273,13 +273,9 @@
       <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
       <Name>DDD.Light.Messaging.InProcess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Realtor.API.Queries\DDD.Light.Realtor.API.Queries.csproj">
-      <Project>{BD69941D-EB6B-46B9-AAB3-F16F2911F25E}</Project>
-      <Name>DDD.Light.Realtor.API.Queries</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.Commands.csproj">
+    <ProjectReference Include="..\..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>
-      <Name>DDD.Light.Realtor.API.Commands</Name>
+      <Name>DDD.Light.Realtor.API</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\DDD.Light.Realtor.Application\DDD.Light.Realtor.Application.csproj">
       <Project>{AFA2227D-796B-41CE-B34F-2C917C8F959C}</Project>

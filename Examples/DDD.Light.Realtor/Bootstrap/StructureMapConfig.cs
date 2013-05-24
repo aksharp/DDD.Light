@@ -1,16 +1,13 @@
-﻿using DDD.Light.Realtor.API.Queries;
+﻿using DDD.Light.Realtor.API.Query;
 using DDD.Light.Realtor.Core.Domain.Model;
 using DDD.Light.Realtor.Core.Domain.Model.Buyer;
-using DDD.Light.Realtor.Core.Domain.Model.Buyer.AggregateRoot.Contract;
 using DDD.Light.Realtor.Core.Domain.Model.Listing;
-using DDD.Light.Realtor.Core.Domain.Model.Listing.AggregateRoot;
 using DDD.Light.Realtor.Core.Domain.Model.Offer;
-using DDD.Light.Realtor.Core.Domain.Model.Offer.AggregateRoot;
 using DDD.Light.Realtor.Core.Domain.Model.Prospect;
-using DDD.Light.Realtor.Core.Domain.Model.Prospect.AggregateRoot;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
 using StructureMap;
+using IActiveListings = DDD.Light.Realtor.API.Query.Contract.IActiveListings;
 
 namespace DDD.Light.Realtor.REST.API.Bootstrap
 {
@@ -33,7 +30,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Listings")
                 );
-            container.Configure(x => x.For<IRepository<IBuyer>>().Use<MongoRepository<IBuyer>>()
+            container.Configure(x => x.For<IRepository<Buyer>>().Use<MongoRepository<Buyer>>()
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Buyers")
@@ -43,7 +40,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Prospects")
                 );
-            container.Configure(x => x.For<IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor>>().Use<MongoRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor>>()
+            container.Configure(x => x.For<IRepository<Core.Domain.Model.Realtor.Realtor>>().Use<MongoRepository<Core.Domain.Model.Realtor.Realtor>>()
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Realtors")
@@ -53,7 +50,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                                       .Ctor<string>("databaseName").Is(realtorDB)
                                       .Ctor<string>("collectionName").Is("Offers")
                 );
-            container.Configure(x => x.For<IListings>().Use<Listings>());
+            container.Configure(x => x.For<IActiveListings>().Use<ActiveListings>());
             return container;
         }
     }

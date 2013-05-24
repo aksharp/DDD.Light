@@ -5,24 +5,13 @@ namespace DDD.Light.Realtor.Core.Domain.Model.Buyer
     // value object
     public class Property
     {
-        public Property()
-        {
-            Address = new Address();
-        }
+        public Address Address { get; private set; }
+        public Guid ListingId { get; private set; }
 
-        public Property(Listing.AggregateRoot.Listing listing)
+        public Property(Guid listingId, Address address)
         {
-            ListingId = listing.Id;
-            Address = new Address
-                {
-                    Address1 = listing.Location.Street,
-                    City = listing.Location.City,
-                    State = listing.Location.State,
-                    Zip = listing.Location.Zip
-                };
+            ListingId = listingId;
+            Address = address;
         }
-
-        public Address Address { get; set; }
-        public Guid ListingId { get; set; }
     }
 }

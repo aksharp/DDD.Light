@@ -6,19 +6,20 @@ using AttributeRouting.Web.Http;
 using AutoMapper;
 using DDD.Light.Messaging;
 using DDD.Light.Messaging.InProcess;
-using DDD.Light.Realtor.API.Commands.Realtor;
-using DDD.Light.Realtor.API.Queries;
+using DDD.Light.Realtor.API.Command.Realtor;
+using DDD.Light.Realtor.API.Query;
+using DDD.Light.Realtor.API.Query.Contract;
 using DDD.Light.Realtor.REST.API.Resources;
 
 namespace DDD.Light.Realtor.REST.API.Controllers
 {
     public class RealtorController : ApiController
     {
-        private readonly IListings _listings;
+        private readonly IActiveListings _activeListings;
 
-        public RealtorController(IListings listings)
+        public RealtorController(IActiveListings activeListings)
         {
-            _listings = listings;
+            _activeListings = activeListings;
         }
 
         [POST("api/realtor/listings")]
@@ -42,7 +43,7 @@ namespace DDD.Light.Realtor.REST.API.Controllers
         {
             try
             {
-                 var listings = _listings.All();
+                 var listings = _activeListings.All();
                  return Request.CreateResponse(HttpStatusCode.OK, listings);
             }
             catch (Exception ex)

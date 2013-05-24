@@ -40,28 +40,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Domain\Events\Buyer\PromotedToRepeatBuyer.cs" />
-    <Compile Include="Domain\Events\Listing\Deactivated.cs" />
-    <Compile Include="Domain\Events\Listing\Posted.cs" />
-    <Compile Include="Domain\Events\Offer\Accepted.cs" />
-    <Compile Include="Domain\Events\Offer\Made.cs" />
-    <Compile Include="Domain\Events\Offer\Rejected.cs" />
-    <Compile Include="Domain\Events\Buyer\NotifiedOfAcceptedOffer.cs" />
-    <Compile Include="Domain\Events\Buyer\TookOwnershipOfListing.cs" />
+    <Compile Include="Domain\Event\Listing\ListingRemoved.cs" />
+    <Compile Include="Domain\Event\Realtor\PostedListing.cs" />
+    <Compile Include="Domain\Event\Offer\Accepted.cs" />
+    <Compile Include="Domain\Event\Offer\OfferMade.cs" />
+    <Compile Include="Domain\Event\Offer\Rejected.cs" />
+    <Compile Include="Domain\Event\Buyer\NotifiedOfAcceptedOffer.cs" />
+    <Compile Include="Domain\Event\Buyer\TookOwnershipOfListing.cs" />
     <Compile Include="Domain\Model\Buyer\Address.cs" />
-    <Compile Include="Domain\Model\Buyer\AggregateRoot\Buyer.cs" />
+    <Compile Include="Domain\Model\Buyer\Buyer.cs" />
+    <Compile Include="Domain\Event\Listing\ListingCreated.cs" />
+    <Compile Include="Domain\Event\Buyer\ProspectPromotedToBuyer.cs" />
     <Compile Include="Domain\Model\Listing\Description.cs" />
-    <Compile Include="Domain\Model\Buyer\AggregateRoot\Contract\IBuyer.cs" />
     <Compile Include="Domain\Model\Offer\IOfferReply.cs" />
-    <Compile Include="Domain\Model\Listing\AggregateRoot\Listing.cs" />
+    <Compile Include="Domain\Model\Listing\Listing.cs" />
     <Compile Include="Domain\Model\Listing\Location.cs" />
-    <Compile Include="Domain\Model\Offer\AggregateRoot\Offer.cs" />
+    <Compile Include="Domain\Model\Offer\Offer.cs" />
     <Compile Include="Domain\Model\Offer\OfferAcceptance.cs" />
     <Compile Include="Domain\Model\Offer\OfferDenial.cs" />
     <Compile Include="Domain\Model\Buyer\Property.cs" />
-    <Compile Include="Domain\Model\Prospect\AggregateRoot\Prospect.cs" />
-    <Compile Include="Domain\Model\Realtor\AggregateRoot\Realtor.cs" />
-    <Compile Include="Domain\Model\Buyer\AggregateRoot\RepeatBuyer.cs" />
+    <Compile Include="Domain\Model\Prospect\Prospect.cs" />
+    <Compile Include="Domain\Model\Realtor\Realtor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,8 +3,16 @@
     // value object
     public class Description
     {
-        public int NumberOfBedrooms { get; set; }
-        public int NumberOfBathrooms { get; set; }
-        public int YearBuilt { get; set; }
+        public int NumberOfBedrooms { get; private set; }
+        public int NumberOfBathrooms { get; private set; }
+        public int YearBuilt { get; private set; }
+
+        public Description(int numberOfBedrooms, int numberOfBathrooms, int yearBuilt)
+        {
+            NumberOfBedrooms = numberOfBedrooms;
+            NumberOfBathrooms = numberOfBathrooms;
+            YearBuilt = yearBuilt;
+        }
+
     }
 }

@@ -5,10 +5,9 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using AutoMapper;
-using DDD.Light.EventStore;
-using DDD.Light.Messaging;
 using DDD.Light.Messaging.InProcess;
-using DDD.Light.Realtor.API.Commands.Realtor;
+using DDD.Light.Realtor.API.Command.Realtor;
+using DDD.Light.Realtor.Application;
 using DDD.Light.Realtor.REST.API.Bootstrap;
 using DDD.Light.Realtor.REST.API.Resources;
 using DDD.Light.Repo.Contracts;
@@ -56,9 +55,9 @@ namespace DDD.Light.Realtor.REST.API
 
         private static void CreateRealtorIfNoneExist()
         {
-            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.AggregateRoot.Realtor>>();
+            var realtorRepo = ObjectFactory.GetInstance<IRepository<Core.Domain.Model.Realtor.Realtor>>();
             if (!realtorRepo.Get().Any())
-                realtorRepo.Save(new Core.Domain.Model.Realtor.AggregateRoot.Realtor {Id = Guid.Empty});
+                realtorRepo.Save(new Core.Domain.Model.Realtor.Realtor {Id = Guid.Empty});
         }
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using DDD.Light.Messaging.InProcess;
-using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.MongoEventStore.Example
 {
@@ -17,7 +16,8 @@ namespace DDD.Light.MongoEventStore.Example
         {
             Id = id;
             // cleanest way to call publish
-            EventBus.Instance.Publish(GetType(), Id, new PersonCreated(Id));
+            PublishEvent(new PersonCreated(Id));
+//            EventBus.Instance.Publish(GetType(), Id, new PersonCreated(Id));
         }
 
 
@@ -28,11 +28,13 @@ namespace DDD.Light.MongoEventStore.Example
             if (string.IsNullOrEmpty(_name))
             {
                 // can call publish this way too, generic way
-                EventBus.Instance.Publish<Person, PersonNamed>(Id, new PersonNamed(Id, name));
+                PublishEvent(new PersonNamed(Id, name));
+//                EventBus.Instance.Publish<Person, PersonNamed>(Id, new PersonNamed(Id, name));
             }
             else
                 // yes, this will work too, non generic way
-                EventBus.Instance.Publish(typeof(Person), Id, new PersonRenamed(Id, name));
+                PublishEvent(new PersonRenamed(Id, name));
+//                EventBus.Instance.Publish(typeof(Person), Id, new PersonRenamed(Id, name));
         }
 
 
