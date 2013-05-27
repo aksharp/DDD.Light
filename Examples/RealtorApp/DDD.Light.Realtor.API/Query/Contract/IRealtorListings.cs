@@ -4,10 +4,11 @@ using DDD.Light.Realtor.API.Query.Model;
 
 namespace DDD.Light.Realtor.API.Query.Contract
 {
-    public interface IActiveListings 
+    public interface IRealtorListings 
     {
         IEnumerable<Listing> All();
         Listing ById(Guid id);
-        IEnumerable<Listing> UnderMillionDollars();
+        IEnumerable<Listing> Posted();
+        IEnumerable<Listing> New();
     }
 }

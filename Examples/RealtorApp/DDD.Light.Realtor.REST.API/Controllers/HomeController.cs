@@ -8,5 +8,10 @@ namespace DDD.Light.Realtor.REST.API.Controllers
         {
             return View();
         }
+        
+        public ActionResult Realtor()
+        {
+            return View();
+        }
     }
 }

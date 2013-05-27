@@ -64,6 +64,7 @@
     <Compile Include="Model\Realtor\Realtor.cs" />
     <Compile Include="Event\Realtor\RealtorNotifiedThatOfferWasMade.cs" />
     <Compile Include="Event\Realtor\RealtorWasSetUp.cs" />
+    <Compile Include="Event\Realtor\RealtorAddedNewListing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -136,6 +136,7 @@
     <Compile Include="Bootstrap\FilterConfig.cs" />
     <Compile Include="Bootstrap\RouteConfig.cs" />
     <Compile Include="Bootstrap\WebApiConfig.cs" />
+    <Compile Include="Controllers\ListingsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RealtorController.cs" />
     <Compile Include="Global.asax.cs">
@@ -291,6 +292,9 @@
       <Name>DDD.Light.Realtor.Domain</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Realtor.cshtml" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -312,9 +316,8 @@
           <IISUrl>
           </IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://www.realtor-rest-api.com</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>

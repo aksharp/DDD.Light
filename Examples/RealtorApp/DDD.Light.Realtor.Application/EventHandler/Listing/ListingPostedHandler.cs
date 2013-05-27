@@ -9,16 +9,16 @@ namespace DDD.Light.Realtor.Application.EventHandler.Listing
 {
     public class ListingPostedHandler : EventHandler<ListingPosted>
     {
-        private readonly IRepository<ActiveListing> _activeListings;
+        private readonly IRepository<API.Query.Model.Listing> _activeListings;
 
-        public ListingPostedHandler(IRepository<ActiveListing> activeListings)
+        public ListingPostedHandler(IRepository<API.Query.Model.Listing> activeListings)
         {
             _activeListings = activeListings;
         }
 
         public override void Handle(ListingPosted @event)
         {
-            var activeListing = new ActiveListing
+            var activeListing = new API.Query.Model.Listing
                 {
                     Id = @event.Id,
                     NumberOfBathrooms = @event.NumberOfBathrooms,

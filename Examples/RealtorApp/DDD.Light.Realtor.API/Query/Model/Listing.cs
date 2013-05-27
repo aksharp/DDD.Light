@@ -1,6 +1,6 @@
 ﻿namespace DDD.Light.Realtor.API.Query.Model
 {
-    public class ActiveListing : Entity
+    public class Listing : Entity
     {
         public string Street { get; set; }
         public string City { get; set; }

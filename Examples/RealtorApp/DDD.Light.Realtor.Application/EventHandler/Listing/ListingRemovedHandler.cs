@@ -7,9 +7,9 @@ namespace DDD.Light.Realtor.Application.EventHandler.Listing
 {
     public class ListingRemovedHandler : EventHandler<ListingRemoved>
     {
-        private readonly IRepository<ActiveListing> _activeListings;
+        private readonly IRepository<API.Query.Model.Listing> _activeListings;
 
-        public ListingRemovedHandler(IRepository<ActiveListing> activeListings)
+        public ListingRemovedHandler(IRepository<API.Query.Model.Listing> activeListings)
         {
             _activeListings = activeListings;
         }

@@ -22,39 +22,13 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                 }));
 
             const string mongoConnectionString = "mongodb://localhost";
-//            const string realtorDB = "Realtor";
-            const string realtorReadModel = "Realtor_ReadModel";
+            const string realtorReadModel = "DDD_Light_Realtor_ReadModel";
 
             IContainer container = ObjectFactory.Container;
-//            container.Configure(x => x.For<IRepository<Listing>>().Use<MongoRepository<Listing>>()
-//                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
-//                                      .Ctor<string>("databaseName").Is(realtorDB)
-//                                      .Ctor<string>("collectionName").Is("Listings")
-//                );
-//            container.Configure(x => x.For<IRepository<Buyer>>().Use<MongoRepository<Buyer>>()
-//                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
-//                                      .Ctor<string>("databaseName").Is(realtorDB)
-//                                      .Ctor<string>("collectionName").Is("Buyers")
-//                );
-//            container.Configure(x => x.For<IRepository<Prospect>>().Use<MongoRepository<Prospect>>()
-//                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
-//                                      .Ctor<string>("databaseName").Is(realtorDB)
-//                                      .Ctor<string>("collectionName").Is("Prospects")
-//                );
-//            container.Configure(x => x.For<IRepository<Domain.Model.Realtor.Realtor>>().Use<MongoRepository<Domain.Model.Realtor.Realtor>>()
-//                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
-//                                      .Ctor<string>("databaseName").Is(realtorDB)
-//                                      .Ctor<string>("collectionName").Is("Realtors")
-//                );
-//            container.Configure(x => x.For<IRepository<Offer>>().Use<MongoRepository<Offer>>()
-//                                      .Ctor<string>("connectionString").Is(mongoConnectionString)
-//                                      .Ctor<string>("databaseName").Is(realtorDB)
-//                                      .Ctor<string>("collectionName").Is("Offers")
-//                );
-            container.Configure(x => x.For<IRepository<ActiveListing>>().Use<MongoRepository<ActiveListing>>()
+            container.Configure(x => x.For<IRepository<Listing>>().Use<MongoRepository<Listing>>()
                                       .Ctor<string>("connectionString").Is(mongoConnectionString)
                                       .Ctor<string>("databaseName").Is(realtorReadModel)
-                                      .Ctor<string>("collectionName").Is("ActiveListings")
+                                      .Ctor<string>("collectionName").Is("Listings")
                 );
             container.Configure(x => x.For<IActiveListings>().Use<ActiveListings>());
             container.Configure(x => x.For<ICommandBus>().Use(CommandBus.Instance));

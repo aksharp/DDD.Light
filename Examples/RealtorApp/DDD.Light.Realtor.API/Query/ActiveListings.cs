@@ -9,24 +9,24 @@ namespace DDD.Light.Realtor.API.Query
 {
     public class ActiveListings : IActiveListings
     {
-        private readonly IRepository<ActiveListing> _listingsRepo;
+        private readonly IRepository<Listing> _listingsRepo;
 
-        public ActiveListings(IRepository<ActiveListing> listingsRepo)
+        public ActiveListings(IRepository<Listing> listingsRepo)
         {
             _listingsRepo = listingsRepo;
         }
 
-        public IEnumerable<ActiveListing> All()
+        public IEnumerable<Listing> All()
         {
             return _listingsRepo.GetAll();
         }
 
-        public ActiveListing ById(Guid id)
+        public Listing ById(Guid id)
         {
             return _listingsRepo.GetById(id);
         }
 
-        public IEnumerable<ActiveListing> UnderMillionDollars()
+        public IEnumerable<Listing> UnderMillionDollars()
         {
             return _listingsRepo.Get().Where(l => l.Price < 1000000);
         }

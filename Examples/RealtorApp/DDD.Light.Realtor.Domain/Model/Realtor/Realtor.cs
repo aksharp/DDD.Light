@@ -9,7 +9,8 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
     public class Realtor : Entity
     {
         private List<Guid> _offerIds; 
-        private List<Guid> _listingIds; 
+        private List<Guid> _postedListingIds; 
+        private List<Guid> _newListingIds; 
 
         private Realtor()
         {  
@@ -26,6 +27,11 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
             PublishEvent(new RealtorNotifiedThatOfferWasMade(offerId));
         }
 
+        public void AddNewListing(Guid listingId)
+        {
+            PublishEvent(new RealtorAddedNewListing(listingId));
+        }
+
         public void PostListing(Guid listingId)
         {
             PublishEvent(new RealtorPostedListing(listingId));
@@ -36,12 +42,20 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
         {
             Id = @event.RealtorId;
         }
+
+        private void ApplyEvent(RealtorAddedNewListing @event)
+        {
+            if (_newListingIds == null)
+                _newListingIds = new List<Guid>();
+            _newListingIds.Add(@event.ListingId);
+        }
         
         private void ApplyEvent(RealtorPostedListing @event)
         {
-            if (_listingIds == null)
-                _listingIds = new List<Guid>();
-            _listingIds.Add(@event.ListingId);
+            _newListingIds.Remove(@event.ListingId);
+            if (_postedListingIds == null)
+                _postedListingIds = new List<Guid>();
+            _postedListingIds.Add(@event.ListingId);
         }
 
         private void ApplyEvent(RealtorNotifiedThatOfferWasMade @event)
