@@ -12,6 +12,5 @@ namespace DDD.Light.EventStore.Contracts
         void Configure(string connectionString, string databaseName, string collectionName);
         IEnumerable<AggregateEvent> GetAll();
         IEnumerable<AggregateEvent> GetAll(DateTime until);
-        Guid GetUniqueInstanceID();
     }
 }

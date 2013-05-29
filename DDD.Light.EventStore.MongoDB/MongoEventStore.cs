@@ -31,17 +31,6 @@ namespace DDD.Light.EventStore.MongoDB
             }
         }
 
-        private readonly Guid _instanceID;
-        private MongoEventStore()
-        {
-            _instanceID = Guid.NewGuid();
-        }
-       
-        public Guid GetUniqueInstanceID()
-        {
-            return _instanceID;
-        }
-
         public void Configure(string connectionString, string databaseName, string collectionName)
         {
             _repo = new MongoRepository<AggregateEvent>(connectionString, databaseName, collectionName);

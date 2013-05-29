@@ -12,7 +12,6 @@ namespace DDD.Light.CQRS.Contracts
         void Configure(IEventStore instance);
         void RestoreReadModel();
         void RestoreReadModel(DateTime until);
-        Guid GetUniqueInstanceID();
         IEventStore GetEventStore();
     }
 }

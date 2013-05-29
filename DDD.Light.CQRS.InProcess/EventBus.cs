@@ -28,16 +28,7 @@ namespace DDD.Light.CQRS.InProcess
             }
         }
 
-        private readonly Guid _instanceID;
-        private EventBus()
-        {
-            _instanceID = Guid.NewGuid();
-        }
-       
-        public Guid GetUniqueInstanceID()
-        {
-            return _instanceID;
-        }
+        private EventBus(){}
 
         public void Subscribe<T>(IEventHandler<T> handler)
         {

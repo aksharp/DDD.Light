@@ -25,6 +25,8 @@ namespace DDD.Light.CQRS.InProcess
             }
         }
 
+        private CommandBus(){}
+
         public void Subscribe<T>(ICommandHandler<T> handler)
         {
             CommandHandlersDatabase<T>.Instance.Add(handler);
