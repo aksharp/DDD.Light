@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DDD.Light.EventStore.Contracts</id>
-    <version>1.0</version>
+    <version>1.0.0-pre</version>
     <title>DDD.Light.EventStore.Contracts</title>
 	<authors>Alex Khotyanov</authors>
 	<owners>Alex Khotyanov</owners>

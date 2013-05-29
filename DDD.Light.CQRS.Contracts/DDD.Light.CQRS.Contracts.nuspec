@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DDD.Light.CQRS.Contracts</id>
-    <version>1.0</version>
+    <version>1.0.0-pre</version>
     <title>DDD.Light.CQRS.Contracts</title>
     <authors>Alex Khotyanov</authors>
     <owners>Alex Khotyanov</owners>

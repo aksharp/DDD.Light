@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DDD.Light.Repo.MongoDB</id>
-    <version>1.0</version>
+    <version>1.0.0-pre</version>
     <title>DDD.Light.Repo.MongoDB</title>
 	<authors>Alex Khotyanov</authors>
 	<owners>Alex Khotyanov</owners>
