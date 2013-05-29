@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
   <metadata>
     <id>Microsoft.AspNet.WebApi.WebHost</id>
     <version>4.0.20710.0</version>
@@ -16,8 +16,5 @@
       <dependency id="Microsoft.Web.Infrastructure" version="1.0.0.0" />
       <dependency id="Microsoft.AspNet.WebApi.Core" version="[4.0.20710.0, 4.1)" />
     </dependencies>
-    <references>
-      <reference file="System.Web.Http.WebHost.dll" />
-    </references>
   </metadata>
 </package>

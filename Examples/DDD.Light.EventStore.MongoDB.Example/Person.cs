@@ -3,7 +3,7 @@ using DDD.Light.CQRS.InProcess;
 
 namespace DDD.Light.EventStore.MongoDB.Example
 {
-    public class Person : Entity
+    public class Person : AggregateRoot
     {
         private string _name;
 

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 using DDD.Light.CQRS.InProcess;
 using DDD.Light.EventStore.Contracts;
@@ -24,7 +23,6 @@ namespace DDD.Light.Realtor.REST.API
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
             SetUpIoC();
             MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_Realtor", "EventStore");
             EventBus.Instance.Configure(MongoEventStore.Instance);

@@ -1,9 +1,9 @@
 using System.Web.Http;
 using AttributeRouting.Web.Http.WebHost;
 
-[assembly: WebActivator.PreApplicationStartMethod(typeof(DDD.Light.Realtor.AttributeRoutingHttpConfig), "Start")]
+[assembly: WebActivator.PreApplicationStartMethod(typeof(DDD.Light.Realtor.REST.API.AttributeRoutingHttpConfig), "Start")]
 
-namespace DDD.Light.Realtor 
+namespace DDD.Light.Realtor.REST.API 
 {
     public static class AttributeRoutingHttpConfig
 	{

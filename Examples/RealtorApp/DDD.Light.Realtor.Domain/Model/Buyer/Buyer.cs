@@ -5,7 +5,7 @@ using DDD.Light.Realtor.Domain.Event.Buyer;
 
 namespace DDD.Light.Realtor.Domain.Model.Buyer
 {
-    public class Buyer : Entity
+    public class Buyer : AggregateRoot
     {
         private List<Property> _properties;
         private List<Guid> _offerIds;

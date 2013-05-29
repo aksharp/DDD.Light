@@ -6,7 +6,7 @@ using DDD.Light.Realtor.Domain.Event.Offer;
 namespace DDD.Light.Realtor.Domain.Model.Prospect
 {
     // aggregate root
-    public class Prospect : Entity
+    public class Prospect : AggregateRoot
     {
         private List<Guid> _offerIds;
 
