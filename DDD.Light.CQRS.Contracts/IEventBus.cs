@@ -9,7 +9,7 @@ namespace DDD.Light.CQRS.Contracts
         void Subscribe<T>(Action<T> handler);
         void Publish<T>(Type aggregateType, Guid aggregateId, T @event);
         void Publish<TAggregate, T>(Guid aggregateId, T @event);
-        void Configure(IEventStore instance);
+        void Configure(IEventStore eventStore, IEventSerializerStrategy eventSerializerStrategy);
         void RestoreReadModel();
         void RestoreReadModel(DateTime until);
         IEventStore GetEventStore();

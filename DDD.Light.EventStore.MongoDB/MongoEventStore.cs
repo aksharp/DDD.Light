@@ -14,6 +14,7 @@ namespace DDD.Light.EventStore.MongoDB
         private static volatile MongoEventStore _instance;
         private IRepository<AggregateEvent> _repo;
         private static object token = new Object();
+        private IEventSerializerStrategy _serializerStrategy;
 
         public static IEventStore Instance
         {
@@ -31,11 +32,12 @@ namespace DDD.Light.EventStore.MongoDB
             }
         }
 
-        public void Configure(IStorageConfigStrategy storageConfigStrategy)
+        public void Configure(IStorageConfigStrategy storageConfigStrategy, IEventSerializerStrategy serializerStrategy)
         {
             var config = storageConfigStrategy as MongoStorageConfigStrategy;
             if (config == null) throw new Exception("Invalid MongoStorageConfigStrategy");
             _repo = new MongoRepository<AggregateEvent>(config.ConnectionString, config.DatabaseName, config.CollectionName);
+            _serializerStrategy = serializerStrategy;
         }
 
         public IEnumerable<AggregateEvent> GetAll()
@@ -63,7 +65,7 @@ namespace DDD.Light.EventStore.MongoDB
             _repo.Get().Where(x => x.AggregateId == id).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
                 {
                     var eventType = Type.GetType(aggregateEvent.EventType);
-                    var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+                    var @event = _serializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
                     var method = typeof(T).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
                     method.Invoke(aggregate, new[] { @event });
                 });
@@ -80,7 +82,7 @@ namespace DDD.Light.EventStore.MongoDB
             _repo.Get().Where(x => x.AggregateId == id && DateTime.Compare(x.CreatedOn, until) <= 0).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
                 {
                     var eventType = Type.GetType(aggregateEvent.EventType);
-                    var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+                    var @event = _serializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
                     var method = typeof(T).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
                     method.Invoke(aggregate, new[] { @event });
                 });
@@ -105,7 +107,7 @@ namespace DDD.Light.EventStore.MongoDB
             _repo.Get().Where(x => x.AggregateId == id).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
             {
                 var eventType = Type.GetType(aggregateEvent.EventType);
-                var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+                var @event = _serializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
                 var method = aggregateType.GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
                 try
                 {

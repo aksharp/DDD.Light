@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="JsonEventSerializerStrategy.cs" />
     <Compile Include="MongoEventStore.cs" />
     <Compile Include="MongoStorageConfigStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

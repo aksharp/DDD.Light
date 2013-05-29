@@ -3,7 +3,6 @@ using System.Linq;
 using System.Reflection;
 using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore.Contracts;
-using Newtonsoft.Json;
 
 namespace DDD.Light.CQRS.InProcess
 {
@@ -11,6 +10,8 @@ namespace DDD.Light.CQRS.InProcess
     {
         private static volatile IEventBus _instance;
         private static object token = new Object();
+        private IEventStore _eventStore;
+        private IEventSerializerStrategy _eventSerializerStrategy;
 
         public static IEventBus Instance
         {
@@ -52,6 +53,12 @@ namespace DDD.Light.CQRS.InProcess
             HandleEvent(@event);
         }
 
+        public void Configure(IEventStore eventStore, IEventSerializerStrategy eventSerializerStrategy)
+        {
+            _eventStore = eventStore;
+            _eventSerializerStrategy = eventSerializerStrategy;
+        }
+
         private void HandleEvent<T>(T @event)
         {
             if (!Equals(@event, default(T)))
@@ -68,14 +75,8 @@ namespace DDD.Light.CQRS.InProcess
                     AggregateType = aggregateType.AssemblyQualifiedName,
                     EventType = typeof(T).AssemblyQualifiedName,
                     CreatedOn = DateTime.UtcNow,
-                    SerializedEvent = JsonConvert.SerializeObject(@event)
+                    SerializedEvent = _eventSerializerStrategy.SerializeEvent(@event)
                 });
-        }
-
-        private IEventStore _eventStore;
-        public void Configure(IEventStore eventStore)
-        {
-            _eventStore = eventStore;
         }
 
         public IEventStore GetEventStore()
@@ -96,7 +97,7 @@ namespace DDD.Light.CQRS.InProcess
         private void HandleRestoreReadModelEvent(AggregateEvent aggregateEvent)
         {
             var eventType = Type.GetType(aggregateEvent.EventType);
-            var @event = JsonConvert.DeserializeObject(aggregateEvent.SerializedEvent, eventType);
+            var @event = _eventSerializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
             GetType().GetMethod("HandleEvent", BindingFlags.NonPublic | BindingFlags.Instance)
                      .MakeGenericMethod(eventType)
                      .Invoke(Instance, new[] {@event});

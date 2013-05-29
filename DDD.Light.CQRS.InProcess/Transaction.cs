@@ -6,15 +6,11 @@ using log4net;
 
 namespace DDD.Light.CQRS.InProcess
 {
-    [Serializable]
     public class Transaction<T>
     {
         private readonly ILog _log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public Transaction()
-        {
-            
-        }
+        public Transaction(){}
 
         public Transaction(T message, IEnumerable<Action<T>> handlers)
         {
@@ -44,14 +40,13 @@ namespace DDD.Light.CQRS.InProcess
                 catch (Exception ex)
                 {
                     ErroredOutActions.Add(handler, ex);
-//                    LogFailedCommit();
+                    LogFailedCommit();
                     throw;
                 }
             }
-//            LogSuccessfulCommit();
         }
 
-        //todo: adjust text (now command, not only event)
+        //TODO: better logging
         private void LogFailedCommit()
         {
             var errors = (
@@ -87,22 +82,5 @@ namespace DDD.Light.CQRS.InProcess
             _log.Error(message);
         }
 
-        //todo: adjust text (now command, not only event)
-        private void LogSuccessfulCommit()
-        {
-            var processedEventHandlerTypes = (
-                    from h in ProcessedActions.ToList()
-                    select h.GetType()
-                ).ToList();
-
-            var message = string.Format(
-                "TRANSACTION SUCCESS [ID: {0}] " +
-                "[ACTION TYPE: {1}] " +
-                "[ACTION DATA: {2}] " +
-                "[PROCESSED ACTION HANDLERS: {3}]",
-                Id, Message.GetType(), Message, string.Join(", ", processedEventHandlerTypes));
-
-            _log.Error(message);
-        }
     }
 }
