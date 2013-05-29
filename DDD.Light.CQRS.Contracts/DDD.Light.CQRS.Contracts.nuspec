@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>1.0</version>
+    <title>DDD.Light.CQRS.Contracts</title>
+    <authors>Alex Khotyanov</authors>
+    <owners>Alex Khotyanov</owners>
+    <licenseUrl>http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE</licenseUrl>
+    <projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Contracts for CQRS implementation</description>
+    <releaseNotes>Initial deploy.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>DDD Light CQRS Contracts DDD.Light.CQRS.Contracts</tags>
+  </metadata>
+</package>

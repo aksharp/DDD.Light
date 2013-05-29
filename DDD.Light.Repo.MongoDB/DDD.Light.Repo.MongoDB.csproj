@@ -53,6 +53,7 @@
     <Compile Include="MongoRepository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DDD.Light.Repo.MongoDB.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

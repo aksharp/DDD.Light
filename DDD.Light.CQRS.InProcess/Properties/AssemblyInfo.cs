@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.Messaging.InProcess")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("DDD.Light.CQRS.InProcess")]
+[assembly: AssemblyDescription("DDD.Light.CQRS.InProcess")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("DDD.Light.Messaging")]
-[assembly: AssemblyCopyright("Copyright ©  2013")]
+[assembly: AssemblyCompany("https://github.com/aksharp")]
+[assembly: AssemblyProduct("DDD.Light.CQRS.InProcess")]
+[assembly: AssemblyCopyright("MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -57,6 +57,7 @@
     <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="DDD.Light.CQRS.InProcess.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

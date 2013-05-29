@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("DDD.Light.EventStore.MongoDB")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("DDD.Light.EventStore.MongoDB")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("https://github.com/aksharp")]
 [assembly: AssemblyProduct("DDD.Light.EventStore.MongoDB")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
+[assembly: AssemblyCopyright("MIT License")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
