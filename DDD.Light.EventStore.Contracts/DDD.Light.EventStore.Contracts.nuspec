@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>$id$</id>
+    <id>DDD.Light.EventStore.Contracts</id>
     <version>1.0</version>
     <title>DDD.Light.EventStore.Contracts</title>
 	<authors>Alex Khotyanov</authors>
 	<owners>Alex Khotyanov</owners>
 	<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
 	<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
-    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>Contracts for Event Store</description>
     <releaseNotes>Initial deploy</releaseNotes>
     <copyright>MIT License</copyright>
