@@ -31,9 +31,11 @@ namespace DDD.Light.EventStore.MongoDB
             }
         }
 
-        public void Configure(string connectionString, string databaseName, string collectionName)
+        public void Configure(IStorageConfigStrategy storageConfigStrategy)
         {
-            _repo = new MongoRepository<AggregateEvent>(connectionString, databaseName, collectionName);
+            var config = storageConfigStrategy as MongoStorageConfigStrategy;
+            if (config == null) throw new Exception("Invalid MongoStorageConfigStrategy");
+            _repo = new MongoRepository<AggregateEvent>(config.ConnectionString, config.DatabaseName, config.CollectionName);
         }
 
         public IEnumerable<AggregateEvent> GetAll()

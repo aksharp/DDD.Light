@@ -13,7 +13,8 @@ namespace DDD.Light.Messaging.Example
         {
             XmlConfigurator.Configure();
             var log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_Messaging_Example", "EventStore");
+            var mongoConfigStorageStrategy = new MongoStorageConfigStrategy("mongodb://localhost", "DDD_Light_Messaging_Example", "EventStore");
+            MongoEventStore.Instance.Configure(mongoConfigStorageStrategy);
             EventBus.Instance.Configure(MongoEventStore.Instance);
 
 

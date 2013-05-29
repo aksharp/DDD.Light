@@ -9,7 +9,7 @@ namespace DDD.Light.EventStore.Contracts
         T GetById<T>(Guid id, DateTime until);
         object GetById(Guid id);
         void Save(AggregateEvent aggregateEvent);
-        void Configure(string connectionString, string databaseName, string collectionName);
+        void Configure(IStorageConfigStrategy storageConfigStrategy);
         IEnumerable<AggregateEvent> GetAll();
         IEnumerable<AggregateEvent> GetAll(DateTime until);
     }

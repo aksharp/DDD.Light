@@ -24,7 +24,8 @@ namespace DDD.Light.Realtor.REST.API
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             SetUpIoC();
-            MongoEventStore.Instance.Configure("mongodb://localhost", "DDD_Light_Realtor", "EventStore");
+            var mongoConfigStorageStrategy = new MongoStorageConfigStrategy("mongodb://localhost", "DDD_Light_Realtor", "EventStore");
+            MongoEventStore.Instance.Configure(mongoConfigStorageStrategy);
             EventBus.Instance.Configure(MongoEventStore.Instance);
             InitApp(MongoEventStore.Instance);
         }
