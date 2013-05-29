@@ -48,10 +48,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregateRoot.cs" />
     <Compile Include="CommandBus.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="CommandHandlersDatabase.cs" />
-    <Compile Include="Entity.cs" />
     <Compile Include="EventHandler.cs" />
     <Compile Include="HandlerSubscribtions.cs" />
     <Compile Include="EventBus.cs" />

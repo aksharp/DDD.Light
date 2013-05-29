@@ -3,16 +3,14 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.CQRS.InProcess
 {
-    public abstract class Entity : IEntity
+    public abstract class AggregateRoot : Entity
     {
-        public Guid Id { get; set; }
-
-        protected Entity()
+        protected AggregateRoot()
         {
             
         }
 
-        protected Entity(Guid id)
+        protected AggregateRoot(Guid id)
         {
             Id = id;
         }
