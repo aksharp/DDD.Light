@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.CQRS.InProcess
@@ -18,6 +19,14 @@ namespace DDD.Light.CQRS.InProcess
         protected void PublishEvent<TEvent>(TEvent @event)
         {
             EventBus.Instance.Publish(GetType(), Id, @event);
+        }
+        
+        protected void PublishAndApplyEvent<TEvent>(TEvent @event)
+        {
+            EventBus.Instance.Publish(GetType(), Id, @event);
+            var eventType = typeof (TEvent);
+            var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
+            method.Invoke(this, new[] { @event as Object });
         }
     }
 }
