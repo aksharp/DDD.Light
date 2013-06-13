@@ -204,6 +204,10 @@
       <Project>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</Project>
       <Name>DDD.Light.EventStore.MongoDB</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.EventStoreBus.InProcess\DDD.Light.EventStoreBus.InProcess.csproj">
+      <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
+      <Name>DDD.Light.EventStoreBus.InProcess</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>
       <Name>DDD.Light.Realtor.API</Name>

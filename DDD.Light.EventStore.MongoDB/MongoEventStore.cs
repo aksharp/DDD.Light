@@ -5,7 +5,6 @@ using System.Reflection;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
-using Newtonsoft.Json;
 
 namespace DDD.Light.EventStore.MongoDB
 {
@@ -13,6 +12,7 @@ namespace DDD.Light.EventStore.MongoDB
     {
         private static volatile MongoEventStore _instance;
         private IRepository<AggregateEvent> _repo;
+        private IEventStoreBus _bus;
         private static object token = new Object();
         private IEventSerializerStrategy _serializerStrategy;
 
@@ -32,8 +32,9 @@ namespace DDD.Light.EventStore.MongoDB
             }
         }
 
-        public void Configure(IStorageConfigStrategy storageConfigStrategy, IEventSerializerStrategy serializerStrategy)
+        public void Configure(IStorageConfigStrategy storageConfigStrategy, IEventSerializerStrategy serializerStrategy, IEventStoreBus bus)
         {
+            _bus = bus;
             var config = storageConfigStrategy as MongoStorageConfigStrategy;
             if (config == null) throw new Exception("Invalid MongoStorageConfigStrategy");
             _repo = new MongoRepository<AggregateEvent>(config.ConnectionString, config.DatabaseName, config.CollectionName);
@@ -48,6 +49,45 @@ namespace DDD.Light.EventStore.MongoDB
         public IEnumerable<AggregateEvent> GetAll(DateTime until)
         {
             return _repo.Get().Where(x => DateTime.Compare(x.CreatedOn, until) <= 0);
+        }
+
+        public void Subscribe(IEntity aggregate)
+        {
+            _bus.Subscribe(aggregate);
+        }
+
+        public void SubscribeSince(IEntity aggregate, DateTime since)
+        {
+            VerifyRepoIsConfigured();
+
+            _repo.Get().Where(x => x.AggregateId == aggregate.Id && DateTime.Compare(x.CreatedOn, since) >= 0).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
+            {
+                var eventType = Type.GetType(aggregateEvent.EventType);
+                var @event = _serializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
+                var method = aggregate.GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
+                method.Invoke(aggregate, new[] { @event });
+            });
+
+            Subscribe(aggregate);
+        }
+
+        public void Publish<T>(Type aggregateType, Guid aggregateId, T @event)
+        {
+            _bus.Publish(aggregateType, aggregateId, @event);
+        }
+
+        public T GetSubscribedById<T>(Guid id) where T : IEntity
+        {
+            var aggregate = GetById<T>(id);
+            _bus.Subscribe(aggregate);
+            return aggregate;
+        }
+
+        public object GetSubscribedById(Guid id)
+        {
+            var aggregate = GetById(id) as IEntity;
+            _bus.Subscribe(aggregate);
+            return aggregate;
         }
 
         private void VerifyRepoIsConfigured()
