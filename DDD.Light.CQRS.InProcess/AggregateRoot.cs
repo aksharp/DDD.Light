@@ -16,12 +16,12 @@ namespace DDD.Light.CQRS.InProcess
             Id = id;
         }
 
-        protected void PublishEvent<TEvent>(TEvent @event)
+        protected virtual void PublishEvent<TEvent>(TEvent @event)
         {
             EventBus.Instance.Publish(GetType(), Id, @event);
         }
         
-        protected void PublishAndApplyEvent<TEvent>(TEvent @event)
+        protected virtual void PublishAndApplyEvent<TEvent>(TEvent @event)
         {
             EventBus.Instance.Publish(GetType(), Id, @event);
             var eventType = typeof (TEvent);
