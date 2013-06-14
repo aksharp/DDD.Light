@@ -2,21 +2,18 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{EAA67410-4AA1-4B02-B70B-9C6A52506584}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FD19D68A-20F0-4A55-AAD4-504D44A3592D}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.EventStore.MongoDB.Example</RootNamespace>
-    <AssemblyName>DDD.Light.EventStore.MongoDB.Example</AssemblyName>
+    <RootNamespace>DDD.Light.AggregateStore.InMemory</RootNamespace>
+    <AssemblyName>DDD.Light.AggregateStore.InMemory</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>
-    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -25,8 +22,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
-    <PlatformTarget>x86</PlatformTarget>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -44,50 +40,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Person.cs" />
-    <Compile Include="PersonCreated.cs" />
-    <Compile Include="PersonDTO.cs" />
-    <Compile Include="PersonNamed.cs" />
-    <Compile Include="PersonRenamed.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="AggregateDatabase.cs" />
+    <Compile Include="InMemoryAggregateStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
+    <ProjectReference Include="..\DDD.Light.AggregateStore.Contracts\DDD.Light.AggregateStore.Contracts.csproj">
+      <Project>{84090A02-667B-456F-9FAF-13B6A9DF4765}</Project>
+      <Name>DDD.Light.AggregateStore.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
       <Name>DDD.Light.CQRS.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.CQRS.InProcess\DDD.Light.CQRS.InProcess.csproj">
+    <ProjectReference Include="..\DDD.Light.CQRS.InProcess\DDD.Light.CQRS.InProcess.csproj">
       <Project>{80F4D478-672E-4687-9997-0EDF466D55A8}</Project>
       <Name>DDD.Light.CQRS.InProcess</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
+    <ProjectReference Include="..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
       <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
       <Name>DDD.Light.EventStore.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStore.MongoDB\DDD.Light.EventStore.MongoDB.csproj">
-      <Project>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</Project>
-      <Name>DDD.Light.EventStore.MongoDB</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStoreBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
-      <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
-      <Name>DDD.Light.AggregateBus.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStoreBus.InProcess\DDD.Light.AggregateBus.InProcess.csproj">
-      <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
-      <Name>DDD.Light.AggregateBus.InProcess</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
+    <ProjectReference Include="..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.Repo.MongoDB\DDD.Light.Repo.MongoDB.csproj">
-      <Project>{AD1F872F-E8C6-41C7-A7F0-21CCB3AE1EC1}</Project>
-      <Name>DDD.Light.Repo.MongoDB</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

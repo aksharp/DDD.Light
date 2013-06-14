@@ -17,7 +17,8 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
         }
 
         public Realtor(Guid id) : base(id)
-        { 
+        {
+//            Publish<Realtor, RealtorWasSetUp>(new RealtorWasSetUp(id));
             PublishEvent(new RealtorWasSetUp(id));
         }
 

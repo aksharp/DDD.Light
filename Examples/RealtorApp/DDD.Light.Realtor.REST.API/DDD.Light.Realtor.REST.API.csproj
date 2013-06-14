@@ -188,6 +188,14 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\DDD.Light.AggregateStore.Contracts\DDD.Light.AggregateStore.Contracts.csproj">
+      <Project>{84090A02-667B-456F-9FAF-13B6A9DF4765}</Project>
+      <Name>DDD.Light.AggregateStore.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.AggregateStore.InMemory\DDD.Light.AggregateStore.InMemory.csproj">
+      <Project>{FD19D68A-20F0-4A55-AAD4-504D44A3592D}</Project>
+      <Name>DDD.Light.AggregateStore.InMemory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
       <Name>DDD.Light.CQRS.Contracts</Name>
@@ -204,9 +212,13 @@
       <Project>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</Project>
       <Name>DDD.Light.EventStore.MongoDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.EventStoreBus.InProcess\DDD.Light.EventStoreBus.InProcess.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.EventStoreBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
+      <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
+      <Name>DDD.Light.AggregateBus.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\DDD.Light.EventStoreBus.InProcess\DDD.Light.AggregateBus.InProcess.csproj">
       <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
-      <Name>DDD.Light.EventStoreBus.InProcess</Name>
+      <Name>DDD.Light.AggregateBus.InProcess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD.Light.Realtor.API\DDD.Light.Realtor.API.csproj">
       <Project>{90C52FD6-3998-4A1C-8682-59002C7B6AA4}</Project>

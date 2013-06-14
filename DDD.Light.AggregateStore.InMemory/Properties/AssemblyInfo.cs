@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.AggregateBus.InProcess")]
+[assembly: AssemblyTitle("DDD.Light.AggregateStore.InMemory")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("DDD.Light.AggregateBus.InProcess")]
+[assembly: AssemblyProduct("DDD.Light.AggregateStore.InMemory")]
 [assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("41c02638-bff0-4bab-8a0c-54f8d5213278")]
+[assembly: Guid("3c795aeb-931e-478c-b49d-f3433af3d7b0")]
 
 // Version information for an assembly consists of the following four values:
 //
