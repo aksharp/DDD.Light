@@ -31,10 +31,10 @@ namespace DDD.Light.EventStore.MongoDB
             }
         }
 
-        public void Configure(IStorageConfigStrategy storageConfigStrategy, IEventSerializerStrategy serializerStrategy)
+        public void Configure(IStorageStrategy storageStrategy, IEventSerializerStrategy serializerStrategy)
         {
-            var config = storageConfigStrategy as MongoStorageConfigStrategy;
-            if (config == null) throw new Exception("Invalid MongoStorageConfigStrategy");
+            var config = storageStrategy as MongoStorageStrategy;
+            if (config == null) throw new Exception("Invalid MongoStorageStrategy");
             _repo = new MongoRepository<AggregateEvent>(config.ConnectionString, config.DatabaseName, config.CollectionName);
             _serializerStrategy = serializerStrategy;
         }
