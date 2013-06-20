@@ -16,7 +16,7 @@ namespace DDD.Light.EventStore.MongoDB.Example
         {
             Id = id;
             // cleanest way to call publish
-            PublishEvent(new PersonCreated(Id));
+            PublishAndApplyEvent(new PersonCreated(Id));
 //            EventBus.Instance.Publish(GetType(), Id, new PersonCreated(Id));
         }
 
@@ -28,12 +28,12 @@ namespace DDD.Light.EventStore.MongoDB.Example
             if (string.IsNullOrEmpty(_name))
             {
                 // can call publish this way too, generic way
-                PublishEvent(new PersonNamed(Id, name));
+                PublishAndApplyEvent(new PersonNamed(Id, name));
 //                EventBus.Instance.Publish<Person, PersonNamed>(Id, new PersonNamed(Id, name));
             }
             else
                 // yes, this will work too, non generic way
-                PublishEvent(new PersonRenamed(Id, name));
+                PublishAndApplyEvent(new PersonRenamed(Id, name));
 //                EventBus.Instance.Publish(typeof(Person), Id, new PersonRenamed(Id, name));
         }
 

@@ -23,18 +23,18 @@ namespace DDD.Light.Realtor.Domain.Model.Listing
             _price = price;
             _posted = false;
 
-            PublishEvent(new ListingCreated(id, location, description, price));
+            PublishAndApplyEvent(new ListingCreated(id, location, description, price));
         }
 
         // API
         public void Remove()
         {
-            PublishEvent(new ListingRemoved(Id));
+            PublishAndApplyEvent(new ListingRemoved(Id));
         }
         
         public void Post()
         {
-            PublishEvent(new ListingPosted(
+            PublishAndApplyEvent(new ListingPosted(
                 Id, 
                 _description.NumberOfBathrooms, 
                 _description.NumberOfBedrooms, 

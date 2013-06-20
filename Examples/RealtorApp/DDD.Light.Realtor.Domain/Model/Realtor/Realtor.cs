@@ -19,23 +19,23 @@ namespace DDD.Light.Realtor.Domain.Model.Realtor
         public Realtor(Guid id) : base(id)
         {
 //            Publish<Realtor, RealtorWasSetUp>(new RealtorWasSetUp(id));
-            PublishEvent(new RealtorWasSetUp(id));
+            PublishAndApplyEvent(new RealtorWasSetUp(id));
         }
 
         // API
         public void NotifyThatOfferWasMade(Guid offerId)
         {
-            PublishEvent(new RealtorNotifiedThatOfferWasMade(offerId));
+            PublishAndApplyEvent(new RealtorNotifiedThatOfferWasMade(offerId));
         }
 
         public void AddNewListing(Guid listingId)
         {
-            PublishEvent(new RealtorAddedNewListing(listingId));
+            PublishAndApplyEvent(new RealtorAddedNewListing(listingId));
         }
 
         public void PostListing(Guid listingId)
         {
-            PublishEvent(new RealtorPostedListing(listingId));
+            PublishAndApplyEvent(new RealtorPostedListing(listingId));
         }
 
         // Apply Events

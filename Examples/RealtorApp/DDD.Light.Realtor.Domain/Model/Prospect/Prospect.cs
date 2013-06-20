@@ -22,7 +22,7 @@ namespace DDD.Light.Realtor.Domain.Model.Prospect
         // API
         public void MakeAnOffer(Guid offerId)
         {
-            PublishEvent(new OfferMade(offerId));
+            PublishAndApplyEvent(new OfferMade(offerId));
         }
 
         // Apply Events

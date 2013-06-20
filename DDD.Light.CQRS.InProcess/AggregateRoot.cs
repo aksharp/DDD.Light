@@ -17,30 +17,29 @@ namespace DDD.Light.CQRS.InProcess
             Id = id;
         }
 
-//        public void PublishEvent<TEvent>(TEvent @event)
-//        {
-//            EventBus.Instance.Publish(GetType(), Id, @event);
-//        }
-        
-        public void Publish<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot
+        public void PublishAndApplyEvent<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot
         {
             AggregateBus.InProcess.AggregateBus.Instance.Publish<TAggregate, TEvent>(Id, @event);
-            var eventType = typeof(TEvent);
-            var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
-            method.Invoke(this, new[] { @event as Object });
+            ApplyEventOnAggregate(@event);
         }
 
-        public void PublishEvent<T>(T @event)
+        public void PublishAndApplyEvent<TEvent>(TEvent @event)
         {
-            throw new NotImplementedException();
+            PublishOnAggregateBusThroughReflection(@event);
+            ApplyEventOnAggregate(@event);
         }
 
-//        public void PublishAndApplyEvent<TEvent>(TEvent @event)
-//        {
-//            EventBus.Instance.Publish(GetType(), Id, @event);
-//            var eventType = typeof (TEvent);
-//            var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
-//            method.Invoke(this, new[] { @event as Object });
-//        }
+        private void PublishOnAggregateBusThroughReflection<TEvent>(TEvent @event)
+        {
+            var publishMethod = typeof (AggregateBus.InProcess.AggregateBus).GetMethod("Publish");
+            var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TEvent)});
+            genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {@event as Object});
+        }
+
+        private void ApplyEventOnAggregate<TEvent>(TEvent @event)
+        {
+            var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(TEvent) }, null);
+            method.Invoke(this, new[] {@event as Object});
+        }
     }
 }
