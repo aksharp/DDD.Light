@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using DDD.Light.AggregateBus.Contracts;
-using DDD.Light.AggregateStore.Contracts;
+using DDD.Light.AggregateCache.Contracts;
 using DDD.Light.CQRS.Contracts;
 
 namespace DDD.Light.AggregateBus.InProcess
@@ -10,7 +10,7 @@ namespace DDD.Light.AggregateBus.InProcess
     {
         private static volatile IAggregateBus _instance;
         private static object token = new Object();
-        private readonly List<IAggregateStore> _registeredAggregateStores;
+        private readonly List<IAggregateCache> _registeredAggregateCaches;
         private IEventBus _eventBus;
 
         public static IAggregateBus Instance
@@ -36,19 +36,19 @@ namespace DDD.Light.AggregateBus.InProcess
 
         private AggregateBus()
         {
-            _registeredAggregateStores = new List<IAggregateStore>();
+            _registeredAggregateCaches = new List<IAggregateCache>();
         }
 
-        public void Subscribe(IAggregateStore aggregateStore)
+        public void Subscribe(IAggregateCache aggregateCache)
         {
-            _registeredAggregateStores.Add(aggregateStore);
+            _registeredAggregateCaches.Add(aggregateCache);
         }
                
         public void Publish<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot
         {
             if (_eventBus == null) throw new Exception("EventBus is not configured");
             _eventBus.Publish<TAggregate, TEvent>(aggregateId, @event);
-            _registeredAggregateStores.ForEach(aggregateStore => aggregateStore.Handle<TAggregate, TEvent>(aggregateId, @event));
+            _registeredAggregateCaches.ForEach(aggregateCache => aggregateCache.Handle<TAggregate, TEvent>(aggregateId, @event));
         }
 
     }

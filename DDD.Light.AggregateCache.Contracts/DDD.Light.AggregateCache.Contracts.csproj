@@ -8,8 +8,8 @@
     <ProjectGuid>{84090A02-667B-456F-9FAF-13B6A9DF4765}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.AggregateStore.Contracts</RootNamespace>
-    <AssemblyName>DDD.Light.AggregateStore.Contracts</AssemblyName>
+    <RootNamespace>DDD.Light.AggregateCache.Contracts</RootNamespace>
+    <AssemblyName>DDD.Light.AggregateCache.Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,7 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAggregateStore.cs" />
+    <Compile Include="IAggregateCache.cs" />
     <Compile Include="IAggregateDatabase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

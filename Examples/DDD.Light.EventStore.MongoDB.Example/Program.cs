@@ -11,8 +11,8 @@ namespace DDD.Light.EventStore.MongoDB.Example
         {
             var personReadModel = new MongoRepository<PersonDTO>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "Person_ReadModel");
             var mongoConfigStorageStrategy = new MongoStorageStrategy("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "EventStore");
-            EventStore.MongoDB.MongoEventStore.Instance.Configure(mongoConfigStorageStrategy, new JsonEventSerializerStrategy());
-            EventBus.Instance.Configure(EventStore.MongoDB.MongoEventStore.Instance, new JsonEventSerializerStrategy());
+            EventStore.MongoDB.MongoEventStore.Instance.Configure(mongoConfigStorageStrategy, new JsonEventSerializationStrategy());
+            EventBus.Instance.Configure(EventStore.MongoDB.MongoEventStore.Instance, new JsonEventSerializationStrategy());
 
             EventBus.Instance.Subscribe((PersonCreated personCreated) =>
                 {                    

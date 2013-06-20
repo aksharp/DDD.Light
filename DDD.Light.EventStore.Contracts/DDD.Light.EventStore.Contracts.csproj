@@ -41,7 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregateEvent.cs" />
-    <Compile Include="IEventSerializerStrategy.cs" />
+    <Compile Include="IEventSerializationStrategy.cs" />
     <Compile Include="IEventStore.cs" />
     <Compile Include="IStorageStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

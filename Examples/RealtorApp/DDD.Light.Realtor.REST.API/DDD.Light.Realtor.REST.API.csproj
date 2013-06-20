@@ -188,13 +188,13 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\DDD.Light.AggregateStore.Contracts\DDD.Light.AggregateStore.Contracts.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.AggregateCache.Contracts\DDD.Light.AggregateCache.Contracts.csproj">
       <Project>{84090A02-667B-456F-9FAF-13B6A9DF4765}</Project>
-      <Name>DDD.Light.AggregateStore.Contracts</Name>
+      <Name>DDD.Light.AggregateCache.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.AggregateStore.InMemory\DDD.Light.AggregateStore.InMemory.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.AggregateCache.InMemory\DDD.Light.AggregateCache.InMemory.csproj">
       <Project>{FD19D68A-20F0-4A55-AAD4-504D44A3592D}</Project>
-      <Name>DDD.Light.AggregateStore.InMemory</Name>
+      <Name>DDD.Light.AggregateCache.InMemory</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>

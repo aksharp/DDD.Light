@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 
 namespace DDD.Light.EventStore.MongoDB
 {
-    public class JsonEventSerializerStrategy : IEventSerializerStrategy
+    public class JsonEventSerializationStrategy : IEventSerializationStrategy
     {
         public string SerializeEvent(object @event)
         {

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DDD.Light.AggregateStore.Contracts;
+using DDD.Light.AggregateCache.Contracts;
 using DDD.Light.CQRS.Contracts;
 
-namespace DDD.Light.AggregateStore.InMemory
+namespace DDD.Light.AggregateCache.InMemory
 {
     public class AggregateDatabase<T> : IAggregateDatabase<T> where T : IAggregateRoot
     {

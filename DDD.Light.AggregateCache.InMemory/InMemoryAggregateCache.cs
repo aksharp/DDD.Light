@@ -1,20 +1,20 @@
 ﻿using System;
 using System.Reflection;
-using DDD.Light.AggregateStore.Contracts;
+using DDD.Light.AggregateCache.Contracts;
 using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore.Contracts;
 
-namespace DDD.Light.AggregateStore.InMemory
+namespace DDD.Light.AggregateCache.InMemory
 {
-    public class InMemoryAggregateStore : IAggregateStore
+    public class InMemoryAggregateCache : IAggregateCache
     {
-        private static volatile InMemoryAggregateStore _instance;
+        private static volatile InMemoryAggregateCache _instance;
         private static object token = new Object();
         private IEventStore _eventStore;
 
-        private InMemoryAggregateStore(){}
+        private InMemoryAggregateCache(){}
 
-        public static IAggregateStore Instance
+        public static IAggregateCache Instance
         {
             get
             {
@@ -23,7 +23,7 @@ namespace DDD.Light.AggregateStore.InMemory
                     lock (token)
                     {
                         if (_instance == null)
-                            _instance = new InMemoryAggregateStore();
+                            _instance = new InMemoryAggregateCache();
                     }
                 }
                 return _instance;

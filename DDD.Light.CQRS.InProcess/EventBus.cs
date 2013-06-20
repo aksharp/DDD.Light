@@ -11,7 +11,7 @@ namespace DDD.Light.CQRS.InProcess
         private static volatile IEventBus _instance;
         private static object token = new Object();
         private IEventStore _eventStore;
-        private IEventSerializerStrategy _eventSerializerStrategy;
+        private IEventSerializationStrategy _eventSerializationStrategy;
 
         public static IEventBus Instance
         {
@@ -53,10 +53,10 @@ namespace DDD.Light.CQRS.InProcess
             HandleEvent(@event);
         }
 
-        public void Configure(IEventStore eventStore, IEventSerializerStrategy eventSerializerStrategy)
+        public void Configure(IEventStore eventStore, IEventSerializationStrategy eventSerializationStrategy)
         {
             _eventStore = eventStore;
-            _eventSerializerStrategy = eventSerializerStrategy;
+            _eventSerializationStrategy = eventSerializationStrategy;
         }
 
         private void HandleEvent<T>(T @event)
@@ -75,7 +75,7 @@ namespace DDD.Light.CQRS.InProcess
                     AggregateType = aggregateType.AssemblyQualifiedName,
                     EventType = typeof(T).AssemblyQualifiedName,
                     CreatedOn = DateTime.UtcNow,
-                    SerializedEvent = _eventSerializerStrategy.SerializeEvent(@event)
+                    SerializedEvent = _eventSerializationStrategy.SerializeEvent(@event)
                 });
         }
 
@@ -97,7 +97,7 @@ namespace DDD.Light.CQRS.InProcess
         private void HandleRestoreReadModelEvent(AggregateEvent aggregateEvent)
         {
             var eventType = Type.GetType(aggregateEvent.EventType);
-            var @event = _eventSerializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
+            var @event = _eventSerializationStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
             GetType().GetMethod("HandleEvent", BindingFlags.NonPublic | BindingFlags.Instance)
                      .MakeGenericMethod(eventType)
                      .Invoke(Instance, new[] {@event});

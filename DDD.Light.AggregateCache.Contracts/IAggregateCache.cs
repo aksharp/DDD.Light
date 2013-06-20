@@ -2,9 +2,9 @@
 using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore.Contracts;
 
-namespace DDD.Light.AggregateStore.Contracts
+namespace DDD.Light.AggregateCache.Contracts
 {
-    public interface IAggregateStore
+    public interface IAggregateCache
     {
         void Configure(IEventStore eventStore);
         T GetById<T>(Guid id) where T : IAggregateRoot;
