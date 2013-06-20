@@ -39,6 +39,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{09CD37FF-B011-413B-BC0C-480F215D9518}"
 	ProjectSection(SolutionItems) = preProject
 		MIT-LICENSE.txt = MIT-LICENSE.txt
+		SharedAssemblyInfo.cs = SharedAssemblyInfo.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contracts", "Contracts", "{0C724F83-64A7-415D-94C7-A6D0FCB2E62D}"

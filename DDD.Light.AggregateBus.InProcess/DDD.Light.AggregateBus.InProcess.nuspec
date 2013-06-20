@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <package >
 	<metadata>
-		<id>DDD.Light.AggregateBus.InProcess</id>
-		<version>1.0.2-pre</version>
-		<title>DDD.Light.AggregateBus.InProcess</title>
-		<authors>Alex Khotyanov</authors>
-		<owners>Alex Khotyanov</owners>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
 		<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
 		<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
 		<requireLicenseAcceptance>true</requireLicenseAcceptance>
-		<description>InProcess implementation for AggregateBus</description>
-		<releaseNotes>Initial deploy</releaseNotes>
-		<copyright>MIT License</copyright>
+		<description>$description$</description>
+		<copyright>$copyright$</copyright>
 		<tags>DDD Light Aggregate Bus In Process DDD.Light.AggregateBus.InProcess</tags>
 	</metadata>
 </package>

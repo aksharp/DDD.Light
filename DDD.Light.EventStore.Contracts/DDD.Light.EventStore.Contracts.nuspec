@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>DDD.Light.EventStore.Contracts</id>
-    <version>1.0.2-pre</version>
-    <title>DDD.Light.EventStore.Contracts</title>
-	<authors>Alex Khotyanov</authors>
-	<owners>Alex Khotyanov</owners>
-	<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
-	<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>Contracts for Event Store</description>
-    <releaseNotes>Initial deploy</releaseNotes>
-    <copyright>MIT License</copyright>
-    <tags>DDD Light EventStore Contracts DDD.Light.EventStore.Contracts</tags>
-  </metadata>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<description>$description$</description>
+		<copyright>$copyright$</copyright>
+		<tags>DDD Light EventStore Contracts DDD.Light.EventStore.Contracts</tags>
+	</metadata>
 </package>

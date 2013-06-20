@@ -1,17 +1,16 @@
 <?xml version="1.0"?>
 <package >
-  <metadata>
-    <id>DDD.Light.CQRS.InProcess</id>
-    <version>1.0.2-pre</version>
-    <title>DDD.Light.CQRS.InProcess</title>
-	<authors>Alex Khotyanov</authors>
-	<owners>Alex Khotyanov</owners>
-	<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
-	<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
-    <requireLicenseAcceptance>true</requireLicenseAcceptance>
-    <description>In-Process implementation of CQRS contracts</description>
-    <releaseNotes>Initial deploy</releaseNotes>
-    <copyright>MIT License</copyright>
-    <tags>DDD Light CQRS InProcess DDD.Light.CQRS.InProcess</tags>
-  </metadata>
+	<metadata>
+		<id>$id$</id>
+		<version>$version$</version>
+		<title>$title$</title>
+		<authors>$author$</authors>
+		<owners>$author$</owners>
+		<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<description>$description$</description>
+		<copyright>$copyright$</copyright>
+		<tags>DDD Light CQRS InProcess DDD.Light.CQRS.InProcess</tags>
+	</metadata>
 </package>
