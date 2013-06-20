@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DDD.Light.CQRS.InProcess</id>
-    <version>1.0.1-pre</version>
+    <version>1.0.2-pre</version>
     <title>DDD.Light.CQRS.InProcess</title>
 	<authors>Alex Khotyanov</authors>
 	<owners>Alex Khotyanov</owners>

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>DDD.Light.AggregateBus.Contracts</id>
+		<version>1.0.2-pre</version>
+		<title>DDD.Light.AggregateBus.Contracts</title>
+		<authors>Alex Khotyanov</authors>
+		<owners>Alex Khotyanov</owners>
+		<licenseUrl>https://raw.github.com/aksharp/DDD.Light/master/MIT-LICENSE.txt</licenseUrl>
+		<projectUrl>https://github.com/aksharp/DDD.Light</projectUrl>
+		<requireLicenseAcceptance>true</requireLicenseAcceptance>
+		<description>Contracts for AggregateBus implementation</description>
+		<releaseNotes>Initial deploy</releaseNotes>
+		<copyright>MIT License</copyright>
+		<tags>DDD Light Aggregate Bus Contracts DDD.Light.AggregateBus.Contracts</tags>
+	</metadata>
+</package>

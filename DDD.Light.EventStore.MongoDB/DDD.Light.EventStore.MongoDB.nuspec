@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>DDD.Light.EventStore.MongoDB</id>
-    <version>1.0.0-pre</version>
+    <version>1.0.2-pre</version>
     <title>DDD.Light.EventStore.MongoDB</title>
 	<authors>Alex Khotyanov</authors>
 	<owners>Alex Khotyanov</owners>
