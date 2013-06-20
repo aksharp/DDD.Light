@@ -33,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DDD.Light.AggregateBus.InProcess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -61,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDD.Light.AggregateBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
+      <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
+      <Name>DDD.Light.AggregateBus.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
       <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
       <Name>DDD.Light.EventStore.Contracts</Name>
@@ -68,14 +73,6 @@
     <ProjectReference Include="..\DDD.Light.CQRS.Contracts\DDD.Light.CQRS.Contracts.csproj">
       <Project>{72223ABD-AA42-44E1-8E95-FD26036C13BD}</Project>
       <Name>DDD.Light.CQRS.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DDD.Light.EventStoreBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
-      <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
-      <Name>DDD.Light.AggregateBus.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DDD.Light.EventStoreBus.InProcess\DDD.Light.AggregateBus.InProcess.csproj">
-      <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
-      <Name>DDD.Light.AggregateBus.InProcess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>

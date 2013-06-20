@@ -92,14 +92,6 @@
       <Project>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</Project>
       <Name>DDD.Light.EventStore.MongoDB</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStoreBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
-      <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
-      <Name>DDD.Light.AggregateBus.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\DDD.Light.EventStoreBus.InProcess\DDD.Light.AggregateBus.InProcess.csproj">
-      <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
-      <Name>DDD.Light.AggregateBus.InProcess</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\DDD.Light.Repo.Contracts\DDD.Light.Repo.Contracts.csproj">
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
