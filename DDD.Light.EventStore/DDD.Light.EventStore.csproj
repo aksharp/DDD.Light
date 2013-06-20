@@ -45,7 +45,6 @@
   <ItemGroup>
     <Compile Include="JsonEventSerializationStrategy.cs" />
     <Compile Include="EventStore.cs" />
-    <Compile Include="MongoStorageStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +62,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="DDD.Light.EventStore.MongoDB.nuspec" />
+    <None Include="DDD.Light.EventStore.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -6,7 +6,6 @@ using DDD.Light.AggregateCache.InMemory;
 using DDD.Light.CQRS.InProcess;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
-using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Realtor.API.Command.Realtor;
 using DDD.Light.Realtor.REST.API.Bootstrap;
 using DDD.Light.Repo.MongoDB;

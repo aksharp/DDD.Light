@@ -2,7 +2,7 @@
 using DDD.Light.EventStore.Contracts;
 using Newtonsoft.Json;
 
-namespace DDD.Light.EventStore.MongoDB
+namespace DDD.Light.EventStore
 {
     public class JsonEventSerializationStrategy : IEventSerializationStrategy
     {

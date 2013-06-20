@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
 using DDD.Light.AggregateCache.InMemory;
+using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
-using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Repo.InMemory;
 using DDD.Light.Repo.MongoDB;
 using NUnit.Framework;

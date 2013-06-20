@@ -216,7 +216,7 @@
       <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
       <Name>DDD.Light.EventStore.Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\DDD.Light.EventStore.MongoDB\DDD.Light.EventStore.csproj">
+    <ProjectReference Include="..\..\..\DDD.Light.EventStore\DDD.Light.EventStore.csproj">
       <Project>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</Project>
       <Name>DDD.Light.EventStore</Name>
     </ProjectReference>

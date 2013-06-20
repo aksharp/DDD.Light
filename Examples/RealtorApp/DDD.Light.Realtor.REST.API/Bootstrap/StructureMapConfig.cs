@@ -2,7 +2,6 @@
 using DDD.Light.CQRS.InProcess;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
-using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Realtor.API.Query;
 using DDD.Light.Realtor.API.Query.Contract;
 using DDD.Light.Realtor.API.Query.Model;
