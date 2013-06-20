@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.EventStore.Contracts
 {
@@ -9,8 +10,9 @@ namespace DDD.Light.EventStore.Contracts
         T GetById<T>(Guid id, DateTime until);
         object GetById(Guid id);
         void Save(AggregateEvent aggregateEvent);
-        void Configure(IStorageStrategy storageStrategy, IEventSerializationStrategy serializationStrategy);
+        void Configure(IRepository<AggregateEvent> repo, IEventSerializationStrategy serializationStrategy);
         IEnumerable<AggregateEvent> GetAll();
         IEnumerable<AggregateEvent> GetAll(DateTime until);
+        long Count();
     }
 }

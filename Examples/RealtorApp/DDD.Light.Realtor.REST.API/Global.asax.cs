@@ -4,10 +4,12 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using DDD.Light.AggregateCache.InMemory;
 using DDD.Light.CQRS.InProcess;
+using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Realtor.API.Command.Realtor;
 using DDD.Light.Realtor.REST.API.Bootstrap;
+using DDD.Light.Repo.MongoDB;
 using StructureMap;
 
 namespace DDD.Light.Realtor.REST.API
@@ -26,14 +28,13 @@ namespace DDD.Light.Realtor.REST.API
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             SetUpIoC();
 
-            var mongoStorageStrategy = new MongoStorageStrategy("mongodb://localhost", "DDD_Light_Realtor", "EventStore");
-            MongoEventStore.Instance.Configure(mongoStorageStrategy, new JsonEventSerializationStrategy());
-            EventBus.Instance.Configure(MongoEventStore.Instance, new JsonEventSerializationStrategy());
+            EventStore.EventStore.Instance.Configure(new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Realtor", "EventStore"), new JsonEventSerializationStrategy());
+            EventBus.Instance.Configure(EventStore.EventStore.Instance, new JsonEventSerializationStrategy());
             
-            InMemoryAggregateCache.Instance.Configure(MongoEventStore.Instance);
+            InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
             AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance);
 
-            InitApp(MongoEventStore.Instance);
+            InitApp(EventStore.EventStore.Instance);
         }
 
         private static void InitApp(IEventStore eventStore)

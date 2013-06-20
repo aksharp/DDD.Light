@@ -33,7 +33,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DDD.Light.AggregateBus.InProcess, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="log4net">
       <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
     </Reference>
@@ -65,6 +64,10 @@
     <ProjectReference Include="..\DDD.Light.AggregateBus.Contracts\DDD.Light.AggregateBus.Contracts.csproj">
       <Project>{F8AB8E9D-8208-4CDC-B6F6-DD9E4CF72B8E}</Project>
       <Name>DDD.Light.AggregateBus.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DDD.Light.AggregateBus.InProcess\DDD.Light.AggregateBus.InProcess.csproj">
+      <Project>{5F931A52-5208-400C-AAB9-AA50E36F09EC}</Project>
+      <Name>DDD.Light.AggregateBus.InProcess</Name>
     </ProjectReference>
     <ProjectReference Include="..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
       <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>

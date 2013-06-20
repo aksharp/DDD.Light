@@ -1,5 +1,6 @@
 ﻿using DDD.Light.CQRS.Contracts;
 using DDD.Light.CQRS.InProcess;
+using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.EventStore.MongoDB;
 using DDD.Light.Realtor.API.Query;
@@ -32,7 +33,7 @@ namespace DDD.Light.Realtor.REST.API.Bootstrap
                 );
             container.Configure(x => x.For<IActiveListings>().Use<ActiveListings>());
             container.Configure(x => x.For<ICommandBus>().Use(CommandBus.Instance));
-            container.Configure(x => x.For<IEventStore>().Use(MongoEventStore.Instance));
+            container.Configure(x => x.For<IEventStore>().Use(EventStore.EventStore.Instance));
             return container;
         }
     }

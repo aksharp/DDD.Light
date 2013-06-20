@@ -33,7 +33,7 @@ namespace DDD.Light.CQRS.InProcess
         {
             var publishMethod = typeof (AggregateBus.InProcess.AggregateBus).GetMethod("Publish");
             var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TEvent)});
-            genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {@event as Object});
+            genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {Id, @event as Object});
         }
 
         private void ApplyEventOnAggregate<TEvent>(TEvent @event)

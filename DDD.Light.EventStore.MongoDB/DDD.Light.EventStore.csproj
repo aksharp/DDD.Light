@@ -8,8 +8,8 @@
     <ProjectGuid>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.EventStore.MongoDB</RootNamespace>
-    <AssemblyName>DDD.Light.EventStore.MongoDB</AssemblyName>
+    <RootNamespace>DDD.Light.EventStore</RootNamespace>
+    <AssemblyName>DDD.Light.EventStore</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="JsonEventSerializationStrategy.cs" />
-    <Compile Include="MongoEventStore.cs" />
+    <Compile Include="EventStore.cs" />
     <Compile Include="MongoStorageStrategy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -1,5 +1,6 @@
 ﻿using System;
 using DDD.Light.CQRS.InProcess;
+using DDD.Light.EventStore.Contracts;
 using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.MongoDB;
 
@@ -10,9 +11,8 @@ namespace DDD.Light.EventStore.MongoDB.Example
         static void Main(string[] args)
         {
             var personReadModel = new MongoRepository<PersonDTO>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "Person_ReadModel");
-            var mongoConfigStorageStrategy = new MongoStorageStrategy("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "EventStore");
-            EventStore.MongoDB.MongoEventStore.Instance.Configure(mongoConfigStorageStrategy, new JsonEventSerializationStrategy());
-            EventBus.Instance.Configure(EventStore.MongoDB.MongoEventStore.Instance, new JsonEventSerializationStrategy());
+            EventStore.Instance.Configure(new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "EventStore"), new JsonEventSerializationStrategy());
+            EventBus.Instance.Configure(EventStore.Instance, new JsonEventSerializationStrategy());
 
             EventBus.Instance.Subscribe((PersonCreated personCreated) =>
                 {                    
@@ -73,7 +73,7 @@ namespace DDD.Light.EventStore.MongoDB.Example
 
             Console.Write("Enter person's Name: ");
             var renamedName = Console.ReadLine();
-            person = EventStore.MongoDB.MongoEventStore.Instance.GetById<Person>(id); 
+            person = EventStore.Instance.GetById<Person>(id); 
             //can also do this: 
             // person = MongoEventStore.Instance.GetById(id) as Person;
             person.NameMe(renamedName);

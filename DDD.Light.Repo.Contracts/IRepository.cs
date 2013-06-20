@@ -5,7 +5,6 @@ using System.Linq;
 namespace DDD.Light.Repo.Contracts
 {
     public interface IRepository<T>
-        where T : IEntity
     {
         T GetById(Guid id);
         IEnumerable<T> GetAll();
@@ -15,5 +14,6 @@ namespace DDD.Light.Repo.Contracts
         void Delete(Guid id);
         void Delete(T item);
         void DeleteAll();
+        long Count();
     }
 }

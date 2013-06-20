@@ -61,5 +61,9 @@ namespace DDD.Light.Repo.MongoDB
             _collection.RemoveAll();
         }
 
+        public long Count()
+        {
+            return _collection.Count();
+        }
     }
 }

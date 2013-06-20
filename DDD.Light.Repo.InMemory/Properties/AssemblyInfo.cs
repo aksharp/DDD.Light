@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.EventStore")]
-[assembly: AssemblyDescription("DDD.Light.EventStore")]
+[assembly: AssemblyTitle("DDD.Light.Repo.InMemory")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("https://github.com/aksharp")]
-[assembly: AssemblyProduct("DDD.Light.EventStore")]
-[assembly: AssemblyCopyright("MIT License")]
+[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyProduct("DDD.Light.Repo.InMemory")]
+[assembly: AssemblyCopyright("Copyright © Microsoft 2013")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("32c7584f-f3a8-45ee-89ee-5a1faa9bb545")]
+[assembly: Guid("16e29d42-f079-463f-a63f-5dd03fdfabb2")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.2.0")]
-[assembly: AssemblyFileVersion("1.0.2.0")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]

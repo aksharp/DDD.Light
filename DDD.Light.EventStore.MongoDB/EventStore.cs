@@ -4,13 +4,12 @@ using System.Linq;
 using System.Reflection;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.Repo.Contracts;
-using DDD.Light.Repo.MongoDB;
 
-namespace DDD.Light.EventStore.MongoDB
+namespace DDD.Light.EventStore
 {
-    public class MongoEventStore : IEventStore
+    public class EventStore : IEventStore
     {
-        private static volatile MongoEventStore _instance;
+        private static volatile EventStore _instance;
         private IRepository<AggregateEvent> _repo;
         private static object token = new Object();
         private IEventSerializationStrategy _serializationStrategy;
@@ -24,18 +23,16 @@ namespace DDD.Light.EventStore.MongoDB
                     lock (token)
                     {
                         if (_instance == null)
-                            _instance = new MongoEventStore();
+                            _instance = new EventStore();
                     }
                 }
                 return _instance;
             }
         }
 
-        public void Configure(IStorageStrategy storageStrategy, IEventSerializationStrategy serializationStrategy)
+        public void Configure(IRepository<AggregateEvent> repository, IEventSerializationStrategy serializationStrategy)
         {
-            var config = storageStrategy as MongoStorageStrategy;
-            if (config == null) throw new Exception("Invalid MongoStorageStrategy");
-            _repo = new MongoRepository<AggregateEvent>(config.ConnectionString, config.DatabaseName, config.CollectionName);
+            _repo = repository;
             _serializationStrategy = serializationStrategy;
         }
 
@@ -49,49 +46,14 @@ namespace DDD.Light.EventStore.MongoDB
             return _repo.Get().Where(x => DateTime.Compare(x.CreatedOn, until) <= 0);
         }
 
-//        public void Subscribe(IEntity aggregate)
-//        {
-//            _bus.Subscribe(aggregate);
-//        }
-
-//        public void SubscribeSince(IEntity aggregate, DateTime since)
-//        {
-//            VerifyRepoIsConfigured();
-//
-//            _repo.Get().Where(x => x.AggregateId == aggregate.Id && DateTime.Compare(x.CreatedOn, since) >= 0).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
-//            {
-//                var eventType = Type.GetType(aggregateEvent.EventType);
-//                var @event = _serializerStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
-//                var method = aggregate.GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { eventType }, null);
-//                method.Invoke(aggregate, new[] { @event });
-//            });
-//
-//            Subscribe(aggregate);
-//        }
-
-//        public void Publish<T>(Type aggregateType, Guid aggregateId, T @event)
-//        {
-//            _bus.Publish(aggregateType, aggregateId, @event);
-//        }
-
-
-//        public T GetSubscribedById<T>(Guid id) where T : IEntity
-//        {
-//            var aggregate = GetById<T>(id);
-//            _bus.Subscribe(aggregate);
-//            return aggregate;
-//        }
-//
-//        public object GetSubscribedById(Guid id)
-//        {
-//            var aggregate = GetById(id) as IEntity;
-//            _bus.Subscribe(aggregate);
-//            return aggregate;
-//        }
+        public long Count()
+        {
+            return _repo.Count();
+        }
 
         private void VerifyRepoIsConfigured()
         {
-            if (_repo == null) throw new Exception("Mongo Event Store Repository is not configured. Use MongoEventStore.Instance.Configure(connectionString, databaseName, collectionName); to configure");
+            if (_repo == null) throw new Exception("Event Store Repository is not configured. Use EventStore.Instance.Configure(); to configure");
         }
 
         public T GetById<T>(Guid id) 

@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Reflection;
 using DDD.Light.CQRS.InProcess;
+using DDD.Light.EventStore;
+using DDD.Light.EventStore.Contracts;
 using DDD.Light.EventStore.MongoDB;
+using DDD.Light.Repo.MongoDB;
 using log4net;
 using log4net.Config;
 
@@ -13,9 +16,8 @@ namespace DDD.Light.Messaging.Example
         {
             XmlConfigurator.Configure();
             var log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-            var mongoConfigStorageStrategy = new MongoStorageStrategy("mongodb://localhost", "DDD_Light_Messaging_Example", "EventStore");
-            MongoEventStore.Instance.Configure(mongoConfigStorageStrategy, new JsonEventSerializationStrategy());
-            EventBus.Instance.Configure(MongoEventStore.Instance, new JsonEventSerializationStrategy());
+            EventStore.EventStore.Instance.Configure(new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Messaging_Example", "EventStore"), new JsonEventSerializationStrategy());
+            EventBus.Instance.Configure(EventStore.EventStore.Instance, new JsonEventSerializationStrategy());
 
 
             log.Info("------- START ---------");
