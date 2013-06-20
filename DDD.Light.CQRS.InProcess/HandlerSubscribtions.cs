@@ -14,8 +14,25 @@ namespace DDD.Light.CQRS.InProcess
                      .ToList()
                      .ForEach(t =>
                          {
-                             var handler = getInstance.Invoke(t);
-                             t.GetMethod("Subscribe").Invoke(handler, null);
+                             object handler;
+                             try
+                             {
+                                 handler = getInstance.Invoke(t);
+                             }
+                             catch (Exception ex)
+                             {
+                                 throw new Exception(string.Format("SubscribeAllHandlers could not getInstance of type {0} resulting in esception message {1}", t, ex.Message));
+                             }
+                             
+                             try
+                             {
+                                 t.GetMethod("Subscribe").Invoke(handler, null);
+                             }
+                             catch (Exception ex)
+                             {
+                                 throw new Exception(string.Format("SubscribeAllHandlers could not invoke Subscribe method on type {0} resulting in esception message {1}", t, ex.Message));
+                             }
+
                          });
         }               
     }

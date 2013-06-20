@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using DDD.Light.AggregateCache.InMemory;
+using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.Repo.InMemory;
@@ -34,6 +35,22 @@ namespace DDD.Light.CQRS.InProcess.Tests
             Message = message;
         }
     }
+
+    public class SomeAggregateRootCreatedHandler : EventHandler<SomeAggregateRootCreated>
+    {
+        public override void Handle(SomeAggregateRootCreated @event)
+        {
+            // no op
+        }
+    }
+
+    public class MockHandler : IHandler
+    {
+        public void Subscribe()
+        {
+            // no op
+        }
+    }
     
     [TestFixture]
     public class AggregateRootTests
@@ -52,6 +69,21 @@ namespace DDD.Light.CQRS.InProcess.Tests
             inMemoryAggregateEventsRepository.DeleteAll();
             EventStore.EventStore.Instance.Configure(inMemoryAggregateEventsRepository, serializationStrategy);
             EventBus.Instance.Configure(EventStore.EventStore.Instance, serializationStrategy);
+
+            Func<Type, object> getInstance = type => 
+                {
+                    if (type == typeof (SomeAggregateRootCreatedHandler))
+                    {
+                        return new SomeAggregateRootCreatedHandler();
+                    }
+                    if (type == typeof(MockHandler))
+                    {
+                        return new MockHandler();
+                    }
+
+                    throw new Exception("type " + type.ToString() + " could not be resolved");
+                };
+            HandlerSubscribtions.SubscribeAllHandlers(getInstance);
 
             InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
             AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance);
