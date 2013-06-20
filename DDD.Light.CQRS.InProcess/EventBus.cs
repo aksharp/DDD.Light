@@ -61,22 +61,36 @@ namespace DDD.Light.CQRS.InProcess
 
         private void HandleEvent<T>(T @event)
         {
-            if (!Equals(@event, default(T)))
-                new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
+            try
+            {
+                if (!Equals(@event, default(T)))
+                    new Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit();
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("Transaction<T>(@event, EventHandlersDatabase<T>.Instance.Get().ToList()).Commit() failed");
+            }
         }
 
         private void StoreEvent<T>(Type aggregateType, Guid aggregateId, T @event)
         {
-            if (_eventStore == null) throw new Exception("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore);' to configure it.");
-            _eventStore.Save(new AggregateEvent
-                {
-                    Id = Guid.NewGuid(),
-                    AggregateId = aggregateId,
-                    AggregateType = aggregateType.AssemblyQualifiedName,
-                    EventType = typeof(T).AssemblyQualifiedName,
-                    CreatedOn = DateTime.UtcNow,
-                    SerializedEvent = _eventSerializationStrategy.SerializeEvent(@event)
-                });
+            if (_eventStore == null) throw new ApplicationException("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore, eventSerializationStrategy);' to configure it.");
+            try
+            {
+                _eventStore.Save(new AggregateEvent
+                    {
+                        Id = Guid.NewGuid(),
+                        AggregateId = aggregateId,
+                        AggregateType = aggregateType.AssemblyQualifiedName,
+                        EventType = typeof (T).AssemblyQualifiedName,
+                        CreatedOn = DateTime.UtcNow,
+                        SerializedEvent = _eventSerializationStrategy.SerializeEvent(@event)
+                    });
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("DDD.Light.CQRS.InProcess.EventBus -> StoreEvent<T>: Saving to event store failed", ex);
+            }
         }
 
         public IEventStore GetEventStore()

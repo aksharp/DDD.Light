@@ -51,7 +51,10 @@ namespace DDD.Light.AggregateCache.InMemory
         public void Handle<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot
         {
             var aggregate = AggregateDatabase<TAggregate>.Instance.GetById(aggregateId);
-            ApplyEvent(@event, aggregate);
+            if (Equals(aggregate, default(TAggregate)))
+                aggregate = _eventStore.GetById<TAggregate>(aggregateId);
+            if (!Equals(aggregate, default(TAggregate))) 
+                ApplyEvent(@event, aggregate);
         }
 
         private static void ApplyEvent<TAggregate, TEvent>(TEvent @event, TAggregate aggregate) where TAggregate : IAggregateRoot

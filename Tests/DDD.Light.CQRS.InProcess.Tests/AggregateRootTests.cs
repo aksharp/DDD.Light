@@ -5,7 +5,6 @@ using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
 using DDD.Light.Repo.InMemory;
-using DDD.Light.Repo.MongoDB;
 using NUnit.Framework;
 
 namespace DDD.Light.CQRS.InProcess.Tests
@@ -15,7 +14,7 @@ namespace DDD.Light.CQRS.InProcess.Tests
         private string _message;
         private SomeAggregateRoot(){}
 
-        public SomeAggregateRoot(string message)
+        public SomeAggregateRoot(Guid id, string message) : base(id)
         {
             PublishAndApplyEvent(new SomeAggregateRootCreated(message));
         }
@@ -62,11 +61,12 @@ namespace DDD.Light.CQRS.InProcess.Tests
             var serializationStrategy = new JsonEventSerializationStrategy();
 
             // if you want to use real database like mongo, use next two lines to configure and then use it to configure event store
-            var mongoAggregateEventsRepository = new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Tests_EventStore", "EventStore");
-            mongoAggregateEventsRepository.DeleteAll();
+//            var mongoAggregateEventsRepository = new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Tests_EventStore", "EventStore");
+//            mongoAggregateEventsRepository.DeleteAll();
 
             var inMemoryAggregateEventsRepository = new InMemoryRepository<AggregateEvent>();
             inMemoryAggregateEventsRepository.DeleteAll();
+
             EventStore.EventStore.Instance.Configure(inMemoryAggregateEventsRepository, serializationStrategy);
             EventBus.Instance.Configure(EventStore.EventStore.Instance, serializationStrategy);
 
@@ -86,13 +86,14 @@ namespace DDD.Light.CQRS.InProcess.Tests
             HandlerSubscribtions.SubscribeAllHandlers(getInstance);
 
             InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
-            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance);
+            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, InMemoryAggregateCache.Instance);
 
             const string createdMessage = "hello, I am created!";
 
+            var id = Guid.NewGuid();
 
             // Act
-            var ar = new SomeAggregateRoot(createdMessage);
+            var ar = new SomeAggregateRoot(id, createdMessage);
 
             // Assert
             Assert.AreEqual(1, EventStore.EventStore.Instance.Count());

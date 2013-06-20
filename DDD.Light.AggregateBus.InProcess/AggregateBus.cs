@@ -29,24 +29,20 @@ namespace DDD.Light.AggregateBus.InProcess
             }
         }
 
-        public void Configure(IEventBus eventBus)
+        public void Configure(IEventBus eventBus, IAggregateCache aggregateCache)
         {
             _eventBus = eventBus;
+            _registeredAggregateCaches.Add(aggregateCache);
         }
 
         private AggregateBus()
         {
             _registeredAggregateCaches = new List<IAggregateCache>();
         }
-
-        public void Subscribe(IAggregateCache aggregateCache)
-        {
-            _registeredAggregateCaches.Add(aggregateCache);
-        }
                
         public void Publish<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot
         {
-            if (_eventBus == null) throw new Exception("EventBus is not configured");
+            if (_eventBus == null) throw new ApplicationException("AggregateBus -> Publish failed. EventBus is not configured");
             _eventBus.Publish<TAggregate, TEvent>(aggregateId, @event);
             _registeredAggregateCaches.ForEach(aggregateCache => aggregateCache.Handle<TAggregate, TEvent>(aggregateId, @event));
         }

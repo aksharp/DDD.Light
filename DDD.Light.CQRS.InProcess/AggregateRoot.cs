@@ -31,15 +31,29 @@ namespace DDD.Light.CQRS.InProcess
 
         private void PublishOnAggregateBusThroughReflection<TEvent>(TEvent @event)
         {
-            var publishMethod = typeof (AggregateBus.InProcess.AggregateBus).GetMethod("Publish");
-            var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TEvent)});
-            genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {Id, @event as Object});
+            try
+            {
+                var publishMethod = typeof (AggregateBus.InProcess.AggregateBus).GetMethod("Publish");
+                var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TEvent)});
+                genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {Id, @event as Object});
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(string.Format("DDD.Light.CQRS.InProcess.AggregateRoot -> PublishOnAggregateBusThroughReflection: Failed to get and invoke Publish method on AggregateBus.Instance. Event type {0} did not get published", typeof(TEvent)), ex);
+            }
         }
 
         private void ApplyEventOnAggregate<TEvent>(TEvent @event)
         {
-            var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] { typeof(TEvent) }, null);
-            method.Invoke(this, new[] {@event as Object});
+            try
+            {
+                var method = GetType().GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] {typeof (TEvent)}, null);
+                method.Invoke(this, new[] {@event as Object});
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException(string.Format("DDD.Light.CQRS.InProcess.AggregateRoot -> ApplyEventOnAggregate: Failed to apply event on aggregate type: {0} through reflection. Event type {1} did not get applied", GetType(), typeof(TEvent)), ex);
+            }
         }
     }
 }

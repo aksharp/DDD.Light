@@ -31,7 +31,7 @@ namespace DDD.Light.Realtor.REST.API
             EventBus.Instance.Configure(EventStore.EventStore.Instance, new JsonEventSerializationStrategy());
             
             InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
-            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance);
+            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, InMemoryAggregateCache.Instance);
 
             InitApp(EventStore.EventStore.Instance);
         }

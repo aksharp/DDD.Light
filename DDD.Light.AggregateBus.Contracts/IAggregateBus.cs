@@ -6,8 +6,7 @@ namespace DDD.Light.AggregateBus.Contracts
 {
     public interface IAggregateBus
     {
-        void Subscribe(IAggregateCache aggregateCache);
+        void Configure(IEventBus eventBus, IAggregateCache aggregateCache);
         void Publish<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot;
-        void Configure(IEventBus eventBus);
     }
 }
