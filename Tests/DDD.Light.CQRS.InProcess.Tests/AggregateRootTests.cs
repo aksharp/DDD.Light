@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using DDD.Light.AggregateCache.InMemory;
 using DDD.Light.CQRS.Contracts;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
+using DDD.Light.Repo.Contracts;
 using DDD.Light.Repo.InMemory;
 using NUnit.Framework;
 
@@ -80,13 +80,16 @@ namespace DDD.Light.CQRS.InProcess.Tests
                     {
                         return new MockHandler();
                     }
-
+                    if (type == typeof(IRepository<SomeAggregateRoot>))
+                    {
+                        return new InMemoryRepository<SomeAggregateRoot>();
+                    }
                     throw new Exception("type " + type.ToString() + " could not be resolved");
                 };
             HandlerSubscribtions.SubscribeAllHandlers(getInstance);
 
-            InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
-            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, InMemoryAggregateCache.Instance);
+            AggregateCache.AggregateCache.Instance.Configure(EventStore.EventStore.Instance, getInstance);
+            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, AggregateCache.AggregateCache.Instance);
 
             const string createdMessage = "hello, I am created!";
 

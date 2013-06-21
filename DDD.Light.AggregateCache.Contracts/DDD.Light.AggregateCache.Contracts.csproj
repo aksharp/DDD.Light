@@ -44,7 +44,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="IAggregateCache.cs" />
-    <Compile Include="IAggregateDatabase.cs" />
+    <Compile Include="IAggregateRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

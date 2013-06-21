@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DDD.Light.AggregateCache.InMemory")]
-[assembly: AssemblyDescription("DDD.Light.AggregateCache.InMemory")]
+[assembly: AssemblyTitle("DDD.Light.AggregateCache")]
+[assembly: AssemblyDescription("DDD.Light.AggregateCache")]
 
 
 // Setting ComVisible to false makes the types in this assembly not visible 

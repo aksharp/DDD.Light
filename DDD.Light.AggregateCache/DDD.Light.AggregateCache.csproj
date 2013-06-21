@@ -8,8 +8,8 @@
     <ProjectGuid>{FD19D68A-20F0-4A55-AAD4-504D44A3592D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.AggregateCache.InMemory</RootNamespace>
-    <AssemblyName>DDD.Light.AggregateCache.InMemory</AssemblyName>
+    <RootNamespace>DDD.Light.AggregateCache</RootNamespace>
+    <AssemblyName>DDD.Light.AggregateCache</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -43,8 +43,7 @@
     <Compile Include="..\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="AggregateDatabase.cs" />
-    <Compile Include="InMemoryAggregateCache.cs" />
+    <Compile Include="AggregateCache.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,9 +67,6 @@
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DDD.Light.AggregateCache.InMemory.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

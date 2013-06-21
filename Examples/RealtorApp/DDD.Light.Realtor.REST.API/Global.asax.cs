@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using DDD.Light.AggregateCache.InMemory;
+using DDD.Light.AggregateCache;
 using DDD.Light.CQRS.InProcess;
 using DDD.Light.EventStore;
 using DDD.Light.EventStore.Contracts;
@@ -29,9 +29,9 @@ namespace DDD.Light.Realtor.REST.API
 
             EventStore.EventStore.Instance.Configure(new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Realtor", "EventStore"), new JsonEventSerializationStrategy());
             EventBus.Instance.Configure(EventStore.EventStore.Instance, new JsonEventSerializationStrategy());
-            
-            InMemoryAggregateCache.Instance.Configure(EventStore.EventStore.Instance);
-            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, InMemoryAggregateCache.Instance);
+
+            AggregateCache.AggregateCache.Instance.Configure(EventStore.EventStore.Instance, ObjectFactory.GetInstance);
+            AggregateBus.InProcess.AggregateBus.Instance.Configure(EventBus.Instance, AggregateCache.AggregateCache.Instance);
 
             InitApp(EventStore.EventStore.Instance);
         }
