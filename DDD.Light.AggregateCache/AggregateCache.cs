@@ -64,6 +64,11 @@ namespace DDD.Light.AggregateCache
                 ApplyEvent(@event, aggregate);
         }
 
+        public void Clear(Guid aggregateId, Type aggregateType)
+        {
+            // todo: get repository of Type and delete by aggregateId
+        }
+
         private static void ApplyEvent<TAggregate, TEvent>(TEvent @event, TAggregate aggregate) where TAggregate : IAggregateRoot
         {
             var eventType = typeof (TEvent);

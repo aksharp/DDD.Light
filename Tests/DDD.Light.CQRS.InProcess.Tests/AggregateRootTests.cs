@@ -68,7 +68,7 @@ namespace DDD.Light.CQRS.InProcess.Tests
             inMemoryAggregateEventsRepository.DeleteAll();
 
             EventStore.EventStore.Instance.Configure(inMemoryAggregateEventsRepository, serializationStrategy);
-            EventBus.Instance.Configure(EventStore.EventStore.Instance, serializationStrategy);
+            EventBus.Instance.Configure(EventStore.EventStore.Instance, serializationStrategy, false);
 
             Func<Type, object> getInstance = type => 
                 {

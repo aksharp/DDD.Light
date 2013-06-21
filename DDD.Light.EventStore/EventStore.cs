@@ -51,6 +51,13 @@ namespace DDD.Light.EventStore
             return _repo.Count();
         }
 
+        public DateTime LatestEventTimestamp(Guid aggregateId)
+        {
+            VerifyRepoIsConfigured();
+            // todo: check for null in case this is first event for this aggregate
+            return _repo.Get().Where(x => x.AggregateId == aggregateId).OrderByDescending(x => x.CreatedOn).First().CreatedOn;
+        }
+
         private void VerifyRepoIsConfigured()
         {
             if (_repo == null) throw new Exception("Event Store Repository is not configured. Use EventStore.Instance.Configure(); to configure");

@@ -12,6 +12,7 @@ namespace DDD.Light.CQRS.InProcess
         private static object token = new Object();
         private IEventStore _eventStore;
         private IEventSerializationStrategy _eventSerializationStrategy;
+        private bool _checkLatestEventTimestampPriorToSavingToEventStore;
 
         public static IEventBus Instance
         {
@@ -53,10 +54,12 @@ namespace DDD.Light.CQRS.InProcess
             HandleEvent(@event);
         }
 
-        public void Configure(IEventStore eventStore, IEventSerializationStrategy eventSerializationStrategy)
+        //todo: make reason behind checkLatestEventTimestampPriorToSavingToEventStore less ambiguious
+        public void Configure(IEventStore eventStore, IEventSerializationStrategy eventSerializationStrategy, bool checkLatestEventTimestampPriorToSavingToEventStore)
         {
             _eventStore = eventStore;
             _eventSerializationStrategy = eventSerializationStrategy;
+            _checkLatestEventTimestampPriorToSavingToEventStore = checkLatestEventTimestampPriorToSavingToEventStore;
         }
 
         private void HandleEvent<T>(T @event)
@@ -77,6 +80,16 @@ namespace DDD.Light.CQRS.InProcess
             if (_eventStore == null) throw new ApplicationException("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore, eventSerializationStrategy);' to configure it.");
             try
             {
+                if (_checkLatestEventTimestampPriorToSavingToEventStore)
+                {
+                    //todo: in try catch
+                    var latestCreatedOnInEventStore = _eventStore.LatestEventTimestamp(aggregateId);
+                    if (DateTime.Compare(DateTime.UtcNow, latestCreatedOnInEventStore) < 0)
+                        //earlier than in event store
+                    {
+                        Publish(GetType(), aggregateId, new AggregateCacheCleared(aggregateId, aggregateType));
+                    }
+                }
                 _eventStore.Save(new AggregateEvent
                     {
                         Id = Guid.NewGuid(),

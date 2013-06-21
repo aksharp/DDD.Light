@@ -33,6 +33,8 @@ namespace DDD.Light.AggregateBus.InProcess
         {
             _eventBus = eventBus;
             _registeredAggregateCaches.Add(aggregateCache);
+
+            eventBus.Subscribe((AggregateCacheCleared e) => aggregateCache.Clear(e.AggregateId, e.AggregateType));
         }
 
         private AggregateBus()

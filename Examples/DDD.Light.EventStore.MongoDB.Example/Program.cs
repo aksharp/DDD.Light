@@ -12,7 +12,7 @@ namespace DDD.Light.EventStore.MongoDB.Example
         {
             var personReadModel = new MongoRepository<PersonDTO>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "Person_ReadModel");
             EventStore.Instance.Configure(new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_MongoEventStore_Example", "EventStore"), new JsonEventSerializationStrategy());
-            EventBus.Instance.Configure(EventStore.Instance, new JsonEventSerializationStrategy());
+            EventBus.Instance.Configure(EventStore.Instance, new JsonEventSerializationStrategy(), false);
 
             EventBus.Instance.Subscribe((PersonCreated personCreated) =>
                 {                    
