@@ -4,12 +4,14 @@ namespace DDD.Light.CQRS.Contracts
 {
     public class AggregateCacheCleared
     {
-        public Guid AggregateId { get; private set; }
+        public string SerializedAggregateId { get; private set; }
+        public Type AggregateIdType { get; private set; }
         public Type AggregateType { get; private set; }
 
-        public AggregateCacheCleared(Guid aggregateId, Type aggregateType)
+        public AggregateCacheCleared(string serializedAggregateId, Type aggregateIdType, Type aggregateType)
         {
-            AggregateId = aggregateId;
+            SerializedAggregateId = serializedAggregateId;
+            AggregateIdType = aggregateIdType;
             AggregateType = aggregateType;
         }
     }

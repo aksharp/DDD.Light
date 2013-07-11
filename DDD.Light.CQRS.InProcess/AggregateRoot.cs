@@ -5,21 +5,21 @@ using DDD.Light.Repo.Contracts;
 
 namespace DDD.Light.CQRS.InProcess
 {
-    public abstract class AggregateRoot : Entity, IAggregateRoot
+    public abstract class AggregateRoot<TId> : Entity<TId>, IAggregateRoot<TId>
     {
         protected AggregateRoot()
         {
             
         }
 
-        protected AggregateRoot(Guid id)
+        protected AggregateRoot(TId id)
         {
             Id = id;
         }
 
-        public void PublishAndApplyEvent<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot
+        public void PublishAndApplyEvent<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot<TId>
         {
-            AggregateBus.InProcess.AggregateBus.Instance.Publish<TAggregate, TEvent>(Id, @event);
+            AggregateBus.InProcess.AggregateBus.Instance.Publish<TAggregate, TId, TEvent>(Id, @event);
             ApplyEventOnAggregate(@event);
         }
 
@@ -34,7 +34,7 @@ namespace DDD.Light.CQRS.InProcess
             try
             {
                 var publishMethod = typeof (AggregateBus.InProcess.AggregateBus).GetMethod("Publish");
-                var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TEvent)});
+                var genericPublishMethod = publishMethod.MakeGenericMethod(new[] {GetType(), typeof (TId), typeof (TEvent)});
                 genericPublishMethod.Invoke(AggregateBus.InProcess.AggregateBus.Instance, new[] {Id, @event as Object});
             }
             catch (Exception ex)

@@ -42,13 +42,13 @@ namespace DDD.Light.CQRS.InProcess
             EventHandlersDatabase<T>.Instance.Add(handleMethod);
         }
 
-        public void Publish<T>(Type aggregateType, Guid aggregateId, T @event)
+        public void Publish<TId, TEvent>(Type aggregateType, TId aggregateId, TEvent @event)
         {
             StoreEvent(aggregateType, aggregateId, @event);
             HandleEvent(@event);
         }
 
-        public void Publish<TAggregate, T>(Guid aggregateId, T @event)
+        public void Publish<TAggregate, TId, T>(TId aggregateId, T @event)
         {
             StoreEvent(typeof(TAggregate), aggregateId, @event);
             HandleEvent(@event);
@@ -75,29 +75,30 @@ namespace DDD.Light.CQRS.InProcess
             }
         }
 
-        private void StoreEvent<T>(Type aggregateType, Guid aggregateId, T @event)
+        private void StoreEvent<TId, TEvent>(Type aggregateType, TId aggregateId, TEvent @event)
         {
             if (_eventStore == null) throw new ApplicationException("Event Store is not configured. Use 'EventBus.Instance.Configure(eventStore, eventSerializationStrategy);' to configure it.");
             try
             {
                 if (_checkLatestEventTimestampPriorToSavingToEventStore)
                 {
-                    //todo: in try catch
                     var latestCreatedOnInEventStore = _eventStore.LatestEventTimestamp(aggregateId);
                     if (DateTime.Compare(DateTime.UtcNow, latestCreatedOnInEventStore) < 0)
                         //earlier than in event store
                     {
-                        Publish(GetType(), aggregateId, new AggregateCacheCleared(aggregateId, aggregateType));
+                        var serializedAggregateId = _eventSerializationStrategy.SerializeEvent(aggregateId);
+                        Publish(GetType(), aggregateId, new AggregateCacheCleared(serializedAggregateId, typeof(TId), aggregateType));
                     }
                 }
                 _eventStore.Save(new AggregateEvent
                     {
                         Id = Guid.NewGuid(),
-                        AggregateId = aggregateId,
                         AggregateType = aggregateType.AssemblyQualifiedName,
-                        EventType = typeof (T).AssemblyQualifiedName,
+                        EventType = typeof (TEvent).AssemblyQualifiedName,
                         CreatedOn = DateTime.UtcNow,
-                        SerializedEvent = _eventSerializationStrategy.SerializeEvent(@event)
+                        SerializedEvent = _eventSerializationStrategy.SerializeEvent(@event),
+                        SerializedAggregateId = _eventSerializationStrategy.SerializeEvent(aggregateId),
+                        AggregateIdType = typeof(TId).AssemblyQualifiedName
                     });
             }
             catch (Exception ex)

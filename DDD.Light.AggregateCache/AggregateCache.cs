@@ -38,38 +38,38 @@ namespace DDD.Light.AggregateCache
             _getAggregateCacheRepositoryInstance = getAggregateCacheRepositoryInstance;
         }
 
-        private IRepository<T> GetRepository<T>()
+        private IRepository<TId, TAggregate> GetRepository<TId, TAggregate>()
         {
-            return _getAggregateCacheRepositoryInstance(typeof(IRepository<T>)) as IRepository<T>;
+            return _getAggregateCacheRepositoryInstance(typeof(IRepository<TId, TAggregate>)) as IRepository<TId, TAggregate>;
         }
 
-        public T GetById<T>(Guid id) where T : IAggregateRoot
+        public TAggregate GetById<TId, TAggregate>(TId id) where TAggregate : IAggregateRoot<TId>
         {
-            var cachedAggregate = GetRepository<T>().GetById(id);
-            if (Equals(cachedAggregate, default(T)))
+            var cachedAggregate = GetRepository<TId, TAggregate>().GetById(id);
+            if (Equals(cachedAggregate, default(TAggregate)))
             {
-                var aggregate = _eventStore.GetById<T>(id);
-                GetRepository<T>().Save(aggregate);
+                var aggregate = _eventStore.GetById<TId, TAggregate>(id);
+                GetRepository<TId, TAggregate>().Save(aggregate);
                 return aggregate;
             }
             return cachedAggregate;
         }
 
-        public void Handle<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot
+        public void Handle<TAggregate, TId, TEvent>(TId aggregateId, TEvent @event) where TAggregate : IAggregateRoot<TId>
         {
-            var aggregate = GetRepository<TAggregate>().GetById(aggregateId);
+            var aggregate = GetRepository<TId, TAggregate>().GetById(aggregateId);
             if (Equals(aggregate, default(TAggregate)))
-                aggregate = _eventStore.GetById<TAggregate>(aggregateId);
-            if (!Equals(aggregate, default(TAggregate))) 
-                ApplyEvent(@event, aggregate);
+                aggregate = _eventStore.GetById<TId, TAggregate>(aggregateId);
+            if (!Equals(aggregate, default(TAggregate)))
+                ApplyEvent<TAggregate, TId, TEvent>(@event, aggregate);
         }
 
-        public void Clear(Guid aggregateId, Type aggregateType)
-        {
+        public void Clear<TId>(TId aggregateId, Type aggregateType)
+        {           
             // todo: get repository of Type and delete by aggregateId
         }
 
-        private static void ApplyEvent<TAggregate, TEvent>(TEvent @event, TAggregate aggregate) where TAggregate : IAggregateRoot
+        private static void ApplyEvent<TAggregate, TId, TEvent>(TEvent @event, TAggregate aggregate) where TAggregate : IAggregateRoot<TId>
         {
             var eventType = typeof (TEvent);
             var method = typeof (TAggregate).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[] {eventType}, null);

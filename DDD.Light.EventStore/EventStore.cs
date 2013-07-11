@@ -10,7 +10,7 @@ namespace DDD.Light.EventStore
     public class EventStore : IEventStore
     {
         private static volatile EventStore _instance;
-        private IRepository<AggregateEvent> _repo;
+        private IRepository<Guid, AggregateEvent> _repo;
         private static object token = new Object();
         private IEventSerializationStrategy _serializationStrategy;
 
@@ -30,11 +30,12 @@ namespace DDD.Light.EventStore
             }
         }
 
-        public void Configure(IRepository<AggregateEvent> repository, IEventSerializationStrategy serializationStrategy)
+        public void Configure(IRepository<Guid, AggregateEvent> repo, IEventSerializationStrategy serializationStrategy)
         {
-            _repo = repository;
+            _repo = repo;
             _serializationStrategy = serializationStrategy;
         }
+
 
         public IEnumerable<AggregateEvent> GetAll()
         {
@@ -51,11 +52,11 @@ namespace DDD.Light.EventStore
             return _repo.Count();
         }
 
-        public DateTime LatestEventTimestamp(Guid aggregateId)
+        public DateTime LatestEventTimestamp<TId>(TId aggregateId)
         {
             VerifyRepoIsConfigured();
-            // todo: check for null in case this is first event for this aggregate
-            return _repo.Get().Where(x => x.AggregateId == aggregateId).OrderByDescending(x => x.CreatedOn).First().CreatedOn;
+            var aggregateEvents = _repo.Get().Where(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(aggregateId)).OrderByDescending(x => x.CreatedOn);
+            return aggregateEvents.Any() ? aggregateEvents.First().CreatedOn : new DateTime();
         }
 
         private void VerifyRepoIsConfigured()
@@ -63,47 +64,47 @@ namespace DDD.Light.EventStore
             if (_repo == null) throw new Exception("Event Store Repository is not configured. Use EventStore.Instance.Configure(); to configure");
         }
 
-        public T GetById<T>(Guid id) 
+        public TAggregate GetById<TId, TAggregate>(TId id) 
         {
             VerifyRepoIsConfigured();
 
-            var constructors = (typeof(T)).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
-            var aggregate = (T)constructors[0].Invoke(new object[] { });
+            var constructors = (typeof(TAggregate)).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
+            var aggregate = (TAggregate)constructors[0].Invoke(new object[] { });
 
-            _repo.Get().Where(x => x.AggregateId == id).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
+            _repo.Get().Where(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(id)).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
                 {
                     var eventType = Type.GetType(aggregateEvent.EventType);
                     var @event = _serializationStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
-                    var method = typeof(T).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
+                    var method = typeof(TAggregate).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
                     method.Invoke(aggregate, new[] { @event });
                 });
             return aggregate;
         }
         
-        public T GetById<T>(Guid id, DateTime until) 
+        public TAggregate GetById<TId, TAggregate>(TId id, DateTime until) 
         {
             VerifyRepoIsConfigured();
 
-            var constructors = (typeof(T)).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
-            var aggregate = (T)constructors[0].Invoke(new object[] { });
+            var constructors = (typeof(TAggregate)).GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
+            var aggregate = (TAggregate)constructors[0].Invoke(new object[] { });
 
-            _repo.Get().Where(x => x.AggregateId == id && DateTime.Compare(x.CreatedOn, until) <= 0).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
+            _repo.Get().Where(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(id) && DateTime.Compare(x.CreatedOn, until) <= 0).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
                 {
                     var eventType = Type.GetType(aggregateEvent.EventType);
                     var @event = _serializationStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);
-                    var method = typeof(T).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
+                    var method = typeof(TAggregate).GetMethod("ApplyEvent", BindingFlags.NonPublic | BindingFlags.Instance, null, new[]{eventType}, null);
                     method.Invoke(aggregate, new[] { @event });
                 });
             return aggregate;
         }
 
-        public object GetById(Guid id)
+        public object GetById<TId>(TId id)
         {
             VerifyRepoIsConfigured();
 
-            if (!_repo.Get().Any(x => x.AggregateId == id)) return null;
+            if (!_repo.Get().Any(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(id))) return null;
 
-            var serializedAggregateType = _repo.Get().First(x => x.AggregateId == id).AggregateType;
+            var serializedAggregateType = _repo.Get().First(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(id)).AggregateType;
 
             var aggregateType = Type.GetType(serializedAggregateType);
 
@@ -112,7 +113,7 @@ namespace DDD.Light.EventStore
             var constructors = aggregateType.GetConstructors(BindingFlags.NonPublic | BindingFlags.Instance);
             var aggregate = constructors[0].Invoke(new object[] { });
 
-            _repo.Get().Where(x => x.AggregateId == id).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
+            _repo.Get().Where(x => _serializationStrategy.DeserializeEvent(x.SerializedAggregateId, Type.GetType(x.AggregateIdType)).Equals(id)).OrderBy(x => x.CreatedOn).ToList().ForEach(aggregateEvent =>
             {
                 var eventType = Type.GetType(aggregateEvent.EventType);
                 var @event = _serializationStrategy.DeserializeEvent(aggregateEvent.SerializedEvent, eventType);

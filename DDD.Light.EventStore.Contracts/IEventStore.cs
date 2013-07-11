@@ -6,14 +6,14 @@ namespace DDD.Light.EventStore.Contracts
 {
     public interface IEventStore
     {
-        T GetById<T>(Guid id);
-        T GetById<T>(Guid id, DateTime until);
-        object GetById(Guid id);
+        TAggregate GetById<TId, TAggregate>(TId id);
+        TAggregate GetById<TId, TAggregate>(TId id, DateTime until);
+        object GetById<TId>(TId id);
         void Save(AggregateEvent aggregateEvent);
-        void Configure(IRepository<AggregateEvent> repo, IEventSerializationStrategy serializationStrategy);
+        void Configure(IRepository<Guid, AggregateEvent> repo, IEventSerializationStrategy serializationStrategy);
         IEnumerable<AggregateEvent> GetAll();
         IEnumerable<AggregateEvent> GetAll(DateTime until);
         long Count();
-        DateTime LatestEventTimestamp(Guid aggregateId);
+        DateTime LatestEventTimestamp<TId>(TId aggregateId);
     }
 }

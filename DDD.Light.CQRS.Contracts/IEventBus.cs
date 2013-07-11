@@ -7,8 +7,8 @@ namespace DDD.Light.CQRS.Contracts
     {
         void Subscribe<T>(IEventHandler<T> handler);
         void Subscribe<T>(Action<T> handler);
-        void Publish<T>(Type aggregateType, Guid aggregateId, T @event);
-        void Publish<TAggregate, T>(Guid aggregateId, T @event);
+        void Publish<TId, T>(Type aggregateType, TId aggregateId, T @event);
+        void Publish<TAggregate, TId, T>(TId aggregateId, T @event);
         void Configure(IEventStore eventStore, IEventSerializationStrategy eventSerializationStrategy, bool checkLatestEventTimestampPriorToSavingToEventStore);
         void RestoreReadModel();
         void RestoreReadModel(DateTime until);

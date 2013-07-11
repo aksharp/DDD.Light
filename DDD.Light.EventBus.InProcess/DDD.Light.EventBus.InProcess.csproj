@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{5BC75F9C-E63F-498F-8FA7-7A7A19F2DD90}</ProjectGuid>
+    <ProjectGuid>{AF3DF7FF-2BE6-4B74-A72F-91802AB7D7A8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DDD.Light.EventStore</RootNamespace>
-    <AssemblyName>DDD.Light.EventStore</AssemblyName>
+    <RootNamespace>DDD.Light.EventBus.InProcess</RootNamespace>
+    <AssemblyName>DDD.Light.EventBus.InProcess</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,14 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs">
-      <Link>Properties\SharedAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="JsonEventSerializationStrategy.cs" />
-    <Compile Include="EventStore.cs" />
+    <Compile Include="AggregateRoot.cs" />
+    <Compile Include="Entity.cs" />
+    <Compile Include="EventBus.cs" />
+    <Compile Include="EventHandler.cs" />
+    <Compile Include="EventHandlersDatabase.cs" />
+    <Compile Include="HandlerSubscribtions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Transaction.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DDD.Light.EventBus.Contracts\DDD.Light.EventBus.Contracts.csproj">
+      <Project>{9DD4B2ED-C0A8-44BC-BF31-EE62C76D280E}</Project>
+      <Name>DDD.Light.EventBus.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DDD.Light.EventStore.Contracts\DDD.Light.EventStore.Contracts.csproj">
       <Project>{3DF5D3BE-8199-4E2D-B80E-8D201A4476F3}</Project>
       <Name>DDD.Light.EventStore.Contracts</Name>
@@ -59,9 +62,6 @@
       <Project>{E275A12B-521A-4D92-AD1E-3DA98B106009}</Project>
       <Name>DDD.Light.Repo.Contracts</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="DDD.Light.EventStore.nuspec" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -34,7 +34,7 @@ namespace DDD.Light.AggregateBus.InProcess
             _eventBus = eventBus;
             _registeredAggregateCaches.Add(aggregateCache);
 
-            eventBus.Subscribe((AggregateCacheCleared e) => aggregateCache.Clear(e.AggregateId, e.AggregateType));
+            eventBus.Subscribe((AggregateCacheCleared e) => aggregateCache.Clear(e.SerializedAggregateId, e.AggregateType));
         }
 
         private AggregateBus()
@@ -42,11 +42,11 @@ namespace DDD.Light.AggregateBus.InProcess
             _registeredAggregateCaches = new List<IAggregateCache>();
         }
                
-        public void Publish<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot
+        public void Publish<TAggregate, TId, TEvent>(TId aggregateId, TEvent @event) where TAggregate : IAggregateRoot<TId>
         {
             if (_eventBus == null) throw new ApplicationException("AggregateBus -> Publish failed. EventBus is not configured");
-            _eventBus.Publish<TAggregate, TEvent>(aggregateId, @event);
-            _registeredAggregateCaches.ForEach(aggregateCache => aggregateCache.Handle<TAggregate, TEvent>(aggregateId, @event));
+            _eventBus.Publish<TAggregate, TId, TEvent>(aggregateId, @event);
+            _registeredAggregateCaches.ForEach(aggregateCache => aggregateCache.Handle<TAggregate, TId, TEvent>(aggregateId, @event));
         }
 
     }

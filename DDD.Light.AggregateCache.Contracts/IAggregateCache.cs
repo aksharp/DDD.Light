@@ -7,8 +7,8 @@ namespace DDD.Light.AggregateCache.Contracts
     public interface IAggregateCache
     {
         void Configure(IEventStore eventStore, Func<Type, object> getAggregateCacheRepositoryInstance);
-        T GetById<T>(Guid id) where T : IAggregateRoot;
-        void Handle<TAggregate, TEvent>(Guid aggregateId, TEvent @event) where TAggregate : IAggregateRoot;
-        void Clear(Guid aggregateId, Type aggregateType);
+        TAggregate GetById<TId, TAggregate>(TId id) where TAggregate : IAggregateRoot<TId>;
+        void Handle<TAggregate, TId, TEvent>(TId aggregateId, TEvent @event) where TAggregate : IAggregateRoot<TId>;
+        void Clear<TId>(TId aggregateId, Type aggregateType);
     }
 }

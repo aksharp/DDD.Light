@@ -9,7 +9,7 @@ using NUnit.Framework;
 
 namespace DDD.Light.CQRS.InProcess.Tests
 {
-    public class SomeAggregateRoot : AggregateRoot
+    public class SomeAggregateRoot : AggregateRoot<Guid>
     {
         private string _message;
         private SomeAggregateRoot(){}
@@ -64,7 +64,7 @@ namespace DDD.Light.CQRS.InProcess.Tests
 //            var mongoAggregateEventsRepository = new MongoRepository<AggregateEvent>("mongodb://localhost", "DDD_Light_Tests_EventStore", "EventStore");
 //            mongoAggregateEventsRepository.DeleteAll();
 
-            var inMemoryAggregateEventsRepository = new InMemoryRepository<AggregateEvent>();
+            var inMemoryAggregateEventsRepository = new InMemoryRepository<Guid, AggregateEvent>();
             inMemoryAggregateEventsRepository.DeleteAll();
 
             EventStore.EventStore.Instance.Configure(inMemoryAggregateEventsRepository, serializationStrategy);
@@ -80,9 +80,9 @@ namespace DDD.Light.CQRS.InProcess.Tests
                     {
                         return new MockHandler();
                     }
-                    if (type == typeof(IRepository<SomeAggregateRoot>))
+                    if (type == typeof(IRepository<Guid, SomeAggregateRoot>))
                     {
-                        return new InMemoryRepository<SomeAggregateRoot>();
+                        return new InMemoryRepository<Guid, SomeAggregateRoot>();
                     }
                     throw new Exception("type " + type.ToString() + " could not be resolved");
                 };

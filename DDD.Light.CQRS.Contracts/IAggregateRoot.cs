@@ -2,9 +2,9 @@
 
 namespace DDD.Light.CQRS.Contracts
 {
-    public interface IAggregateRoot : IEntity
+    public interface IAggregateRoot<TId> : IEntity<TId>
     {
         void PublishAndApplyEvent<TEvent>(TEvent @event);
-        void PublishAndApplyEvent<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot;
+        void PublishAndApplyEvent<TAggregate, TEvent>(TEvent @event) where TAggregate : IAggregateRoot<TId>;
     }
 }

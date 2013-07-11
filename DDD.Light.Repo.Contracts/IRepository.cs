@@ -1,18 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace DDD.Light.Repo.Contracts
 {
-    public interface IRepository<T>
+    public interface IRepository<TId, TAggregate>
     {
-        T GetById(Guid id);
-        IEnumerable<T> GetAll();
-        IQueryable<T> Get();
-        void Save(T item);
-        void SaveAll(IEnumerable<T> items);
-        void Delete(Guid id);
-        void Delete(T item);
+        TAggregate GetById(TId id);
+        IEnumerable<TAggregate> GetAll();
+        IQueryable<TAggregate> Get();
+        void Save(TAggregate item);
+        void SaveAll(IEnumerable<TAggregate> items);
+        void Delete(TId id);
+        void Delete(TAggregate item);
         void DeleteAll();
         long Count();
     }
