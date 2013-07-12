@@ -135,5 +135,21 @@ namespace DDD.Light.EventStore
             VerifyRepoIsConfigured();
             _repo.Save(aggregateEvent);
         }
+
+        public IEnumerable<TEvent> GetEvents<TEvent>()
+        {
+            if (_serializationStrategy == null) throw new ApplicationException("Serialization Strategy is not configured");
+
+            var deserializedEvents = new List<TEvent>();
+            var serializedEvents = GetAll().Where(e => Type.GetType(e.EventType) == typeof(TEvent)).ToList();
+            serializedEvents.ForEach(s =>
+                {
+                    var deserializedEvent = (TEvent)_serializationStrategy.DeserializeEvent(s.SerializedEvent, typeof (TEvent));
+                    deserializedEvents.Add(deserializedEvent);
+                });
+
+            return deserializedEvents;
+
+        }
     }
 }

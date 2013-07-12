@@ -15,5 +15,6 @@ namespace DDD.Light.EventStore.Contracts
         IEnumerable<AggregateEvent> GetAll(DateTime until);
         long Count();
         DateTime LatestEventTimestamp<TId>(TId aggregateId);
+        IEnumerable<TEvent> GetEvents<TEvent>();
     }
 }
